@@ -15,6 +15,9 @@
         "es6": true
     },
     "globals": {
+        "expect": true,
+        "protractor": true,
+        "browser": true,
         "mapboxgl": true,
         "Q": true,
         "google": true,
