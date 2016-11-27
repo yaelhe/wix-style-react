@@ -18,6 +18,7 @@
         "expect": true,
         "protractor": true,
         "browser": true,
+        "jest": true,
         "mapboxgl": true,
         "Q": true,
         "google": true,
