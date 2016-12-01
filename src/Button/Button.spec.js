@@ -1,5 +1,5 @@
 import styles from './Button.scss';
-import {componentFactory, driverFactory} from './Button.driver2';
+import {componentFactory, driverFactory} from './Button.driver';
 
 describe('Button', () => {
   const {createShallow} = componentFactory();
