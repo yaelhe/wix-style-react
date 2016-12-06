@@ -36,7 +36,6 @@ class MessageBoxStory extends React.Component {
             imageUrl="http://www.domstechblog.com/wp-content/uploads/2015/09/wix.png"
             />
         </Modal>
-
       </div>
     );
   }
