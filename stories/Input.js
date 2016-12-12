@@ -5,24 +5,63 @@ import Input from '../src/Input';
 import InputReadme from '../src/Input/README.md';
 
 storiesOf('Input', module)
-  .add('General', () => {
-    return (
-      <div>
-        <Markdown source={InputReadme}/>
-
-        <h3>Demo</h3>
-        <Input onChange={action('changed')} onEnterPressed={action('enter pressed')}/>
-      </div>
-    );
-  })
+  .add('General', () => (
+    <Markdown source={InputReadme}/>
+  ))
   .add('States', () => (
-    <Input/>
+    <div>
+      <table className="attributes">
+        <tbody>
+          <tr>
+            <th/>
+            <th>Default</th>
+            <th>Top</th>
+            <th>Down</th>
+          </tr>
+          <tr>
+            <td>Standard</td>
+            <td><Input placeholder="Search..."/></td>
+            <td><Input placeholder="Search..." forceHover/></td>
+            <td><Input placeholder="Search..." forceHover/></td>
+          </tr>
+          <tr>
+            <td>Focus</td>
+            <td><Input placeholder="Search..." forceFocus/></td>
+            <td><Input placeholder="Search..." forceFocus forceHover/></td>
+            <td><Input placeholder="Search..." forceFocus forceHover/></td>
+          </tr>
+          <tr>
+            <td>Disable</td>
+            <td><Input placeholder="Search..."/></td>
+            <td><Input placeholder="Search..." forceHover/></td>
+            <td><Input placeholder="Search..." forceHover/></td>
+          </tr>
+          <tr>
+            <td>Error</td>
+            <td><Input error placeholder="Search..."/></td>
+            <td><Input error placeholder="Search..." forceHover/></td>
+            <td><Input error placeholder="Search..." forceHover/></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   ))
   .add('Usage', () => (
     <Input/>
   ))
   .add('Variations', () => (
     <Input/>
+  ))
+  .add('Demo', () => (
+    <Input
+      placeholder="Search..."
+      onChange={action('changed')}
+      onBlur={action('blurred')}
+      onFocus={action('focused')}
+      onEnterPressed={action('enter pressed')}
+      onEscapePressed={action('escape pressed')}
+      onKeyDown={action('key down')}
+      />
   ));
 
 
