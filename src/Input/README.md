@@ -25,10 +25,7 @@
 
 ```js
 import Input form 'wix-style-react/Input';
-```
-### Examples
 
-```js
 // standard
 <Input/>
 

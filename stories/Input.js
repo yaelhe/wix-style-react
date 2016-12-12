@@ -4,64 +4,60 @@ import Markdown from './utils/Markdown';
 import Input from '../src/Input';
 import InputReadme from '../src/Input/README.md';
 
+const createInput = props =>
+  <Input
+    placeholder="Search..."
+    onChange={action('changed')}
+    onBlur={action('blurred')}
+    onFocus={action('focused')}
+    onEnterPressed={action('enter pressed')}
+    onEscapePressed={action('escape pressed')}
+    onKeyDown={action('key down')}
+    {...props}
+    />;
+
 storiesOf('Input', module)
-  .add('General', () => (
-    <Markdown source={InputReadme}/>
-  ))
-  .add('States', () => (
+  .add('Standard', () => (
     <div>
-      <table className="attributes">
-        <tbody>
-          <tr>
-            <th/>
-            <th>Default</th>
-            <th>Top</th>
-            <th>Down</th>
-          </tr>
-          <tr>
-            <td>Standard</td>
-            <td><Input placeholder="Search..."/></td>
-            <td><Input placeholder="Search..." forceHover/></td>
-            <td><Input placeholder="Search..." forceHover/></td>
-          </tr>
-          <tr>
-            <td>Focus</td>
-            <td><Input placeholder="Search..." forceFocus/></td>
-            <td><Input placeholder="Search..." forceFocus forceHover/></td>
-            <td><Input placeholder="Search..." forceFocus forceHover/></td>
-          </tr>
-          <tr>
-            <td>Disable</td>
-            <td><Input placeholder="Search..."/></td>
-            <td><Input placeholder="Search..." forceHover/></td>
-            <td><Input placeholder="Search..." forceHover/></td>
-          </tr>
-          <tr>
-            <td>Error</td>
-            <td><Input error placeholder="Search..."/></td>
-            <td><Input error placeholder="Search..." forceHover/></td>
-            <td><Input error placeholder="Search..." forceHover/></td>
-          </tr>
-        </tbody>
-      </table>
+      <Markdown source={InputReadme}/>
+
+      <h1>Examples</h1>
+
+      <div>
+        <h3>Input</h3>
+        {createInput()}
+      </div>
+
+      <div>
+        <h3>Focus</h3>
+        {createInput({forceFocus: true})}
+      </div>
+
+      <div>
+        <h3>Hover</h3>
+        {createInput({forceHover: true})}
+      </div>
+
+      <div>
+        <h3>Error</h3>
+        {createInput({error: true})}
+      </div>
+
+      <div>
+        <h3>Magnifying Glass</h3>
+        {createInput({magnifyingGlass: true})}
+      </div>
+
+      <div>
+        <h3>Unit</h3>
+        {createInput({unit: '#'})}
+      </div>
+
+      <div>
+        <h3>RTL</h3>
+        {createInput({rtl: true, placeholder: 'חפש...'})}
+      </div>
     </div>
-  ))
-  .add('Usage', () => (
-    <Input/>
-  ))
-  .add('Variations', () => (
-    <Input/>
-  ))
-  .add('Demo', () => (
-    <Input
-      placeholder="Search..."
-      onChange={action('changed')}
-      onBlur={action('blurred')}
-      onFocus={action('focused')}
-      onEnterPressed={action('enter pressed')}
-      onEscapePressed={action('escape pressed')}
-      onKeyDown={action('key down')}
-      />
   ));
 
 
