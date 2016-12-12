@@ -18,7 +18,7 @@ class ToggleSwitchWrapper extends Component {
     const onChange = () => this.setState({checked: !this.state.checked});
 
     return (
-      <ToggleSwitch checked={this.state.checked} onChange={onChange}/>
+      <ToggleSwitch {...this.props} checked={this.state.checked} onChange={onChange}/>
     );
   }
 }
@@ -38,8 +38,8 @@ storiesOf('Input', module)
 
       <div>
         <h3>Sizes</h3>
-        <ToggleSwitchWrapper size="small"/>
-        <ToggleSwitchWrapper size="large" checked/>
+        <ToggleSwitchWrapper size="small" checked/>
+        <ToggleSwitchWrapper size="large"/>
       </div>
     </div>
   ));
