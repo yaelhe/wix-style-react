@@ -1,6 +1,6 @@
 import React, {Component, PropTypes} from 'react';
 import {storiesOf} from '@kadira/storybook';
-import Markdown from './utils/Markdown';
+import Markdown from './utils/Components/Markdown';
 import Checkbox from '../src/Checkbox';
 import CheckboxReadme from '../src/Checkbox/README.md';
 

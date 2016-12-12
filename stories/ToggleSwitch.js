@@ -1,6 +1,6 @@
 import React, {Component, PropTypes} from 'react';
 import {storiesOf} from '@kadira/storybook';
-import Markdown from './utils/Markdown';
+import Markdown from './utils/Components/Markdown';
 import ToggleSwitch from '../src/ToggleSwitch';
 import ToggleSwitchReadme from '../src/ToggleSwitch/README.md';
 

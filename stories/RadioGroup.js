@@ -1,6 +1,6 @@
 import React, {Component, PropTypes} from 'react';
 import {storiesOf} from '@kadira/storybook';
-import Markdown from './utils/Markdown';
+import Markdown from './utils/Components/Markdown';
 import RadioGroup from '../src/RadioGroup';
 import RadioGroupReadme from '../src/RadioGroup/README.md';
 

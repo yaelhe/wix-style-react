@@ -1,6 +1,6 @@
 import React from 'react';
 import {storiesOf, action} from '@kadira/storybook';
-import Markdown from './utils/Markdown';
+import Markdown from './utils/Components/Markdown';
 import Input from '../src/Input';
 import InputReadme from '../src/Input/README.md';
 
