@@ -4,7 +4,7 @@ import Markdown from './utils/Components/Markdown';
 import RadioGroup from '../src/RadioGroup';
 import RadioGroupReadme from '../src/RadioGroup/README.md';
 
-class RadioGroupWrapper extends Component {
+class ControlledRadioGroup extends Component {
   static propTypes = {
     value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     children: PropTypes.any
@@ -26,7 +26,7 @@ class RadioGroupWrapper extends Component {
   }
 }
 
-storiesOf('Input', module)
+storiesOf('Switches', module)
   .add('RadioGroup', () => (
     <div>
       <Markdown source={RadioGroupReadme}/>
@@ -35,22 +35,22 @@ storiesOf('Input', module)
 
       <div>
         <h3>RadioGroup</h3>
-        <RadioGroupWrapper value={2}>
+        <ControlledRadioGroup value={2}>
           <RadioGroup.Radio value={1}>Option 1</RadioGroup.Radio>
           <RadioGroup.Radio value={2}>Option 2</RadioGroup.Radio>
           <RadioGroup.Radio value={3}>Option 3</RadioGroup.Radio>
           <RadioGroup.Radio value={4}>Option 4</RadioGroup.Radio>
-        </RadioGroupWrapper>
+        </ControlledRadioGroup>
       </div>
 
       <div>
         <h3>vAlign Center</h3>
-        <RadioGroupWrapper value={3}>
+        <ControlledRadioGroup value={3}>
           <RadioGroup.Radio value={1} vAlign="center">Option 1</RadioGroup.Radio>
           <RadioGroup.Radio value={2} vAlign="center">Option 2</RadioGroup.Radio>
           <RadioGroup.Radio value={3} vAlign="center">Option 3</RadioGroup.Radio>
           <RadioGroup.Radio value={4} vAlign="center">Option 4</RadioGroup.Radio>
-        </RadioGroupWrapper>
+        </ControlledRadioGroup>
       </div>
     </div>
   ));

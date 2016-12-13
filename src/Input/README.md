@@ -26,14 +26,24 @@
 ```js
 import Input form 'wix-style-react/Input';
 
-// standard
-<Input/>
+class ControlledInput extends Component {
+  static propTypes = {
+    value: PropTypes.bool
+  };
 
-// styles variations
-<Input unit="#"/>
-<Input rtl/>
-<Input magnifyingGlass/>
+  constructor({value = ''}) {
+    super();
+    this.state = {value};
+  }
 
-// error
-<Input error>Click Me!</Input>
+  render() {
+    const onChange = event => {
+      this.setState({value: event.target.value});
+    };
+
+    return (
+      <Input {...this.props} value={this.state.value} onChange={onChange}/>
+    );
+  }
+}
 ```

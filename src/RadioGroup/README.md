@@ -19,10 +19,27 @@
 ```js
 import RadioGroup form 'wix-style-react/RadioGroup';
 
-// standard
-<RadioGroup value={1}>
-  <RadioGroup.Radio value={1}>Option 1</RadioGroup.Radio>
-  <RadioGroup.Radio value={2}>Option 2</RadioGroup.Radio>
-  <RadioGroup.Radio value={3}>Option 3</RadioGroup.Radio>
-  <RadioGroup.Radio value={4}>Option 4</RadioGroup.Radio>
-</RadioGroup>
+class ControlledRadioGroup extends Component {
+  static propTypes = {
+    value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+    children: PropTypes.any
+  };
+
+  constructor({value}) {
+    super();
+    this.state = {value};
+  }
+
+  render() {
+    const onChange = value => this.setState({value});
+
+    return (
+      <RadioGroup {...this.props} value={this.state.value} onChange={onChange}>
+        <RadioGroup.Radio value={1}>Option 1</RadioGroup.Radio>
+        <RadioGroup.Radio value={2}>Option 2</RadioGroup.Radio>
+        <RadioGroup.Radio value={3}>Option 3</RadioGroup.Radio>
+        <RadioGroup.Radio value={4}>Option 4</RadioGroup.Radio>
+     </RadioGroup>
+    );
+  }
+}

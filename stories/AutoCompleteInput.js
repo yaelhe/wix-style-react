@@ -4,7 +4,7 @@ import Markdown from './utils/Components/Markdown';
 import AutoCompleteInput from '../src/AutoCompleteInput';
 import AutoCompleteInputReadme from '../src/AutoCompleteInput/README.md';
 
-class AutoCompleteInputWrapper extends Component {
+class ControlledAutoCompleteInput extends Component {
   static propTypes = {
     value: PropTypes.string
   };
@@ -38,7 +38,7 @@ const rtlSuggestions = [
   {text: 'אפשרות שלישית'}
 ];
 
-storiesOf('Input', module)
+storiesOf('Inputs', module)
   .add('AutoCompleteInput', () => (
     <div>
       <Markdown source={AutoCompleteInputReadme}/>
@@ -47,12 +47,12 @@ storiesOf('Input', module)
 
       <div>
         <h3>AutoCompleteInput</h3>
-        <AutoCompleteInputWrapper suggestions={suggestions}/>
+        <ControlledAutoCompleteInput suggestions={suggestions}/>
       </div>
 
       <div>
         <h3>Right to left</h3>
-        <AutoCompleteInputWrapper suggestions={rtlSuggestions} rtl/>
+        <ControlledAutoCompleteInput suggestions={rtlSuggestions} rtl/>
       </div>
     </div>
   ));

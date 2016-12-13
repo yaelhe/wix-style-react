@@ -17,8 +17,27 @@
 ```js
 import Slider form 'wix-style-react/Slider';
 
+class ControlledSlider extends Component {
+  static propTypes = {
+    value: PropTypes.arrayOf(PropTypes.number)
+  };
+
+  constructor({value}) {
+    super();
+    this.state = {value};
+  }
+
+  render() {
+    const onChange = value => this.setState({value});
+
+    return (
+      <Slider {...this.props} value={this.state.value} onChange={onChange}/>
+    );
+  }
+}
+
 // single handle
-<Slider value={[3]} min={1} max={10}/>
+<ControlledSlider value={[3]} min={1} max={10}/>
 
 // multi handles
-<Slider value={[3, 4, 5]} min={1} max={10}/>
+<ControlledSlider value={[3, 4, 5]} min={1} max={10}/>

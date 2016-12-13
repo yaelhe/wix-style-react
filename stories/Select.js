@@ -4,7 +4,7 @@ import Markdown from './utils/Components/Markdown';
 import Select from '../src/Select';
 import SelectReadme from '../src/Select/README.md';
 
-class SelectWrapper extends Component {
+class ControlledSelect extends Component {
   static propTypes = {
     value: PropTypes.string
   };
@@ -37,7 +37,7 @@ const reactOptions = [
   {value: 3, text: <span style={{color: 'yellow'}}>Option 4</span>}
 ];
 
-storiesOf('Input', module)
+storiesOf('Inputs', module)
   .add('Select', () => (
     <div>
       <Markdown source={SelectReadme}/>
@@ -46,17 +46,12 @@ storiesOf('Input', module)
 
       <div>
         <h3>Select</h3>
-        <SelectWrapper placeHolder="Please pick one..." options={options}/>
+        <ControlledSelect value={0} placeHolder="Please pick one..." options={options}/>
       </div>
 
       <div>
-        <h3>Opens to top</h3>
-        <SelectWrapper options={options} dropDirectionUp/>
-      </div>
-
-      <div>
-        <h3>Text as React elements</h3>
-        <SelectWrapper placeHolder="" options={reactOptions}/>
+        <h3>React elements as options</h3>
+        <ControlledSelect value={0} placeHolder="Please pick one..." options={reactOptions}/>
       </div>
     </div>
   ));

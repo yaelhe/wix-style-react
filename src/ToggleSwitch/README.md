@@ -13,7 +13,21 @@
 ```js
 import ToggleSwitch form 'wix-style-react/ToggleSwitch';
 
-// standard
-<ToggleSwitch/>
-<ToggleSwitch checked/>
+class ControlledToggleSwitch extends Component {
+  static propTypes = {
+    checked: PropTypes.bool
+  };
 
+  constructor({checked}) {
+    super();
+    this.state = {checked};
+  }
+
+  render() {
+    const onChange = () => this.setState({checked: !this.state.checked});
+
+    return (
+      <ToggleSwitch {...this.props} checked={this.state.checked} onChange={onChange}/>
+    );
+  }
+}

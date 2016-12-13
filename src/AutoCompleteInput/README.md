@@ -21,4 +21,22 @@ const suggestions = [
   {text: 'Very long suggestion text jldlkasj ldk jsalkdjsal kdjaklsjdlkasj dklasj'}
 ];
 
-<AutoCompleteInput suggestions={suggestions}/>
+class ControlledAutoCompleteInput extends Component {
+  static propTypes = {
+    value: PropTypes.string
+  };
+
+  constructor({value}) {
+    super();
+    this.state = {value};
+  }
+
+  render() {
+    const onChange = event => this.setState({value: event.target.value});
+    const onSet = value => this.setState({value: value.text});
+
+    return (
+      <AutoCompleteInput {...this.props} suggestions={suggestions} value={this.state.value} onChange={onChange} onSet={onSet}/>
+    );
+  }
+}

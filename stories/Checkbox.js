@@ -4,14 +4,14 @@ import Markdown from './utils/Components/Markdown';
 import Checkbox from '../src/Checkbox';
 import CheckboxReadme from '../src/Checkbox/README.md';
 
-class CheckboxWrapper extends Component {
+class ControlledCheckbox extends Component {
   static propTypes = {
     checked: PropTypes.bool
   };
 
-  constructor(props) {
+  constructor({checked}) {
     super();
-    this.state = {checked: !!props.checked};
+    this.state = {checked};
   }
 
   render() {
@@ -23,7 +23,7 @@ class CheckboxWrapper extends Component {
   }
 }
 
-storiesOf('Input', module)
+storiesOf('Switches', module)
   .add('Checkbox', () => (
     <div>
       <Markdown source={CheckboxReadme}/>
@@ -32,17 +32,17 @@ storiesOf('Input', module)
 
       <div>
         <h3>Checkbox</h3>
-        <CheckboxWrapper/>
+        <ControlledCheckbox/>
       </div>
 
       <div>
         <h3>Checked</h3>
-        <CheckboxWrapper checked/>
+        <ControlledCheckbox checked/>
       </div>
 
       <div>
         <h3>Disabled</h3>
-        <CheckboxWrapper disabled/>
+        <ControlledCheckbox disabled/>
       </div>
     </div>
   ));

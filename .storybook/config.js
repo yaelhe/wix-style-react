@@ -10,8 +10,9 @@ function loadStories() {
  require('../stories/Select');
  require('../stories/AutoCompleteInput');
  require('../stories/Slider');
-
- require('../stories');
+ require('../stories/Modal');
+ require('../stories/Button');
+ require('../stories/MessageBox');
 }
 
 configure(loadStories, module);

@@ -4,14 +4,14 @@ import Markdown from './utils/Components/Markdown';
 import ToggleSwitch from '../src/ToggleSwitch';
 import ToggleSwitchReadme from '../src/ToggleSwitch/README.md';
 
-class ToggleSwitchWrapper extends Component {
+class ControlledToggleSwitch extends Component {
   static propTypes = {
     checked: PropTypes.bool
   };
 
-  constructor(props) {
+  constructor({checked}) {
     super();
-    this.state = {checked: !!props.checked};
+    this.state = {checked};
   }
 
   render() {
@@ -23,7 +23,7 @@ class ToggleSwitchWrapper extends Component {
   }
 }
 
-storiesOf('Input', module)
+storiesOf('Switches', module)
   .add('ToggleSwitch', () => (
     <div>
       <Markdown source={ToggleSwitchReadme}/>
@@ -32,14 +32,14 @@ storiesOf('Input', module)
 
       <div>
         <h3>ToggleSwitch</h3>
-        <ToggleSwitchWrapper/>
-        <ToggleSwitchWrapper checked/>
+        <ControlledToggleSwitch/>
+        <ControlledToggleSwitch checked/>
       </div>
 
       <div>
         <h3>Sizes</h3>
-        <ToggleSwitchWrapper size="small" checked/>
-        <ToggleSwitchWrapper size="large"/>
+        <ControlledToggleSwitch size="small" checked/>
+        <ControlledToggleSwitch size="large"/>
       </div>
     </div>
   ));

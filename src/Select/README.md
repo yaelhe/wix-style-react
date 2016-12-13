@@ -23,4 +23,21 @@ const options = [
   {value: 4, text: 'Divider example above'}
 ];
 
-<Select value={2} options={options}/>
+class ControlledSelect extends Component {
+  static propTypes = {
+    value: PropTypes.string
+  };
+
+  constructor({value}) {
+    super();
+    this.state = {value};
+  }
+
+  render() {
+    const onChange = value => this.setState({value});
+
+    return (
+      <Select {...this.props} options={options} value={this.state.value} onChange={onChange}/>
+    );
+  }
+}

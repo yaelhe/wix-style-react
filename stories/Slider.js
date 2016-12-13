@@ -4,7 +4,7 @@ import Markdown from './utils/Components/Markdown';
 import Slider from '../src/Slider';
 import SliderReadme from '../src/Slider/README.md';
 
-class SliderWrapper extends Component {
+class ControlledSlider extends Component {
   static propTypes = {
     value: PropTypes.arrayOf(PropTypes.number)
   };
@@ -23,7 +23,7 @@ class SliderWrapper extends Component {
   }
 }
 
-storiesOf('Input', module)
+storiesOf('Inputs', module)
   .add('Slider', () => (
     <div>
       <Markdown source={SliderReadme}/>
@@ -32,12 +32,12 @@ storiesOf('Input', module)
 
       <div>
         <h3>Slider</h3>
-        <SliderWrapper value={[3]} min={1} max={10}/>
+        <ControlledSlider value={[3]} min={1} max={10}/>
       </div>
 
       <div>
         <h3>Multiple handles</h3>
-        <SliderWrapper value={[3, 4, 5]} min={1} max={10}/>
+        <ControlledSlider value={[3, 4, 5]} min={1} max={10}/>
       </div>
     </div>
   ));
