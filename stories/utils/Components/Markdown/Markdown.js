@@ -1,10 +1,10 @@
-import React, {PropTypes} from 'react';
+import React, {Component, PropTypes} from 'react';
 import ReactDOM from 'react-dom';
 import Remarkable from 'react-remarkable';
 import hljs from 'highlight.js';
 import './Markdown.scss';
 
-export default class Markdown extends React.Component {
+export default class Markdown extends Component {
   static propTypes = {
     source: PropTypes.string
   };
