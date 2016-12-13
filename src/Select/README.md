@@ -12,7 +12,7 @@
 ## Usage
 
 ```js
-import Select form 'wix-style-react/Select';
+import Select from 'wix-style-react/Select';
 
 const options = [
   {value: 0, text: 'Option 1'},

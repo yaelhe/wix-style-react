@@ -11,7 +11,7 @@
 ## Usage
 
 ```js
-import Checkbox form 'wix-style-react/Checkbox';
+import Checkbox from 'wix-style-react/Checkbox';
 
 class ControlledCheckbox extends Component {
   static propTypes = {

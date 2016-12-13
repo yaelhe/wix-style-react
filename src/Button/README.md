@@ -12,7 +12,7 @@
 ## Usage
 
 ```js
-import Input form 'wix-style-react/Button';
+import Input from 'wix-style-react/Button';
 
 // standard
 <Button/>

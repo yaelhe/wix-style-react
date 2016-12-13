@@ -24,7 +24,7 @@
 ## Usage
 
 ```js
-import Input form 'wix-style-react/Input';
+import Input from 'wix-style-react/Input';
 
 class ControlledInput extends Component {
   static propTypes = {

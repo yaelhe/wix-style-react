@@ -15,9 +15,9 @@
 ## Usage
 
 ```js
-import Modal form 'wix-style-react/Modal';
-import Button form 'wix-style-react/Button';
-import MessageBoxLayout2 form 'wix-style-react/MessageBoxLayout2';
+import Modal from 'wix-style-react/Modal';
+import Button from 'wix-style-react/Button';
+import MessageBoxLayout2 from 'wix-style-react/MessageBoxLayout2';
 
 class ControlledModal extends Component {
   static propTypes = {

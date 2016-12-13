@@ -15,7 +15,7 @@
 ## Usage
 
 ```js
-import Slider form 'wix-style-react/Slider';
+import Slider from 'wix-style-react/Slider';
 
 class ControlledSlider extends Component {
   static propTypes = {

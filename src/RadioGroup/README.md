@@ -17,7 +17,7 @@
 ## Usage
 
 ```js
-import RadioGroup form 'wix-style-react/RadioGroup';
+import RadioGroup from 'wix-style-react/RadioGroup';
 
 class ControlledRadioGroup extends Component {
   static propTypes = {

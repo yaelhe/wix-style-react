@@ -19,9 +19,13 @@ export default class Markdown extends React.Component {
   }
 
   render() {
+    const options = {
+      linkTarget: '_blank'
+    };
+
     return (
       <div className="markdown-body">
-        <Remarkable source={this.props.source}/>
+        <Remarkable source={this.props.source} options={options}/>
       </div>
     );
   }

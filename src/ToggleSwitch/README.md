@@ -11,7 +11,7 @@
 ## Usage
 
 ```js
-import ToggleSwitch form 'wix-style-react/ToggleSwitch';
+import ToggleSwitch from 'wix-style-react/ToggleSwitch';
 
 class ControlledToggleSwitch extends Component {
   static propTypes = {

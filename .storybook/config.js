@@ -13,6 +13,7 @@ function loadStories() {
  require('../stories/Modal');
  require('../stories/Button');
  require('../stories/MessageBox');
+ require('../stories/GoogleAddressInput');
 }
 
 configure(loadStories, module);

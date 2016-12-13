@@ -11,7 +11,7 @@
 ## Usage
 
 ```js
-import AutoCompleteInput form 'wix-style-react/AutoCompleteInput';
+import AutoCompleteInput from 'wix-style-react/AutoCompleteInput';
 
 const suggestions = [
   {text: 'First suggestion'},
