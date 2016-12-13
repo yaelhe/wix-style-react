@@ -1,5 +1,7 @@
 # GoogleAddressInput component
 
+> [view source](https://github.com/wix/wix-style-react/blob/master/stories/GoogleAddressInput.js)
+
 ## Properties
 
 | propName | propType | defaultValue | isRequired | description |

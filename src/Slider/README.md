@@ -1,5 +1,7 @@
 # Slider component
 
+> [view source](https://github.com/wix/wix-style-react/blob/master/stories/Slider.js)
+
 ## Properties
 
 | propName | propType | defaultValue | isRequired | description |

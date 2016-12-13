@@ -1,5 +1,7 @@
 # Checkbox component
 
+> [view source](https://github.com/wix/wix-style-react/blob/master/stories/Checkbox.js)
+
 ## Properties
 
 | propName | propType | defaultValue | isRequired | description |

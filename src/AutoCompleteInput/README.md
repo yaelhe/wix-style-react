@@ -1,5 +1,7 @@
 # AutoCompleteInput component
 
+> [view source](https://github.com/wix/wix-style-react/blob/master/stories/AutoCompleteInput.js)
+
 ## Properties
 
 | propName | propType | defaultValue | isRequired | description |

@@ -1,5 +1,7 @@
 # ToggleSwitch component
 
+> [view source](https://github.com/wix/wix-style-react/blob/master/stories/ToggleSwitch.js)
+
 ## Properties
 
 | propName | propType | defaultValue | isRequired | description |
