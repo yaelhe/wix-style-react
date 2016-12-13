@@ -4,10 +4,10 @@
 
 | propName | propType | defaultValue | isRequired | description |
 |----------|----------|--------------|------------|-------------|
-| style | string | fullblue | yes | The style of the button, can be fullblue, emptyblue, fullpurple, emptypurple, fullgreen, emptygreen, fullred or emptyred
+| style | string | fullblue | + | The style of the button, can be fullblue, emptyblue, fullpurple, emptypurple, fullgreen, emptygreen, fullred or emptyred
 | height | string | medium | - | The size of the button, can be small, medium or large |
-| disabled | boolean | - | - | - |
-| onClick | function | - | - | - |
+| disabled | bool | - | - | - |
+| onClick | func | - | - | - |
 
 ## Usage
 
@@ -18,9 +18,9 @@ import Input from 'wix-style-react/Button';
 <Button/>
 
 // styles variations
-<Button style='emptyblue'>Click Me!</Button>
-<Button style="fullgreen" height='small'>Click Me!</Button>
+<Button style="emptyblue">Click Me!</Button>
+<Button style="fullgreen" height="small">Click Me!</Button>
 
 // error
-<Button style="fullred" height='large'>Click Me!</Button>
+<Button style="fullred" height="large">Click Me!</Button>
 ```
