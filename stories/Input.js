@@ -25,6 +25,8 @@ class ControlledInput extends Component {
   }
 }
 
+const inputItemStyle = {display:'inline-block', padding:'5px', width: '200px'};
+
 storiesOf('Inputs', module)
   .add('Standard', () => (
     <div>
@@ -32,122 +34,47 @@ storiesOf('Inputs', module)
 
       <h1>Examples</h1>
 
-      <div style={{width: '400px'}}>
-        <h3>Controlled input (shows error for value of "error")</h3>
-        <div className="ltr">
-          <ControlledInput/>
-        </div>
+      <h4>Standard</h4>
+      <div>
+        <div className="ltr" style={inputItemStyle}>Input<ControlledInput/></div>
+        <div className="ltr" style={inputItemStyle}>Focus<ControlledInput forceFocus/></div>
+        <div className="ltr" style={inputItemStyle}>Hover<ControlledInput forceHover/></div>
+        <div className="ltr" style={inputItemStyle}>With placeholder<ControlledInput placeholder="Search..."/></div>
+      </div>
 
-        <div>
-          <h3>Error</h3>
-          <h4>Left to right</h4>
-          <div className="ltr">
-            <ControlledInput error/>
-          </div>
+      <h4>Error</h4>
+      <div>
+        <div className="ltr" style={inputItemStyle}>Left to right<ControlledInput error/></div>
+        <div className="rtl" style={inputItemStyle}>Right to left<ControlledInput rtl error/></div>
+      </div>
 
-          <h4>Right to left</h4>
-          <div className="rtl">
-            <ControlledInput rtl error/>
-          </div>
-        </div>
+      <h4>Unit</h4>
+      <div>
+        <div className="ltr" style={inputItemStyle}>Left to right<ControlledInput unit="#"/></div>
+        <div className="rtl" style={inputItemStyle}>Right to left<ControlledInput rtl unit="$"/></div>
+        <div className="ltr" style={inputItemStyle}>With error<ControlledInput error unit="$"/></div>
+      </div>
 
-        <div>
-          <h3>Unit</h3>
-          <h4>Left to right</h4>
-          <div className="ltr">
-            <ControlledInput unit="$"/>
-          </div>
+      <h4>Magnifying Glass</h4>
+      <div>
+        <div className="ltr" style={inputItemStyle}>Left to right<ControlledInput magnifyingGlass/></div>
+        <div className="rtl" style={inputItemStyle}>Right to left<ControlledInput rtl magnifyingGlass/></div>
+        <div className="ltr" style={inputItemStyle}>With unit<ControlledInput magnifyingGlass unit="$"/></div>
+        <div className="ltr" style={inputItemStyle}>With error<ControlledInput magnifyingGlass error/></div>
+        <div className="ltr" style={inputItemStyle}>With unit & error<ControlledInput magnifyingGlass error unit="$"/></div>
+      </div>
 
-          <h4>Right to left</h4>
-          <div className="rtl">
-            <ControlledInput rtl unit="$"/>
-          </div>
-        </div>
+      <h4>Controlled input</h4>
+      <div>
+        <div className="ltr" style={inputItemStyle}>Shows error for value of "error"<ControlledInput/></div>
+      </div>
 
-        <div>
-          <h3>Unit and Error together</h3>
-          <h4>Left to right</h4>
-          <div className="ltr">
-            <ControlledInput unit="$" error/>
-          </div>
-
-          <h4>Right to left</h4>
-          <div className="rtl">
-            <ControlledInput rtl unit="$" error/>
-          </div>
-        </div>
-
-        <div>
-          <h3>Magnifying Glass</h3>
-          <h4>Left to right</h4>
-          <div className="ltr">
-            <ControlledInput magnifyingGlass/>
-            <ControlledInput magnifyingGlass unit="$"/>
-            <ControlledInput magnifyingGlass error/>
-            <ControlledInput magnifyingGlass error unit="$"/>
-          </div>
-
-          <h4>Right to left</h4>
-          <div className="rtl">
-            <ControlledInput rtl magnifyingGlass/>
-            <ControlledInput rtl magnifyingGlass unit="$"/>
-            <ControlledInput rtl magnifyingGlass error/>
-            <ControlledInput rtl magnifyingGlass error unit="$"/>
-          </div>
-        </div>
-
-        <div>
-          <h3>Focus (with forceFocus)</h3>
-          <div className="ltr">
-            <ControlledInput forceFocus/>
-          </div>
-        </div>
-
-        <div>
-          <h3>Hover (with forceHover)</h3>
-          <div className="ltr">
-            <ControlledInput forceHover/>
-          </div>
-        </div>
-
-        <div>
-          <h3>Style: paneltitle</h3>
-          <div style={{background: '#3899ec', padding: '20px', width: '400px'}}>
-            <div style={{width: '400px'}} className="ltr">
-              <Input style="paneltitle"/>
-            </div>
-          </div>
+      <h3>Style: paneltitle</h3>
+      <div style={{background: '#3899ec', padding: '20px', width: '400px'}}>
+        <div style={{width: '400px'}} className="ltr">
+          <Input style="paneltitle"/>
         </div>
       </div>
     </div>
   ));
 
-// const inputRowStyle = {display:'flex', alignItems:'center', justifyContent:'space-between', width: '850px'};
-// const inputItemStyle = {display:'flex', alignItems:'center', width: '250px', whiteSpace: 'nowrap'};
-
-// <h4>Standard</h4>
-// <div style={inputRowStyle}>
-//   <div style={inputItemStyle}>Input:&nbsp;<ControlledInput/></div>
-//   <div style={inputItemStyle}>Focus:&nbsp;<ControlledInput forceFocus/></div>
-//   <div style={inputItemStyle}>Hover:&nbsp;<ControlledInput forceHover/></div>
-// </div>
-
-// <h4>Error</h4>
-// <div style={inputRowStyle}>
-//   <div style={inputItemStyle}>Error:&nbsp;<ControlledInput error/></div>
-// </div>
-
-// <h4>Magnifying Glass</h4>
-// <div style={inputRowStyle}>
-//   <div style={inputItemStyle}>Magnifying glass:&nbsp;<ControlledInput magnifyingGlass/></div>
-// </div>
-
-// <h4>Unit</h4>
-// <div style={{...inputRowStyle, width: '545px'}}>
-//   <div style={inputItemStyle}>Number:&nbsp;<ControlledInput unit="#"/></div>
-//   <div style={inputItemStyle}>Dollar:&nbsp;<ControlledInput unit="$"/></div>
-// </div>
-
-// <h4>RTL</h4>
-// <div style={inputRowStyle}>
-//   <div style={inputItemStyle}>Dollar:&nbsp;<ControlledInput rtl placeholder="חפש..."/></div>
