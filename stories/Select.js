@@ -30,6 +30,13 @@ const options = [
   {value: 3, text: 'Option 4'},
 ];
 
+const rtlOptions = [
+  {value: 0, text: 'אופציה 1'},
+  {value: 1, text: 'אופציה 2'},
+  {value: 2, text: 'אופציה 3'},
+  {value: 3, text: 'אופציה 4'},
+];
+
 const reactOptions = [
   {value: 0, text: <span style={{color: 'red'}}>Option 1</span>},
   {value: 1, text: <span style={{color: 'green'}}>Option 2</span>},
@@ -44,14 +51,41 @@ storiesOf('Inputs', module)
 
       <h1>Examples</h1>
 
-      <div>
-        <h3>Select</h3>
-        <ControlledSelect value={0} placeHolder="Please pick one..." options={options}/>
-      </div>
+      <div style={{width: '400px'}}>
+        <div>
+          <h3>Select</h3>
+          <div className="ltr">
+            <ControlledSelect value={0} options={options}/>
+          </div>
+        </div>
 
-      <div>
-        <h3>React elements as options</h3>
-        <ControlledSelect value={0} placeHolder="Please pick one..." options={reactOptions}/>
+        <div>
+          <h3>Right to left</h3>
+          <div className="rtl">
+            <ControlledSelect value={0} options={rtlOptions}/>
+          </div>
+        </div>
+
+        <div>
+          <h3>Menu opening to top</h3>
+          <div className="ltr">
+            <ControlledSelect dropDirectionUp value={0} options={options}/>
+          </div>
+        </div>
+
+        <div>
+          <h3>Placeholder</h3>
+          <div className="ltr">
+            <ControlledSelect placeHolder="Please pick one..." options={options}/>
+          </div>
+        </div>
+
+        <div>
+          <h3>React elements as options</h3>
+          <div className="ltr">
+            <ControlledSelect value={0} options={reactOptions}/>
+          </div>
+        </div>
       </div>
     </div>
   ));

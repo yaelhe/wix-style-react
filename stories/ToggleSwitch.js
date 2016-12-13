@@ -30,16 +30,24 @@ storiesOf('Switches', module)
 
       <h1>Examples</h1>
 
-      <div>
-        <h3>ToggleSwitch</h3>
-        <ControlledToggleSwitch/>
-        <ControlledToggleSwitch checked/>
-      </div>
+      <div style={{width: '400px'}}>
+        <div>
+          <h3>ToggleSwitch</h3>
+          <div className="ltr">
+            <ControlledToggleSwitch/>
+            {' '}
+            <ControlledToggleSwitch checked/>
+          </div>
+        </div>
 
-      <div>
-        <h3>Sizes</h3>
-        <ControlledToggleSwitch size="small" checked/>
-        <ControlledToggleSwitch size="large"/>
+        <div>
+          <h3>Sizes</h3>
+          <div className="ltr">
+            <ControlledToggleSwitch size="small"/>
+            {' '}
+            <ControlledToggleSwitch size="large" checked/>
+          </div>
+        </div>
       </div>
     </div>
   ));

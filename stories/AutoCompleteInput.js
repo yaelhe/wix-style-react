@@ -45,14 +45,20 @@ storiesOf('Inputs', module)
 
       <h1>Examples</h1>
 
-      <div>
-        <h3>AutoCompleteInput</h3>
-        <ControlledAutoCompleteInput suggestions={suggestions}/>
-      </div>
+      <div style={{width: '400px'}}>
+        <div>
+          <h3>AutoCompleteInput</h3>
+          <div className="ltr">
+            <ControlledAutoCompleteInput suggestions={suggestions}/>
+          </div>
+        </div>
 
-      <div>
-        <h3>Right to left</h3>
-        <ControlledAutoCompleteInput suggestions={rtlSuggestions} rtl/>
+        <div>
+          <h3>Right to left</h3>
+          <div className="ltr">
+            <ControlledAutoCompleteInput suggestions={rtlSuggestions} rtl/>
+          </div>
+        </div>
       </div>
     </div>
   ));

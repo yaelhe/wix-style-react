@@ -23,8 +23,9 @@ class ControlledMessageBoxes extends Component {
 
     return (
       <div>
-        <Button onClick={openLayout1} >Show MessageBoxLayout1</Button>
-        <Button onClick={openLayout2} >Show MessageBoxLayout2</Button>
+        <Button onClick={openLayout1}>Show MessageBoxLayout1</Button>
+        <br/><br/>
+        <Button onClick={openLayout2}>Show MessageBoxLayout2</Button>
 
         <NgIf show={this.state.openMessageBox === 'layout1'}>
           <MessageBoxLayout1
