@@ -47,7 +47,7 @@ storiesOf('Inputs', module)
 
           <h4>Right to left</h4>
           <div className="rtl">
-            <ControlledInput error/>
+            <ControlledInput rtl error/>
           </div>
         </div>
 
@@ -60,7 +60,7 @@ storiesOf('Inputs', module)
 
           <h4>Right to left</h4>
           <div className="rtl">
-            <ControlledInput unit="$"/>
+            <ControlledInput rtl unit="$"/>
           </div>
         </div>
 
@@ -73,7 +73,7 @@ storiesOf('Inputs', module)
 
           <h4>Right to left</h4>
           <div className="rtl">
-            <ControlledInput unit="$" error/>
+            <ControlledInput rtl unit="$" error/>
           </div>
         </div>
 
@@ -89,10 +89,10 @@ storiesOf('Inputs', module)
 
           <h4>Right to left</h4>
           <div className="rtl">
-            <ControlledInput magnifyingGlass/>
-            <ControlledInput magnifyingGlass unit="$"/>
-            <ControlledInput magnifyingGlass error/>
-            <ControlledInput magnifyingGlass error unit="$"/>
+            <ControlledInput rtl magnifyingGlass/>
+            <ControlledInput rtl magnifyingGlass unit="$"/>
+            <ControlledInput rtl magnifyingGlass error/>
+            <ControlledInput rtl magnifyingGlass error unit="$"/>
           </div>
         </div>
 
