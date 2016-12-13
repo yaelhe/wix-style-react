@@ -25,6 +25,9 @@ class ControlledInput extends Component {
   }
 }
 
+const inputRowStyle = {display:'flex', alignItems:'center', justifyContent:'space-between', width: '850px'};
+const inputItemStyle = {display:'flex', alignItems:'center', width: '250px', whiteSpace: 'nowrap'};
+
 storiesOf('Inputs', module)
   .add('Standard', () => (
     <div>
@@ -32,39 +35,32 @@ storiesOf('Inputs', module)
 
       <h1>Examples</h1>
 
-      <div>
-        <h3>Input</h3>
-        <ControlledInput/>
+      <h4>Standard</h4>
+      <div style={inputRowStyle}>
+        <div style={inputItemStyle}>Input:&nbsp;<ControlledInput/></div>
+        <div style={inputItemStyle}>Focus:&nbsp;<ControlledInput forceFocus/></div>
+        <div style={inputItemStyle}>Hover:&nbsp;<ControlledInput forceHover/></div>
       </div>
 
-      <div>
-        <h3>Focus</h3>
-        <ControlledInput forceFocus/>
+      <h4>Error</h4>
+      <div style={inputRowStyle}>
+        <div style={inputItemStyle}>Error:&nbsp;<ControlledInput error/></div>
       </div>
 
-      <div>
-        <h3>Hover</h3>
-        <ControlledInput forceHover/>
+      <h4>Magnifying Glass</h4>
+      <div style={inputRowStyle}>
+        <div style={inputItemStyle}>Magnifying glass:&nbsp;<ControlledInput magnifyingGlass/></div>
       </div>
 
-      <div>
-        <h3>Error</h3>
-        <ControlledInput error/>
+      <h4>Unit</h4>
+      <div style={{...inputRowStyle, width: '545px'}}>
+        <div style={inputItemStyle}>Number:&nbsp;<ControlledInput unit="#"/></div>
+        <div style={inputItemStyle}>Dollar:&nbsp;<ControlledInput unit="$"/></div>
       </div>
 
-      <div>
-        <h3>Magnifying Glass</h3>
-        <ControlledInput magnifyingGlass/>
-      </div>
-
-      <div>
-        <h3>Unit</h3>
-        <ControlledInput unit="#"/>
-      </div>
-
-      <div>
-        <h3>RTL</h3>
-        <ControlledInput rtl placeholder="חפש..."/>
+      <h4>RTL</h4>
+      <div style={inputRowStyle}>
+        <div style={inputItemStyle}>Dollar:&nbsp;<ControlledInput rtl placeholder="חפש..."/></div>
       </div>
     </div>
   ));
