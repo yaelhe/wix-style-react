@@ -9,9 +9,6 @@ import MessageBox from './MessageBox';
 import Loader from './Loader';
 
 storiesOf('Components', module)
-  .add('Button', () => (
-    <Button />
-  ))
   .add('Modal', () => (
       <Modal />
   ))
