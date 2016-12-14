@@ -3,20 +3,50 @@ import {storiesOf} from '@kadira/storybook';
 import Markdown from '../utils/Components/Markdown';
 import CodeExample from '../utils/Components/CodeExample';
 import Readme from '../../src/Input/README.md';
-import ExampleSimple from './ExampleSimple';
-import ExampleSimpleRaw from '!raw!./ExampleSimple';
+
+import ExampleStandard from './ExampleStandard';
+import ExampleStandardRaw from '!raw!./ExampleStandard';
+
+import ExampleError from './ExampleError';
+import ExampleErrorRaw from '!raw!./ExampleError';
+
+import ExampleUnit from './ExampleUnit';
+import ExampleUnitRaw from '!raw!./ExampleUnit';
+
+import ExampleMagnifyingGlass from './ExampleMagnifyingGlass';
+import ExampleMagnifyingGlassRaw from '!raw!./ExampleMagnifyingGlass';
+
+import ExamplePaneltitleStyle from './ExamplePaneltitleStyle';
+import ExamplePaneltitleStyleRaw from '!raw!./ExamplePaneltitleStyle';
+
 import ExampleControlled from './ExampleControlled';
 import ExampleControlledRaw from '!raw!./ExampleControlled';
 
-storiesOf('Inputs', module)
-  .add('Standard', () => (
+storiesOf('1. Inputs', module)
+  .add('1.1 Standard', () => (
     <div>
       <Markdown source={Readme}/>
 
       <h1>Usage examples</h1>
 
-      <CodeExample title="Simple input" code={ExampleSimpleRaw}>
-        <ExampleSimple/>
+      <CodeExample title="Standard" code={ExampleStandardRaw}>
+        <ExampleStandard/>
+      </CodeExample>
+
+      <CodeExample title="Error" code={ExampleErrorRaw}>
+        <ExampleError/>
+      </CodeExample>
+
+      <CodeExample title="Unit" code={ExampleUnitRaw}>
+        <ExampleUnit/>
+      </CodeExample>
+
+      <CodeExample title="MagnifyingGlass" code={ExampleMagnifyingGlassRaw}>
+        <ExampleMagnifyingGlass/>
+      </CodeExample>
+
+      <CodeExample title="PaneltitleStyle" code={ExamplePaneltitleStyleRaw}>
+        <ExamplePaneltitleStyle/>
       </CodeExample>
 
       <CodeExample title="Controlled input" code={ExampleControlledRaw}>

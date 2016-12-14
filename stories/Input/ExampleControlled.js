@@ -1,6 +1,13 @@
 import React, {Component, PropTypes} from 'react';
 import Input from 'wix-style-react/Input';
 
+const style = {
+  display: 'inline-block',
+  padding: '0 5px',
+  width: '200px',
+  lineHeight: '22px'
+};
+
 class ControlledInput extends Component {
   static propTypes = {
     value: PropTypes.bool
@@ -21,6 +28,7 @@ class ControlledInput extends Component {
 }
 
 export default () =>
-  <div className="ltr">
-    <ControlledInput placeholder="This input shows an error for 'Starwars'"/>
+  <div className="ltr" style={style}>
+    <span>This shows an error for &quot;Starwars&quot;</span>
+    <ControlledInput/>
   </div>;

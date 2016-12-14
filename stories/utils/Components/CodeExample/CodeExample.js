@@ -9,14 +9,10 @@ export default class CodeExample extends Component {
   };
 
   render() {
-    const style = {
-      width: '400px'
-    };
-
     return (
       <div>
         <h2>{this.props.title}</h2>
-        <div style={style}>
+        <div>
           {this.props.children}
         </div>
         <CodeBlock source={this.props.code}/>
