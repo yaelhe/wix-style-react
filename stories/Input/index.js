@@ -22,6 +22,9 @@ import ExamplePaneltitleStyleRaw from '!raw!./ExamplePaneltitleStyle';
 import ExampleControlled from './ExampleControlled';
 import ExampleControlledRaw from '!raw!./ExampleControlled';
 
+import ExampleRefs from './ExampleRefs';
+import ExampleRefsRaw from '!raw!./ExampleRefs';
+
 storiesOf('1. Inputs', module)
   .add('1.1 Standard', () => (
     <div>
@@ -51,6 +54,10 @@ storiesOf('1. Inputs', module)
 
       <CodeExample title="Controlled input" code={ExampleControlledRaw}>
         <ExampleControlled/>
+      </CodeExample>
+
+      <CodeExample title="Commands test" code={ExampleRefsRaw}>
+        <ExampleRefs/>
       </CodeExample>
     </div>
   ));

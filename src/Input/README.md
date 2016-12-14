@@ -24,3 +24,11 @@
 | onEscapePressed | func | - | - | Called when user presses -escape- |
 | onKeyDown | func | - | - | Standard input onKeyDown callback |
 | onClear | func | - | - | Displays a X button on a non-empty input, and calls this callback when pressed. This callback should normally erase the value of the controlled object, and call focus |
+
+## Functions
+
+| function name | description |
+|---------------|-------------|
+| focus | Focuses on the input |
+| blur | Blurs the input (loses focus) |
+| select | Selects all text in the input |
