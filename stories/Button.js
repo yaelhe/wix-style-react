@@ -6,7 +6,7 @@ import ButtonReadme from '../src/Button/README.md';
 
 const ButtonWrapper = props => <Button onClick={action('clicked')} {...props}> Click Me!</Button>;
 
-const buttonItemStyle = {display:'inline-block', padding:'0 5px', width: '200px', lineHeight: '22px'};
+const buttonItemStyle = {display:'inline-block', padding:'0 5px', width: '140px', lineHeight: '22px'};
 
 storiesOf('3. Buttons', module)
   .add('3.1 Standard', () => (
