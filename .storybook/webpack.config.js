@@ -4,7 +4,9 @@ const genDefaultConfig = require('@kadira/storybook/dist/server/config/defaults/
 const wixNodeBuildConfig = require('wix-node-build/config/webpack.config.storybook');
 
 module.exports = (config, env) => {
-  return _.merge(wixNodeBuildConfig(genDefaultConfig(config, env)), {
+  const newConfig = wixNodeBuildConfig(genDefaultConfig(config, env));
+
+  return _.merge(newConfig, {
     resolve: {
       alias: {
         'wix-style-react': path.resolve(__dirname, '../src')
