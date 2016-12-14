@@ -47,4 +47,5 @@ class ControlledInput extends Component {
       <Input {...this.props} error={this.state.value === 'error'} value={this.state.value} onChange={onChange}/>
     );
   }
-}```
+}
+```

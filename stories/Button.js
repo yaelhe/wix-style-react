@@ -6,8 +6,7 @@ import ButtonReadme from '../src/Button/README.md';
 
 const ButtonWrapper = props => <Button onClick={action('clicked')} {...props}> Click Me!</Button>;
 
-const buttonsRowStyle = {display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '400px'};
-const buttonItemStyle = {display: 'flex', alignItems: 'center'};
+const buttonItemStyle = {display:'inline-block', padding:'5px', width: '200px'};
 
 storiesOf('Buttons', module)
   .add('Standard', () => (
@@ -16,35 +15,35 @@ storiesOf('Buttons', module)
 
       <h1>Examples</h1>
 
-      <h4>Standard buttons</h4>
-      <div style={buttonsRowStyle}>
-        <div style={buttonItemStyle}>Main:&nbsp;<ButtonWrapper style="fullblue"/></div>
-        <div style={buttonItemStyle}>Secondary:&nbsp;<ButtonWrapper style="emptyblue"/></div>
+      <h4>Standard</h4>
+      <div>
+        <div style={buttonItemStyle}>Main<ButtonWrapper style="fullblue"/></div>
+        <div style={buttonItemStyle}>Secondary<ButtonWrapper style="emptyblue"/></div>
       </div>
 
-      <h4>Error buttons</h4>
-      <div style={buttonsRowStyle}>
-        <div style={buttonItemStyle}>Main:&nbsp;<ButtonWrapper style={'fullred'}/></div>
-        <div style={buttonItemStyle}>Secondary:&nbsp;<ButtonWrapper style={'emptyred'}/></div>
+      <h4>Error</h4>
+      <div>
+        <div style={buttonItemStyle}>Main<ButtonWrapper style={'fullred'}/></div>
+        <div style={buttonItemStyle}>Secondary<ButtonWrapper style={'emptyred'}/></div>
       </div>
 
-      <h4>Premuim buttons</h4>
-      <div style={buttonsRowStyle}>
-        <div style={buttonItemStyle}>Main:&nbsp;<ButtonWrapper style={'fullpurple'}/></div>
-        <div style={buttonItemStyle}>Secondary:&nbsp;<ButtonWrapper style={'emptypurple'}/></div>
+      <h4>Premium</h4>
+      <div>
+        <div style={buttonItemStyle}>Main<ButtonWrapper style={'fullpurple'}/></div>
+        <div style={buttonItemStyle}>Secondary<ButtonWrapper style={'emptypurple'}/></div>
       </div>
 
-      <h4>Green buttons</h4>
-      <div style={buttonsRowStyle}>
-        <div style={buttonItemStyle}>Main:&nbsp;<ButtonWrapper style={'fullgreen'}/></div>
-        <div style={buttonItemStyle}>Secondary:&nbsp;<ButtonWrapper style={'emptygreen'}/></div>
+      <h4>Green</h4>
+      <div>
+        <div style={buttonItemStyle}>Main<ButtonWrapper style={'fullgreen'}/></div>
+        <div style={buttonItemStyle}>Secondary<ButtonWrapper style={'emptygreen'}/></div>
       </div>
 
-      <h4>Size</h4>
-      <div style={{...buttonsRowStyle, width: '600px'}}>
-        <div style={buttonItemStyle}>Small:&nbsp;<ButtonWrapper height={'small'}/></div>
-        <div style={buttonItemStyle}>Medium:&nbsp;<ButtonWrapper height={'medium'}/></div>
-        <div style={buttonItemStyle}>Large:&nbsp;<ButtonWrapper height={'large'}/></div>
+      <h4>Sizes</h4>
+      <div>
+        <div style={buttonItemStyle}>Small<ButtonWrapper height={'small'}/></div>
+        <div style={buttonItemStyle}>Medium<ButtonWrapper height={'medium'}/></div>
+        <div style={buttonItemStyle}>Large<ButtonWrapper height={'large'}/></div>
       </div>
     </div>
   ));

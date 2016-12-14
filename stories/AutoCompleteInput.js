@@ -38,27 +38,19 @@ const rtlSuggestions = [
   {text: 'אפשרות שלישית'}
 ];
 
-storiesOf('Inputs', module)
-  .add('AutoCompleteInput', () => (
+const autoCompleteItemStyle = {display:'inline-block', padding:'0 5px 250px', width: '200px', lineHeight: '22px'};
+
+storiesOf('1. Inputs', module)
+  .add('1.3 AutoCompleteInput', () => (
     <div>
       <Markdown source={AutoCompleteInputReadme}/>
 
       <h1>Examples</h1>
 
-      <div style={{width: '400px'}}>
-        <div>
-          <h3>AutoCompleteInput</h3>
-          <div className="ltr">
-            <ControlledAutoCompleteInput suggestions={suggestions}/>
-          </div>
-        </div>
-
-        <div>
-          <h3>Right to left</h3>
-          <div className="ltr">
-            <ControlledAutoCompleteInput suggestions={rtlSuggestions} rtl/>
-          </div>
-        </div>
+      <h4>Standard</h4>
+      <div>
+        <div style={autoCompleteItemStyle} className="ltr">Left to right<ControlledAutoCompleteInput suggestions={suggestions}/></div>
+        <div style={autoCompleteItemStyle} className="rtl">Right to left<ControlledAutoCompleteInput suggestions={rtlSuggestions} rtl/></div>
       </div>
     </div>
   ));

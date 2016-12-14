@@ -23,31 +23,25 @@ class ControlledToggleSwitch extends Component {
   }
 }
 
-storiesOf('Switches', module)
-  .add('ToggleSwitch', () => (
+const inputSwitchStyle = {display:'inline-block', padding:'0 5px', lineHeight: '10px'};
+
+storiesOf('2. Switches', module)
+  .add('2.1 ToggleSwitch', () => (
     <div>
       <Markdown source={ToggleSwitchReadme}/>
 
       <h1>Examples</h1>
 
-      <div style={{width: '400px'}}>
-        <div>
-          <h3>ToggleSwitch</h3>
-          <div className="ltr">
-            <ControlledToggleSwitch/>
-            {' '}
-            <ControlledToggleSwitch checked/>
-          </div>
-        </div>
+      <h4>Standard</h4>
+      <div>
+        <div style={inputSwitchStyle}>Default not checked<br/><br/><ControlledToggleSwitch/></div>
+        <div style={inputSwitchStyle}>Default checked<br/><br/><ControlledToggleSwitch checked/></div>
+      </div>
 
-        <div>
-          <h3>Sizes</h3>
-          <div className="ltr">
-            <ControlledToggleSwitch size="small"/>
-            {' '}
-            <ControlledToggleSwitch size="large" checked/>
-          </div>
-        </div>
+      <h4>Sizes</h4>
+      <div>
+        <div style={{...inputSwitchStyle, lineHeight: '12.6px'}}>Small<br/><br/><ControlledToggleSwitch size="small"/></div>
+        <div style={inputSwitchStyle}>Large<br/><br/><ControlledToggleSwitch checked size="large"/></div>
       </div>
     </div>
   ));

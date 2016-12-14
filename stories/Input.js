@@ -25,10 +25,10 @@ class ControlledInput extends Component {
   }
 }
 
-const inputItemStyle = {display:'inline-block', padding:'5px', width: '200px'};
+const inputItemStyle = {display:'inline-block', padding:'0 5px', width: '200px', lineHeight: '22px'};
 
-storiesOf('Inputs', module)
-  .add('Standard', () => (
+storiesOf('1. Inputs', module)
+  .add('1.1 Standard', () => (
     <div>
       <Markdown source={InputReadme}/>
 
@@ -36,7 +36,7 @@ storiesOf('Inputs', module)
 
       <h4>Standard</h4>
       <div>
-        <div className="ltr" style={inputItemStyle}>Input<ControlledInput/></div>
+        <div className="ltr" style={inputItemStyle}>Input<br/><ControlledInput/></div>
         <div className="ltr" style={inputItemStyle}>Focus<ControlledInput forceFocus/></div>
         <div className="ltr" style={inputItemStyle}>Hover<ControlledInput forceHover/></div>
         <div className="ltr" style={inputItemStyle}>With placeholder<ControlledInput placeholder="Search..."/></div>

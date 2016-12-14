@@ -23,33 +23,29 @@ class ControlledCheckbox extends Component {
   }
 }
 
-storiesOf('Switches', module)
-  .add('Checkbox', () => (
+const checkboxItemStyle = {display:'inline-block', padding:'0 5px', width: '150px', lineHeight: '22px'};
+
+storiesOf('2. Switches', module)
+  .add('2.2 Checkbox', () => (
     <div>
       <Markdown source={CheckboxReadme}/>
 
       <h1>Examples</h1>
 
-      <div style={{width: '400px'}}>
-        <div>
-          <h3>Checkbox</h3>
-          <div className="ltr">
-            <div><ControlledCheckbox>Make my profile visible</ControlledCheckbox></div>
-            <div><ControlledCheckbox checked>Make my profile visible (checked)</ControlledCheckbox></div>
-            <div><ControlledCheckbox disabled>Make my profile visible (disabled)</ControlledCheckbox></div>
-            <div><ControlledCheckbox disabled checked>Make my profile visible (disabled and checked)</ControlledCheckbox></div>
-          </div>
-        </div>
+      <h4>Left to right</h4>
+      <div>
+        <div className="ltr" style={checkboxItemStyle}>Standard<br/><ControlledCheckbox>Some text</ControlledCheckbox></div>
+        <div className="ltr" style={checkboxItemStyle}>Checked<br/><ControlledCheckbox checked>Some text</ControlledCheckbox></div>
+        <div className="ltr" style={checkboxItemStyle}>Disabled<br/><ControlledCheckbox disabled>Some text</ControlledCheckbox></div>
+        <div className="ltr" style={checkboxItemStyle}>Disabled and checked<br/><ControlledCheckbox disabled checked>Some text</ControlledCheckbox></div>
+      </div>
 
-        <div>
-          <h3>Right to left</h3>
-          <div className="rtl">
-            <div><ControlledCheckbox rtl>אני רוצה שהפרופיל שלי יהיה פומבי</ControlledCheckbox></div>
-            <div><ControlledCheckbox rtl checked>אני רוצה שהפרופיל שלי יהיה פומבי</ControlledCheckbox></div>
-            <div><ControlledCheckbox rtl disabled>אני רוצה שהפרופיל שלי יהיה פומבי</ControlledCheckbox></div>
-            <div><ControlledCheckbox rtl disabled checked>אני רוצה שהפרופיל שלי יהיה פומבי</ControlledCheckbox></div>
-          </div>
-        </div>
+      <h4>Right to left</h4>
+      <div>
+        <div className="rtl" style={checkboxItemStyle}>Standard<br/><ControlledCheckbox rtl>טקסט בעברית</ControlledCheckbox></div>
+        <div className="rtl" style={checkboxItemStyle}>Checked<br/><ControlledCheckbox rtl checked>טקסט בעברית</ControlledCheckbox></div>
+        <div className="rtl" style={checkboxItemStyle}>Disabled<br/><ControlledCheckbox rtl disabled>טקסט בעברית</ControlledCheckbox></div>
+        <div className="rtl" style={checkboxItemStyle}>Disabled and checked<br/><ControlledCheckbox rtl disabled checked>טקסט בעברית</ControlledCheckbox></div>
       </div>
     </div>
   ));
