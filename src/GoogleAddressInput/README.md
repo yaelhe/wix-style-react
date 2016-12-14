@@ -1,6 +1,6 @@
 # GoogleAddressInput component
 
-> [view source](https://github.com/wix/wix-style-react/blob/master/stories/GoogleAddressInput.js)
+> Address input box (using Google Maps)
 
 ## Properties
 

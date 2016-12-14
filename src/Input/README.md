@@ -1,6 +1,6 @@
 # Input component
 
-> [view source](https://github.com/wix/wix-style-react/blob/master/stories/Input.js)
+> General input container.
 
 ## Properties
 

@@ -1,6 +1,6 @@
 # Select component
 
-> [view source](https://github.com/wix/wix-style-react/blob/master/stories/Select.js)
+> Dropdown Select Component
 
 ## Properties
 

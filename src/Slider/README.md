@@ -1,6 +1,6 @@
 # Slider component
 
-> [view source](https://github.com/wix/wix-style-react/blob/master/stories/Slider.js)
+> A slider component with multi-range support
 
 ## Properties
 
