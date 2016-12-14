@@ -1,7 +1,7 @@
 import React, {Component, PropTypes} from 'react';
 import Markdown from '../Markdown';
 
-const toCodeBlock = str => `\`\`\`js\n${str}`;
+const toCodeBlock = str => `\`\`\`js\n${str}\`\`\``;
 
 export default class CodeBlock extends Component {
   static propTypes = {

@@ -1,5 +1,4 @@
 import React, {Component, PropTypes} from 'react';
-import ReactDOM from 'react-dom';
 import Remarkable from 'react-remarkable';
 import hljs from 'highlight.js';
 import './Markdown.scss';
@@ -9,18 +8,12 @@ export default class Markdown extends Component {
     source: PropTypes.string
   };
 
-  componentDidMount() {
-    const domNode = ReactDOM.findDOMNode(this);
-    const nodes = domNode.querySelectorAll('pre code');
-
-    for (let i = 0; i < nodes.length; i++) {
-      hljs.highlightBlock(nodes[i]);
-    }
-  }
-
   render() {
     const options = {
-      linkTarget: '_blank'
+      linkTarget: '_blank',
+      highlight(code, lang) {
+        return hljs.highlight(lang, code).value;
+      }
     };
 
     return (
