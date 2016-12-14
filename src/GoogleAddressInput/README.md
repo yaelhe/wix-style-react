@@ -19,35 +19,3 @@
 | onChange | func | - | - |  |
 | onFocus | func | - | - |  |
 | onBlur | func | - | - |  |
-
-## Usage
-
-```js
-import GoogleAddressInput form 'wix-style-react/GoogleAddressInput';
-
-class ControlledGoogleAddressInput extends Component {
-  static propTypes = {
-    result: PropTypes.bool
-  };
-
-  constructor({value}) {
-    super();
-    this.state = {value};
-  }
-
-  render() {
-    const onSet = event => event && this.setState({value: event.originValue});
-    const onChange = event => event && this.setState({value: event.target.value});
-
-    return (
-      <GoogleAddressInput
-        {...this.props}
-        value={this.state.value}
-        onSet={onSet}
-        onChange={onChange}
-        placeholder="Enter Address..."
-        Client={clients.GoogleMapsClient}
-        />
-    );
-  }
-}

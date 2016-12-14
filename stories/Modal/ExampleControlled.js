@@ -1,12 +1,9 @@
-import React, {Component, PropTypes} from 'react';
-import {storiesOf} from '@kadira/storybook';
-import Markdown from './utils/Components/Markdown';
-import Modal from '../src/Modal';
-import MessageBoxLayout2 from '../src/MessageBox/MessageBoxLayout2';
-import Button from '../src/Button';
-import ModalReadme from '../src/Modal/README.md';
+import React, {PropTypes, Component} from 'react';
+import Modal from 'wix-style-react/Modal';
+import Button from 'wix-style-react/Button';
+import MessageBoxLayout2 from 'wix-style-react/MessageBox/MessageBoxLayout2';
 
-class ModalWrapper extends Component {
+class ControlledModal extends Component {
   static propTypes = {
     isOpen: PropTypes.bool
   };
@@ -27,7 +24,7 @@ class ModalWrapper extends Component {
         <Button onClick={open} >Open Blue Modal</Button>
         <Modal isOpen={this.state.isOpen} onRequestClose={close}>
           <MessageBoxLayout2 style="blue" title="title" confirmText="OK" cancelText="Cancel" onOk={close} onCancel={close}>
-              Hello world!
+              Hello blue world!
           </MessageBoxLayout2>
         </Modal>
       </div>
@@ -35,16 +32,7 @@ class ModalWrapper extends Component {
   }
 }
 
-storiesOf('5. Others', module)
-  .add('5.1 Modal', () => (
-    <div>
-      <Markdown source={ModalReadme}/>
-
-      <h1>Examples</h1>
-
-      <h4>Modal</h4>
-      <div>
-        <ModalWrapper/>
-      </div>
-    </div>
-  ));
+export default () =>
+  <div>
+    <ControlledModal/>
+  </div>;
