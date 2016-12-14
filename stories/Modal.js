@@ -35,15 +35,15 @@ class ModalWrapper extends Component {
   }
 }
 
-storiesOf('Others', module)
-  .add('Modal', () => (
+storiesOf('5. Others', module)
+  .add('5.1 Modal', () => (
     <div>
       <Markdown source={ModalReadme}/>
 
       <h1>Examples</h1>
 
+      <h4>Modal</h4>
       <div>
-        <h3>Modal</h3>
         <ModalWrapper/>
       </div>
     </div>

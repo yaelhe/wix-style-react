@@ -32,28 +32,19 @@ class ControlledGoogleAddressInput extends Component {
   }
 }
 
-storiesOf('Inputs', module)
-  .add('GoogleAddressInput', () => (
+const googleAddressInputItemStyle = {display:'inline-block', padding:'0 5px 250px', width: '400px', lineHeight: '22px'};
+
+storiesOf('1. Inputs', module)
+  .add('1.5 GoogleAddressInput', () => (
     <div>
       <Markdown source={GoogleAddressInputReadme}/>
 
       <h1>Examples</h1>
 
-      <div style={{width: '400px'}}>
-        <div>
-          <h3>GoogleAddressInput</h3>
-          <div className="ltr">
-            <ControlledGoogleAddressInput countryCode="US"/>
-          </div>
-        </div>
-
-        <div>
-          <h3>Default value</h3>
-          <p>Input should contain address, and be editable.</p>
-          <div className="ltr">
-            <ControlledGoogleAddressInput countryCode="US" defaultValue="Default Address"/>
-          </div>
-        </div>
+      <h4>Standard</h4>
+      <div>
+        <div style={googleAddressInputItemStyle} className="ltr">Input should contain address, and be editable.<ControlledGoogleAddressInput countryCode="US"/></div>
+        <div style={googleAddressInputItemStyle} className="ltr">With default<ControlledGoogleAddressInput countryCode="US" defaultValue="Default Address"/></div>
       </div>
     </div>
   ));

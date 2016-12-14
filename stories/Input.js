@@ -69,7 +69,7 @@ storiesOf('1. Inputs', module)
         <div className="ltr" style={inputItemStyle}>Shows error for value of "error"<ControlledInput/></div>
       </div>
 
-      <h3>Style: paneltitle</h3>
+      <h4>Style: paneltitle</h4>
       <div style={{background: '#3899ec', padding: '20px', width: '400px'}}>
         <div style={{width: '400px'}} className="ltr">
           <Input style="paneltitle"/>

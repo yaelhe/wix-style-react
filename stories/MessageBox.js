@@ -21,11 +21,12 @@ class ControlledMessageBoxes extends Component {
     const openLayout1 = open('layout1');
     const openLayout2 = open('layout2');
 
+    const buttonItemStyle = {display: 'inline-block', padding:'0 5px', width: '300px', lineHeight: '22px'};
+
     return (
       <div>
-        <Button onClick={openLayout1}>Show MessageBoxLayout1</Button>
-        <br/><br/>
-        <Button onClick={openLayout2}>Show MessageBoxLayout2</Button>
+        <div style={buttonItemStyle}><Button onClick={openLayout1}>Show MessageBoxLayout1</Button></div>
+        <div style={buttonItemStyle}><Button onClick={openLayout2}>Show MessageBoxLayout2</Button></div>
 
         <NgIf show={this.state.openMessageBox === 'layout1'}>
           <MessageBoxLayout1
@@ -60,15 +61,15 @@ class ControlledMessageBoxes extends Component {
   }
 }
 
-storiesOf('Layouts', module)
-  .add('MessageBox', () => (
+storiesOf('4. Layouts', module)
+  .add('4.1 MessageBox', () => (
     <div>
       <Markdown source={MessageBoxReadme}/>
 
       <h1>Examples</h1>
 
+      <h4>Standard</h4>
       <div>
-        <h3>MessageBox</h3>
         <ControlledMessageBoxes/>
       </div>
     </div>

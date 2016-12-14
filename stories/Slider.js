@@ -23,21 +23,22 @@ class ControlledSlider extends Component {
   }
 }
 
-storiesOf('Inputs', module)
-  .add('Slider', () => (
+const sliderItemStyle = {padding:'0 5px 55px', width: '500px'};
+
+storiesOf('1. Inputs', module)
+  .add('1.4 Slider', () => (
     <div>
       <Markdown source={SliderReadme}/>
 
       <h1>Examples</h1>
 
+      <h4>Standard</h4>
       <div>
-        <h3>Slider</h3>
-        <ControlledSlider value={[3]} min={1} max={10}/>
+        <div style={sliderItemStyle}>Single handle<ControlledSlider value={[3]} min={1} max={10}/></div>
       </div>
 
       <div>
-        <h3>Multiple handles</h3>
-        <ControlledSlider value={[3, 4, 5]} min={1} max={10}/>
+        <div style={sliderItemStyle}>Multiple handles<ControlledSlider value={[3,4,5]} min={1} max={10}/></div>
       </div>
     </div>
   ));

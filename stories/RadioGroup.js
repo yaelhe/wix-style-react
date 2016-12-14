@@ -54,7 +54,7 @@ storiesOf('2. Switches', module)
         </ControlledRadioGroup>
       </div>
 
-      <h3>vAlign</h3>
+      <h4>vAlign</h4>
       <div className="ltr" style={radioGroupItemStyle}>vAlign center
         <ControlledRadioGroup value={1}>
           <div><RadioGroup.Radio vAlign="center" value={1}><div>Option 1</div><small>best option</small></RadioGroup.Radio></div>
