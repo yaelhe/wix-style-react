@@ -14,6 +14,7 @@ function loadStories() {
  require('../stories/Button');
  require('../stories/MessageBox');
  require('../stories/Modal');
+ require('../stories/Loader');
 }
 
 configure(loadStories, module);

@@ -10,6 +10,6 @@ const style = {
 
 export default () =>
   <div>
-    <div style={style}>Main<br/><Button style="fullgreen">Click Me!</Button></div>
-    <div style={style}>Secondary<br/><Button style="emptygreen">Click Me!</Button></div>
+    <div style={style}>Main<br/><Button theme="fullgreen">Click Me!</Button></div>
+    <div style={style}>Secondary<br/><Button theme="emptygreen">Click Me!</Button></div>
   </div>;

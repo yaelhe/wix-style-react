@@ -5,7 +5,7 @@ export default () =>
   <div className="ltr">
     <div style={{background: '#3899ec', padding: '20px', width: '400px'}}>
       <div style={{width: '400px'}} className="ltr">
-        <Input style="paneltitle"/>
+        <Input theme="paneltitle"/>
       </div>
     </div>
   </div>;
