@@ -1,8 +1,8 @@
 import React from 'react';
-import Input from '../../src/Input';
+import Input from 'wix-style-react/Input';
 
 export default () =>
-  <div style={{width: '400px'}} className="ltr">
+  <div className="ltr">
     <Input placeholder="Simple"/>
     <Input placeholder="Error" error/>
     <Input placeholder="Unit" unit="$"/>

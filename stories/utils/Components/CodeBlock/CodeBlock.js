@@ -2,7 +2,6 @@ import React, {Component, PropTypes} from 'react';
 import Markdown from '../Markdown';
 
 const toCodeBlock = str => `\`\`\`js\n${str}`;
-const replaceImportToLibrary = str => str.replace(/from '\.\.\/\.\.\/src/, `from 'wix-style-react`);
 
 export default class CodeBlock extends Component {
   static propTypes = {
@@ -10,10 +9,16 @@ export default class CodeBlock extends Component {
   };
 
   render() {
-    const source = toCodeBlock(replaceImportToLibrary(this.props.source));
+    const style = {
+      margin: '20px 0 0 0'
+    };
+
+    const source = toCodeBlock(this.props.source);
 
     return (
-      <Markdown source={source}/>
+      <div style={style}>
+        <Markdown source={source}/>
+      </div>
     );
   }
 }

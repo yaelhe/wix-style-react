@@ -1,5 +1,5 @@
 import React, {Component, PropTypes} from 'react';
-import Input from '../../src/Input';
+import Input from 'wix-style-react/Input';
 
 class ControlledInput extends Component {
   static propTypes = {
@@ -12,18 +12,15 @@ class ControlledInput extends Component {
   }
 
   render() {
-    const onChange = event => {
-      this.setState({value: event.target.value});
-    };
+    const onChange = event => this.setState({value: event.target.value});
 
     return (
-      <Input error={this.state.value === 'Starwars'} {...this.props} value={this.state.value} onChange={onChange}/>
+      <Input {...this.props} error={this.state.value === 'Starwars'} value={this.state.value} onChange={onChange}/>
     );
   }
 }
 
 export default () =>
-  <div style={{width: '400px'}} className="ltr">
-    <h3>Controlled input</h3>
+  <div className="ltr">
     <ControlledInput placeholder="This input shows an error for 'Starwars'"/>
   </div>;
