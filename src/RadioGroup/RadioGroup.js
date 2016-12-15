@@ -29,14 +29,14 @@ class RadioGroup extends React.Component {
   }
 }
 
-
 RadioGroup.displayName = 'RadioGroup';
 RadioGroup.propTypes = {
-  onChange: React.PropTypes.func.isRequired,
+  onChange: React.PropTypes.func,
   value: React.PropTypes.oneOfType([React.PropTypes.string, React.PropTypes.number]),
   children: React.PropTypes.any
 };
 RadioGroup.defaultProps = {
+  onChange: () => {}
 };
 RadioGroup.childContextTypes = {
   radioOnChange: React.PropTypes.func,
@@ -91,7 +91,7 @@ class RadioButton extends React.Component {
 RadioButton.displayName = 'RadioGroup.Button';
 RadioButton.propTypes = {
   value: React.PropTypes.oneOfType([React.PropTypes.string, React.PropTypes.number]),
-  vAlign: React.PropTypes.oneOf(['center', 'top']).isRequired,
+  vAlign: React.PropTypes.oneOf(['center', 'top']),
   children: React.PropTypes.any
 };
 RadioButton.defaultProps = {

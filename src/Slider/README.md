@@ -10,6 +10,6 @@
 | min | number | - | - | The absolute minimum of the slider's range |
 | max | number | false | - | The absolute maximum of the slider's range |
 | step | number | - | - | The slider's step |
-| onChange | func | - | + | Called upon every value change |
+| onChange | func | - | - | Called upon every value change |
 | onAfterChange | func | - | - | Called after every value change |
 | allowCross | bool | - | - | Allows the slider's handles to cross. True by default |

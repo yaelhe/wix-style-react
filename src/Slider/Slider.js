@@ -67,7 +67,7 @@ Slider.propTypes = {
   min: PropTypes.number,
   max: PropTypes.number,
   step: PropTypes.number,
-  onChange: PropTypes.func.isRequired,
+  onChange: PropTypes.func,
   onAfterChange: PropTypes.func,
   allowCross: PropTypes.bool
 };
@@ -78,5 +78,6 @@ Slider.defaultProps = {
   step: 1,
   value: [2, 7],
   onAfterChange: undefined,
-  allowCross: true
+  allowCross: true,
+  onChange: () => {}
 };

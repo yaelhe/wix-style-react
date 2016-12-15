@@ -18,7 +18,7 @@ Loader.defaultProps = {
 };
 
 Loader.propTypes = {
-  size: PropTypes.oneOf(['small', 'medium', 'large']).isRequired,
+  size: PropTypes.oneOf(['small', 'medium', 'large']),
   text: PropTypes.string
 };
 

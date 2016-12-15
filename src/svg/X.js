@@ -31,9 +31,9 @@ X.displayName = 'X';
 X.propTypes = {
   width: React.PropTypes.number.isRequired,
   height: React.PropTypes.number.isRequired,
-  thickness: React.PropTypes.number.isRequired,
+  thickness: React.PropTypes.number,
   color: React.PropTypes.string,
-  shapeRendering: React.PropTypes.string.isRequired
+  shapeRendering: React.PropTypes.string
 };
 
 X.defaultProps = {

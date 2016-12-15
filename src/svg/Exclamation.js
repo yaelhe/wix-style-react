@@ -23,7 +23,7 @@ Exclamation.displayName = 'Exclamation';
 Exclamation.propTypes = {
   width: React.PropTypes.number.isRequired,
   height: React.PropTypes.number.isRequired,
-  color: React.PropTypes.string.isRequired
+  color: React.PropTypes.string
 };
 Exclamation.defaultProps = {
   color: 'white'

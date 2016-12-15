@@ -40,6 +40,10 @@ const MessageBoxLayout1 = ({title, content, primaryButtonLabel, secondaryButtonL
   );
 };
 
+MessageBoxLayout1.defaultProps = {
+  onClose: () => {}
+};
+
 MessageBoxLayout1.propTypes = {
   title: React.PropTypes.node.isRequired,
   content: React.PropTypes.node.isRequired,
@@ -48,7 +52,7 @@ MessageBoxLayout1.propTypes = {
   onPrimaryButtonClick: React.PropTypes.func,
   onSecondaryButtonClick: React.PropTypes.func,
   imageUrl: React.PropTypes.string,
-  onClose: React.PropTypes.func.isRequired
+  onClose: React.PropTypes.func
 };
 
 export default MessageBoxLayout1;

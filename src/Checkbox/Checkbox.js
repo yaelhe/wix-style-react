@@ -35,9 +35,9 @@ class Checkbox extends React.Component {
 }
 
 Checkbox.propTypes = {
-  checked: React.PropTypes.bool.isRequired,
+  checked: React.PropTypes.bool,
   disabled: React.PropTypes.bool,
-  onChange: React.PropTypes.func.isRequired,
+  onChange: React.PropTypes.func,
   hover: React.PropTypes.bool,        // FOR AUTOMATIC TESTING
   active: React.PropTypes.bool,       // FOR AUTOMATIC TESTING
   children: React.PropTypes.any,

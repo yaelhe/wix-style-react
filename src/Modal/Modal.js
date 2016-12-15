@@ -66,7 +66,6 @@ Modal.propTypes = {
 };
 
 Modal.defaultProps = {
-  onOk: () => { },
   style: 'blue',
   shouldCloseOnOverlayClick: false
 };

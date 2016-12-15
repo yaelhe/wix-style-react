@@ -13,7 +13,7 @@
 | onPrimaryButtonClick | func | - | - | Primary Button Click callback |
 | onSecondaryButtonClick | func | - | - | Secondary Button Click handler |
 | imageUrl | string | - | - | Header image url |
-| onClose | func | - | + | Close callback |
+| onClose | func | - | - | Close callback |
 
 ## MessageBoxLayout2 Properties
 

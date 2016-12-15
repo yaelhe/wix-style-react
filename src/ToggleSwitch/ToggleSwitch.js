@@ -38,8 +38,8 @@ class ToggleSwitch extends React.Component {
 
 ToggleSwitch.displayName = 'ToggleSwitch';
 ToggleSwitch.propTypes = {
-  checked: React.PropTypes.bool.isRequired,
-  onChange: React.PropTypes.func.isRequired,
+  checked: React.PropTypes.bool,
+  onChange: React.PropTypes.func,
   size: React.PropTypes.oneOf(['small', 'large'])
 };
 
