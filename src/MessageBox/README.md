@@ -1,6 +1,6 @@
 # MessageBox component
 
-> Layouts for dialogs and modals 
+> Message box Layouts 
 
 ## MessageBoxLayout1 Properties
 
