@@ -1,6 +1,6 @@
 # MessageBox component
 
-> [view source](https://github.com/wix/wix-style-react/blob/master/stories/MessageBox.js)
+> Layouts for dialogs and modals 
 
 ## MessageBoxLayout1 Properties
 
