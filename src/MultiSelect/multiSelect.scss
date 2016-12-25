@@ -8,7 +8,6 @@ $wix-font-family-helvetica-45: "HelveticaNeueW01-45Ligh", "HelveticaNeueW02-45Li
   overflow: hidden;
 }
 
-
 .suggestionFocused {
   background-color: #eaf7ff;
   position: relative;
@@ -101,7 +100,6 @@ $wix-font-family-helvetica-45: "HelveticaNeueW01-45Ligh", "HelveticaNeueW02-45Li
   border-radius: 100px;
 }
 
-
 .scrollbarVerticalThumb {
   z-index: 1;
   border-radius: 100px;
@@ -150,34 +148,32 @@ $wix-font-family-helvetica-45: "HelveticaNeueW01-45Ligh", "HelveticaNeueW02-45Li
   }
 }
 
-:global {
-  .react-tagsinput {
-    @include FontThin();
-    display: inline;
-    overflow: hidden;
-    color: $D30;
-    font-size: 16px;
-  }
+.tagsContainer {
+  @include FontThin();
+  display: inline;
+  overflow: hidden;
+  color: $D30;
+  font-size: 16px;
+}
 
-  .react-tagsinput--focused {
-    border-color: #a5d24a;
-  }
+.tag {
+  @include FontLight();
+  background-color: $B40;
+  border-radius: 100px;
+  display: inline-block;
+  padding: 6px 16px 6px 16px;
+  margin: 0 $tags-margin-bottom $tags-margin-bottom 0;
 
-  .react-tagsinput-tag {
-    @include FontLight();
-    background-color: $B40;
-    border-radius: 100px;
-    display: inline-block;
-    padding: 6px 16px 6px 16px;
-    margin: 0 $tags-margin-bottom $tags-margin-bottom 0;
-  }
-
-  .react-tagsinput-tag a::before {
+  .tagRemoveButton {
     cursor: pointer;
     font-weight: bold;
-    content: 'x';
     padding-left: 10px;
     cursor: pointer;
+
+    &:before {
+      content: 'x'
+    }
   }
 }
+
 

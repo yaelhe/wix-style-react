@@ -37,18 +37,6 @@ const textAndIcon = {
   padding: '7px 17px 7px 17px'
 };
 
-const renderTag = tagsProps => {
-  const {tag, key, onRemove, disabled, classNameRemove, getTagDisplayValue, ...other} = tagsProps;
-  return (
-    <span key={key} {...other}>
-        <div style={testIcon}/>
-      {getTagDisplayValue(tag)}
-      {!disabled && <a className={classNameRemove} onClick={(e) => onRemove(key)}/>}
-      </span>
-  );
-};
-
-
 const renderSuggestion = (suggestion, {query}) => {
   const matches = match(suggestion.name, query);
   const parts = parse(suggestion.name, matches);
@@ -68,18 +56,88 @@ const renderSuggestion = (suggestion, {query}) => {
   </div>);
 };
 
-const handleOnDone = tags => console.log(tags);
-const handleOnCancel = () => console.log('cancel');
 
-export default () =>
-  <div>
-    <div style={style}>
-      <MultiSelect
-        renderTag={renderTag}
-        suggestions={states}
-        renderSuggestion={renderSuggestion}
-        onDone={handleOnDone}
-        onCancel={handleOnCancel}
-      />
-    </div>
-  </div>;
+class ExampleStandard extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      tags: [],
+      suggestions: states
+    };
+  }
+
+  renderTag = tag => {
+    return (
+      <span key={tag.id}>
+        <div style={testIcon}/>
+        {tag.name}
+        <a onClick={(e) => this.handleOnRemoveTag(tag)}/>
+      </span>
+    );
+  };
+
+
+  filterSuggestions = (tags, inputValue = '') => {
+    const suggestions = states;
+    const isSuggestionIncludeInTags = suggestion => tags.find(tag => tag.id === suggestion.id);
+
+    const isMatchingInput = suggestionValue => {
+      const numberOfWordsInInput = inputValue.split(' ').length,
+        numberOfMatches = match(suggestionValue, inputValue).length;
+
+      return numberOfMatches === numberOfWordsInInput;
+    };
+
+    inputValue = inputValue.trim().toLowerCase();
+    return suggestions.filter(suggestion => {
+      return !isSuggestionIncludeInTags(suggestion) &&
+        (inputValue === '' || isMatchingInput(suggestion.name));
+    });
+  };
+
+  handleOnDone = tags => console.log(tags);
+  handleOnCancel = () => console.log('cancel');
+  handleOnAddTag = (tag) => {
+    const newTags = [...this.state.tags, tag];
+    const newSuggestions = this.filterSuggestions(newTags);
+    this.setState({
+      tags: newTags,
+      suggestions: newSuggestions
+    });
+  };
+  handleOnRemoveTag = tag => {
+    const newTags = this.state.tags.filter(currTag => currTag.id !== tag.id);
+    const newSuggestions = this.filterSuggestions(newTags);
+    this.setState({
+      tags: newTags,
+      suggestions: newSuggestions
+    });
+  };
+
+  handleOnChange = value => {
+    const newSuggestions = this.filterSuggestions(this.state.tags, value);
+    this.setState({
+      suggestions: newSuggestions
+    });
+  };
+
+
+  render() {
+    return (
+      <div style={style}>
+        <MultiSelect
+          tags={this.state.tags}
+          onAddTag={this.handleOnAddTag}
+          onRemoveTag={this.handleOnRemoveTag}
+          onChangeInput={this.handleOnChange}
+          suggestions={this.state.suggestions}
+          renderSuggestion={renderSuggestion}
+          onDone={this.handleOnDone}
+          onCancel={this.handleOnCancel}
+        />
+      </div>
+    );
+  }
+}
+
+export default ExampleStandard;
