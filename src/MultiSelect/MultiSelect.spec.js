@@ -40,11 +40,6 @@ class MultiSelectDriver {
       return this;
     },
 
-    allowNotSuggestedTags: allowNotSuggestedTags => {
-      Object.assign(this.props, {allowNotSuggestedTags});
-      return this;
-    },
-
     tags: tags => {
       Object.assign(this.props, {tags});
       return this;
@@ -181,16 +176,6 @@ describe('MultiSelect,', () => {
     expect(driver.get.inputElement().props().placeholder).toEqual('');
   });
 
-  it('should call the onAddTag callback when pressing on enter if "allowNotSuggestedTags" is true', () => {
-    driver.given
-      .defaultConfig()
-      .and.allowNotSuggestedTags(true)
-      .build();
-    driver.when.changeInput('test');
-    driver.when.enterIsPressed();
-    expect(driver.get.onAddTagCallback().calledWith({id: 'test'})).toEqual(true);
-  });
-
   // it('should change the value when navigating through the suggestions with the keyboard but should not call the onChangeInput callback', () => {
   //   driver.given
   //     .defaultConfig()
@@ -200,19 +185,6 @@ describe('MultiSelect,', () => {
   //   expect(driver.get.inputValue()).toEqual('first');
   //   expect(driver.get.onAddTagCallback().called).toEqual(false);
   // });
-
-  it('should NOT call the onAddTag callback when pressing on enter if "allowNotSuggestedTags" is false', () => {
-    const input = 'test';
-    driver.given
-      .defaultConfig()
-      .and.allowNotSuggestedTags(false)
-      .build();
-
-    driver.when.changeInput(input);
-    driver.when.enterIsPressed();
-    expect(driver.get.onAddTagCallback().calledOnce).toEqual(false);
-  });
-
 
   describe('suggestions section:', () => {
     const suggestions = [
