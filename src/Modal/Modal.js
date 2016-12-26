@@ -49,6 +49,7 @@ function Modal(props) {
       onAfterOpen={props.onAfterOpen}
       style={modalStyles}
       className={modalClasses}
+      contentLabel={props.contentLabel}
       >
       {props.children}
     </ReactModal>
@@ -57,6 +58,7 @@ function Modal(props) {
 
 Modal.propTypes = {
   isOpen: React.PropTypes.bool.isRequired,
+  contentLabel: React.PropTypes.string.isRequired,
   onCancel: React.PropTypes.func,
   style: React.PropTypes.oneOf([null, 'red', 'blue', 'green']),
   children: React.PropTypes.any,
