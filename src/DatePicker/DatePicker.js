@@ -20,10 +20,7 @@ export default class DatePicker extends Component {
       width: 150
     },
 
-    filterDate: () => true,
-    excludePastDates: false,
-    readOnly: false,
-    showYearDropdown: false
+    filterDate: () => true
   };
 
   constructor(props) {
