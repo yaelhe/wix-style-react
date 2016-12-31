@@ -17,7 +17,7 @@ export default class DatePickerInput extends Component {
   }
 
   render() {
-    const unWantedProps = ['value', 'onChange', 'style'];
+    const unWantedProps = ['value', 'style'];
     const desiredProps = omit(this.props, unWantedProps);
 
     return (
@@ -25,7 +25,6 @@ export default class DatePickerInput extends Component {
         <Input
           ref={Input => this.input = Input}
           value={this.props.value}
-          onChange={this.props.onChange}
           iconLeft={this.renderIcon()}
           onEnterPressed={() => this.blur()}
           onEscapePressed={() => this.blur()}
