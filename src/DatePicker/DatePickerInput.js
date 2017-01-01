@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import Input from '../Input';
 import styles from './DatePickerInput.scss';
-import omit from 'lodash/omit';
+import omit from 'lodash.omit';
 
 export default class DatePickerInput extends Component {
   static propTypes = {
