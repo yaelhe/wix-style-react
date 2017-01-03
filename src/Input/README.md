@@ -7,13 +7,15 @@
 | propName | propType | defaultValue | isRequired | description |
 |----------|----------|--------------|------------|-------------|
 | value | string | - | - | Inputs value |
-| theme | other | normal | - | The theme of the input, can be normal or paneltitle |
+| theme | string | normal | - | The theme of the input, can be one of `normal`, `paneltitle` |
 | defaultValue | string | - | - | Default value for those who wants to use this component un-controlled |
 | tabIndex  | number | - | - | Standard component tabIndex |
 | placeholder  | string | - | - | Placeholder to display |
+| readOnly  | bool | false | - | Sets the input to readOnly |
 | error  | bool | false | - | Is input value erroneous |
 | unit  | string | - | - | Unit to display in input box |
 | magnifyingGlass | bool | false | - | Should the component include a magnifyingGlass |
+| menuArrow | bool | false | - | Should the component include a menu arrow |
 | rtl  | bool | false | - | Should text input be RTL? |
 | autoFocus | bool | false  | - | Standard React Input autoFocus (focus the element on mount) |
 | autoSelect | bool | false | - | Standard React Input autoSelect (select the entire text of the element on focus) |

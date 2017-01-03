@@ -13,6 +13,8 @@ import ExampleTheme from './ExampleTheme';
 import ExampleThemeRaw from '!raw!./ExampleTheme';
 import ExampleCustomContent from './ExampleCustomContent';
 import ExampleCustomContentRaw from '!raw!./ExampleCustomContent';
+import ExampleMove from './ExampleMove';
+import ExampleMoveRaw from '!raw!./ExampleMove';
 
 storiesOf('5. Others', module)
   .add('5.5 Tooltip', () => (
@@ -29,6 +31,9 @@ storiesOf('5. Others', module)
       </CodeExample>
       <CodeExample title="Tooltip Custom Content" code={ExampleCustomContentRaw}>
         <ExampleCustomContent/>
+      </CodeExample>
+      <CodeExample title="Custom tooltip adjustment" code={ExampleMoveRaw}>
+        <ExampleMove/>
       </CodeExample>
     </div>
   ));

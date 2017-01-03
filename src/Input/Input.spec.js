@@ -40,6 +40,24 @@ describe('Input', () => {
     });
   });
 
+  describe('readOnly attribute', () => {
+    it('should pass down to the wrapped input', () => {
+
+      const readOnly = true;
+
+      const driver = createDriver({readOnly});
+
+      expect(driver.getReadOnly()).toEqual(readOnly);
+    });
+
+    it('should pass down to the wrapped input with default false value', () => {
+
+      const driver = createDriver();
+
+      expect(driver.getReadOnly()).toEqual(false);
+    });
+  });
+
   describe('error attribute', () => {
     it('should display an error icon if error is true', () => {
       const error = true;
@@ -79,12 +97,48 @@ describe('Input', () => {
     });
 
     it('should not display a magnifying glass icon if error is true', () => {
-      const magnifyingGlass = false;
+      const magnifyingGlass = true;
       const error = true;
 
       const driver = createDriver({magnifyingGlass, error});
 
       expect(driver.hasMagnifyingGlass()).toEqual(false);
+    });
+  });
+
+  describe('menuArrow attribute', () => {
+    it('should display a menu arrow icon if menuArrow is true', () => {
+      const menuArrow = true;
+
+      const driver = createDriver({menuArrow});
+
+      expect(driver.hasMenuArrow()).toEqual(true);
+    });
+
+    it('should not display a menu arrow icon if menuArrow is false', () => {
+      const menuArrow = false;
+
+      const driver = createDriver({menuArrow});
+
+      expect(driver.hasMenuArrow()).toEqual(false);
+    });
+
+    it('should not display a menu arrow icon if error is true', () => {
+      const menuArrow = true;
+      const error = true;
+
+      const driver = createDriver({menuArrow, error});
+
+      expect(driver.hasMenuArrow()).toEqual(false);
+    });
+
+    it('should not display a menu arrow icon if magnifyingGlass is true', () => {
+      const menuArrow = true;
+      const magnifyingGlass = true;
+
+      const driver = createDriver({menuArrow, magnifyingGlass});
+
+      expect(driver.hasMenuArrow()).toEqual(false);
     });
   });
 
@@ -263,6 +317,11 @@ describe('Input', () => {
     it('should allowing setting the theme to "paneltitle"', () => {
       const driver = createDriver({theme: 'paneltitle'});
       expect(driver.isOfStyle('paneltitle')).toBe(true);
+    });
+
+    it('should allow setting the theme to "material"', () => {
+      const driver = createDriver({theme: 'material'});
+      expect(driver.isOfStyle('material')).toBe(true);
     });
   });
 

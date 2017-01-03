@@ -1,4 +1,5 @@
 import React from 'react';
+import Input from '../Input';
 import AutoCompleteInput from '../AutoCompleteInput';
 import _ from 'lodash';
 
@@ -34,12 +35,6 @@ class GoogleAddressInput extends React.Component {
 
   render() {
     const {
-      placeholder,
-      error,
-      magnifyingGlass
-    } = this.props;
-
-    const {
       suggestions,
       value
     } = this.state;
@@ -47,16 +42,14 @@ class GoogleAddressInput extends React.Component {
     return (
       <div>
         <AutoCompleteInput
-          ref={'autocomplete'}
-          placeholder={placeholder}
-          error={error}
+          ref={autocomplete => this.autocomplete = autocomplete}
+          {...this.props}
           onChange={this.onChange}
           onKeyDown={this.onKeyDown}
           onBlur={this.onBlur}
           onFocus={this.onFocus}
           onSet={this.onSet}
           value={value}
-          magnifyingGlass={magnifyingGlass}
           suggestions={_.map(suggestions, 'description')}
           autoSelect={true}
           />
@@ -65,11 +58,11 @@ class GoogleAddressInput extends React.Component {
   }
 
   focus() {
-    this.refs.autocomplete.focus();
+    this.autocomplete.focus();
   }
 
   select() {
-    this.refs.autocomplete.select();
+    this.autocomplete.select();
   }
 
   onChange(e) {
@@ -262,7 +255,8 @@ function google2address(google) {
 }
 
 GoogleAddressInput.defaultProps = {
-  magnifyingGlass: true
+  magnifyingGlass: true,
+  theme: Input.defaultProps.theme
 };
 
 GoogleAddressInput.propTypes = {
@@ -280,7 +274,9 @@ GoogleAddressInput.propTypes = {
   onKeyDown: React.PropTypes.func,
   onSet: React.PropTypes.func,
   Client: React.PropTypes.func.isRequired,
-  magnifyingGlass: React.PropTypes.bool
+  magnifyingGlass: React.PropTypes.bool,
+  theme: Input.propTypes.theme,
+  readOnly: React.PropTypes.bool
 };
 
 export default GoogleAddressInput;
