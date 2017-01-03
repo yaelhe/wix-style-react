@@ -5,14 +5,16 @@ const style = {
   display: 'inline-block',
   padding: '0 5px 0',
   width: '200px',
-  lineHeight: '22px'
+  lineHeight: '22px',
+  marginBottom: '350px'
 };
 
 const suggestions = [
   {text: 'First suggestion'},
   {text: 'Second suggestion'},
-  {text: 'Third suggestion'},
-  {node: <span style={{color: 'red'}}>Node suggestion</span>, text: 'Text of node suggestion'},
+  {text: 'Third suggestion', disabled: true},
+  {text: 'Fourth suggestion'},
+  {text: 'Fifth suggestion'},
   {text: 'Very long suggestion text jldlkasj ldk jsalkdjsal kdjaklsjdlkasj dklasj'}
 ];
 
@@ -21,9 +23,9 @@ class ControlledAutoCompleteInput extends Component {
     value: PropTypes.string
   };
 
-  constructor({value}) {
+  constructor() {
     super();
-    this.state = {value};
+    this.state = {value: ''};
   }
 
   render() {
