@@ -1,19 +1,19 @@
 import _ from 'lodash/fp';
 import React from 'react';
 import ReactTestUtils from 'react-addons-test-utils';
-import {dropdownTestkitFactory, componentFactory, dropdownDriverFactory} from './testkit/Dropdown';
-import Dropdown from './Dropdown';
+import {dropdownLayoutTestkitFactory, componentFactory, dropdownLayoutDriverFactory} from './testkit/DropdownLayout';
+import DropdownLayout from './DropdownLayout';
 
-describe('Dropdown', () => {
+describe('DropdownLayout', () => {
 
-  const createDriver = _.compose(dropdownDriverFactory, componentFactory);
+  const createDriver = _.compose(dropdownLayoutDriverFactory, componentFactory);
   const options = [
-    {value: 0, text: 'Option 1'},
-    {value: 1, text: 'Option 2'},
-    {value: 2, text: 'Option 3'},
-    {value: 3, text: 'Option 4'},
-    {value: 'divider1', text: '-'},
-    {value: 'element1', text: <span style={{color: 'brown'}}>Option 4</span>}
+    {id: 0, value: 'Option 1'},
+    {id: 1, value: 'Option 2'},
+    {id: 2, value: 'Option 3', isSelectable: false},
+    {id: 3, value: 'Option 4'},
+    {id: 'divider1', value: '-'},
+    {id: 'element1', value: <span style={{color: 'brown'}}>Option 4</span>}
   ];
 
   it('should have a default of visible and drop down', () => {
@@ -44,6 +44,14 @@ describe('Dropdown', () => {
     expect(driver.isOptionHovered(0)).toBeFalsy();
   });
 
+  it('should not hover divider or non selectable item when mouse enter', () => {
+    const driver = createDriver({options});
+    driver.mouseEnterAtOption(2);
+    expect(driver.isOptionHovered(2)).toBeFalsy();
+    driver.mouseLeaveAtOption(4);
+    expect(driver.isOptionHovered(4)).toBeFalsy();
+  });
+
   it('should have only one hovered option', () => {
     const driver = createDriver({options});
     driver.mouseEnterAtOption(0);
@@ -53,13 +61,11 @@ describe('Dropdown', () => {
     expect(driver.isOptionHovered(1)).toBeTruthy();
   });
 
-  it('should hovered items cyclic and skipping divider on down key', () => {
+  it('should hovered items cyclic and skipping divider or non selectable items on down key', () => {
     const driver = createDriver({options});
     driver.mouseEnterAtOption(0);
     driver.pressDownKey();
     expect(driver.isOptionHovered(1)).toBeTruthy();
-    driver.pressDownKey();
-    expect(driver.isOptionHovered(2)).toBeTruthy();
     driver.pressDownKey();
     expect(driver.isOptionHovered(3)).toBeTruthy();
     driver.pressDownKey();
@@ -68,15 +74,13 @@ describe('Dropdown', () => {
     expect(driver.isOptionHovered(0)).toBeTruthy();
   });
 
-  it('should hovered items cyclic and skipping divider on up key', () => {
+  it('should hovered items cyclic and skipping divider or non selectable on up key', () => {
     const driver = createDriver({options});
     driver.mouseEnterAtOption(0);
     driver.pressUpKey();
     expect(driver.isOptionHovered(5)).toBeTruthy();
     driver.pressUpKey();
     expect(driver.isOptionHovered(3)).toBeTruthy();
-    driver.pressUpKey();
-    expect(driver.isOptionHovered(2)).toBeTruthy();
     driver.pressUpKey();
     expect(driver.isOptionHovered(1)).toBeTruthy();
     driver.pressUpKey();
@@ -110,8 +114,8 @@ describe('Dropdown', () => {
   });
 
   it('should select the chosen value', () => {
-    const value = 0;
-    const driver = createDriver({options, value});
+    const selectedId = 0;
+    const driver = createDriver({options, selectedId});
     expect(driver.isOptionSelected(0)).toBeTruthy();
   });
 
@@ -120,10 +124,10 @@ describe('Dropdown', () => {
       const div = document.createElement('div');
       const id = 'myId';
 
-      const wrapper = div.appendChild(ReactTestUtils.renderIntoDocument(<div><Dropdown id={id} options={options}/>
+      const wrapper = div.appendChild(ReactTestUtils.renderIntoDocument(<div><DropdownLayout id={id} options={options}/>
       </div>));
 
-      const driver = dropdownTestkitFactory({wrapper, id});
+      const driver = dropdownLayoutTestkitFactory({wrapper, id});
       expect(driver.optionsLength()).toBe(6);
     });
   });

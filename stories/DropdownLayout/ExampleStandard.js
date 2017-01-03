@@ -1,5 +1,5 @@
 import React from 'react';
-import Dropdown from 'wix-style-react/Dropdown';
+import DropdownLayout from 'wix-style-react/DropdownLayout';
 
 const style = {
   display: 'inline-block',
@@ -24,6 +24,6 @@ const rtlOptions = [
 
 export default () =>
   <div>
-    <div className="ltr" style={style}>Left to right<br/><Dropdown options={options}/></div>
-    <div className="rtl" style={style}>Right to left<br/><Dropdown options={rtlOptions}/></div>
+    <div className="ltr" style={style}>Left to right<br/><DropdownLayout selectedId={0} options={options}/></div>
+    <div className="rtl" style={style}>Right to left<br/><DropdownLayout selectedId={0} options={rtlOptions}/></div>
   </div>;
