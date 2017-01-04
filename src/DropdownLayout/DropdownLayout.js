@@ -1,6 +1,7 @@
 import styles from './DropdownLayout.scss';
 import React from 'react';
 import classNames from 'classnames';
+import isEqual from 'lodash.isequal';
 
 const modulu = (n, m) => {
   const remain = n % m;
@@ -76,7 +77,7 @@ class DropdownLayout extends React.Component {
 
       case 'Tab': {
         this._onSelect(this.state.hovered);
-        return true;
+        return false;
       }
 
       case 'Escape': {
@@ -158,6 +159,11 @@ class DropdownLayout extends React.Component {
   componentWillReceiveProps(nextProps) {
     if (this.props.visible !== nextProps.visible) {
       this.setState({hovered: NOT_HOVERED_ID});
+    }
+    if (this.state.hovered  !== NOT_HOVERED_ID && !isEqual(this.props.options, nextProps.options)) {
+      this.setState({
+        hovered: nextProps.options.findIndex(item => item.id === this.props.options[this.state.hovered].id)
+      });
     }
   }
 

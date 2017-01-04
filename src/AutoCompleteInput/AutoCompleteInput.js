@@ -51,6 +51,7 @@ class AutoCompleteInput extends React.Component {
     return (
       <div className={styles.wrapper} onFocus={this.onFocus} onKeyDown={this.onKeyDown} onBlur={this.onBlur}>
         <Input
+          menuArrow
           ref={input => this.input = input}
           {...this.props}
           />
