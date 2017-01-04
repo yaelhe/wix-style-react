@@ -44,7 +44,7 @@ describe('DropdownLayout', () => {
 
   it('should not hover any option by default', () => {
     const driver = createDriver({options});
-    options.map((option, index) => expect(driver.isOptionHovered(index)).toBeFalsy);
+    expect(options.map((option, index) => driver.isOptionHovered(index))).not.toContain(true);
   });
 
   it('should hover when mouse enter and unhover when mouse leave', () => {
