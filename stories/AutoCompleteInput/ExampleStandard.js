@@ -9,34 +9,20 @@ const style = {
 };
 
 const suggestions = [
-  {text: 'First suggestion'},
-  {text: 'Unselectable suggestion', unselectable: true},
-  {text: 'Third suggestion'},
-  {node: <span style={{color: 'red'}}>Node suggestion</span>, text: 'Text of node suggestion'},
-  {text: 'Very long suggestion text jldlkasj ldk jsalkdjsal kdjaklsjdlkasj dklasj'}
+  {id: 0, value: 'First suggestion'},
+  {id: 1, value: 'Unselectable suggestion', unselectable: true},
+  {id: 2, value: 'Third suggestion'},
+  {id: 3, node: <span style={{color: 'red'}}>Node suggestion</span>, value: 'Text of node suggestion'},
+  {id: 4, value: 'Very long suggestion text jldlkasj ldk jsalkdjsal kdjaklsjdlkasj dklasj'}
 ];
 
 const rtlSuggestions = [
-  {text: 'אפשרות ראשונה'},
-  {text: 'אפשרות שניה'},
-  {text: 'אפשרות שלישית'}
+  {id: 0, value: 'אפשרות ראשונה'},
+  {id: 1, value: 'אפשרות שניה'},
+  {id: 2, value: 'אפשרות שלישית'}
 ];
 
-const footer = (
-  <small>
-    <a
-      href="#blah"
-      onClick={e => {
-        console.log(e);
-        e.stopPropagation();
-      }}
-      >
-      Footer!
-    </a>
-  </small>
-);
-
-const onSet = e => console.log('Set', e);
+const onSelect = e => console.log('Select', e);
 
 export default () =>
   <div>
@@ -44,9 +30,7 @@ export default () =>
       Left to right
       <AutoCompleteInput
         suggestions={suggestions}
-        footer={footer}
-        header={<div>Header</div>}
-        onSet={onSet}
+        onSelect={onSelect}
         />
     </div>
     <div style={style} className="rtl">

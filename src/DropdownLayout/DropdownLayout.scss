@@ -126,6 +126,11 @@ $option_height: 35px;
     color: $D80;
 }
 
+.option.selected.hovered {
+  background-color: $B20;
+  color: $D80;
+}
+
 .divider {
     height: 1px;
     overflow: hidden;

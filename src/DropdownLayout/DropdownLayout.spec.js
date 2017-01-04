@@ -74,28 +74,27 @@ describe('DropdownLayout', () => {
 
   it('should hovered items cyclic and skipping divider or disabled items on down key', () => {
     const driver = createDriver({options});
-    driver.mouseEnterAtOption(0);
     driver.pressDownKey();
-    expect(driver.isOptionHovered(1)).toBeTruthy();
     driver.pressDownKey();
-    expect(driver.isOptionHovered(3)).toBeTruthy();
+    expect(driver.isOptionSelected(1)).toBeTruthy();
     driver.pressDownKey();
-    expect(driver.isOptionHovered(5)).toBeTruthy();
+    expect(driver.isOptionSelected(3)).toBeTruthy();
     driver.pressDownKey();
-    expect(driver.isOptionHovered(0)).toBeTruthy();
+    expect(driver.isOptionSelected(5)).toBeTruthy();
+    driver.pressDownKey();
+    expect(driver.isOptionSelected(0)).toBeTruthy();
   });
 
   it('should hovered items cyclic and skipping divider or disabled on up key', () => {
     const driver = createDriver({options});
-    driver.mouseEnterAtOption(0);
     driver.pressUpKey();
-    expect(driver.isOptionHovered(5)).toBeTruthy();
+    expect(driver.isOptionSelected(5)).toBeTruthy();
     driver.pressUpKey();
-    expect(driver.isOptionHovered(3)).toBeTruthy();
+    expect(driver.isOptionSelected(3)).toBeTruthy();
     driver.pressUpKey();
-    expect(driver.isOptionHovered(1)).toBeTruthy();
+    expect(driver.isOptionSelected(1)).toBeTruthy();
     driver.pressUpKey();
-    expect(driver.isOptionHovered(0)).toBeTruthy();
+    expect(driver.isOptionSelected(0)).toBeTruthy();
   });
 
   it('should call onClose when esc key is pressed', () => {
@@ -133,7 +132,7 @@ describe('DropdownLayout', () => {
   it('should call select when enter key is pressed', () => {
     const onSelect = jest.fn();
     const driver = createDriver({options, onSelect});
-    driver.mouseEnterAtOption(0);
+    driver.pressDownKey();
     driver.pressEnterKey();
     expect(onSelect).toBeCalled();
   });
@@ -141,7 +140,7 @@ describe('DropdownLayout', () => {
   it('should call select when tab key is pressed', () => {
     const onSelect = jest.fn();
     const driver = createDriver({options, onSelect});
-    driver.mouseEnterAtOption(0);
+    driver.pressDownKey();
     driver.pressTabKey();
     expect(onSelect).toBeCalled();
   });

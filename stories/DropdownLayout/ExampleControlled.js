@@ -20,16 +20,14 @@ const options = [
 class ControlledExample extends Component {
   constructor() {
     super();
-    this.state = {selectedId: null, show: true};
+    this.state = {selectedId: 3, show: true};
   }
 
   render() {
     const onSelect = id => this.setState({selectedId: id});
-    const onClose = () => this.setState({selectedId: null});
+    const onClose = () => this.setState({selectedId: -1});
 
-    const selectedOption = options.find(item => {
-      return item.id === this.state.selectedId;
-    });
+    const selectedOption = options.find(item => item.id === this.state.selectedId);
 
     return (
       <div className="ltr" style={style}> Left to right

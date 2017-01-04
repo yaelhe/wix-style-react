@@ -17,9 +17,8 @@ const initialState = {
 
 const isLegalSuggestion = suggestion => {
   if (isobject(suggestion)) {
-    return has(suggestion, 'node') ||
-      (has(suggestion, 'id') && isstring(suggestion.id) && trim(suggestion.id).length > 0) ||
-      (has(suggestion, 'value') && isstring(suggestion.value) && trim(suggestion.value).length > 0);
+    return (has(suggestion, 'id') && (trim(suggestion.id).length > 0)) &&
+      has(suggestion, 'value') && isstring(suggestion.value) && (trim(suggestion.value).length > 0);
   } else {
     return isstring(suggestion) && trim(suggestion).length > 0;
   }
@@ -68,14 +67,19 @@ class AutoCompleteInput extends React.Component {
     );
   }
 
-  onSelect(index) {
-    const {suggestions} = this.props;
-    this.props.onSelect(suggestions[index]);
+  onSelect(optionId) {
+    const {suggestions, value} = this.props;
+    if (optionId === NOT_SELECTED_INDEX || suggestions.length === 0) {
+      this.props.onSelect({id: 'not a suggested option', value});
+    } else {
+      this.props.onSelect(suggestions.find(suggestion => suggestion.id === optionId));
+    }
     this.onBlur();
   }
 
   onBlur(event) {
     this.setState(initialState);
+
     this.input.blur();
     if (this.props.onBlur) {
       this.props.onBlur(event);
