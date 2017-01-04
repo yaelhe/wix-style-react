@@ -7,11 +7,13 @@ const modulu = (n, m) => {
   return remain >= 0 ? remain : remain + m;
 };
 
+const NOT_HOVERED_ID = -1;
+
 class DropdownLayout extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = {hovered: null};
+    this.state = {hovered: NOT_HOVERED_ID};
     this._onSelect = this._onSelect.bind(this);
     this._onMouseLeave = this._onMouseLeave.bind(this);
     this._onMouseEnter = this._onMouseEnter.bind(this);
@@ -34,23 +36,21 @@ class DropdownLayout extends React.Component {
   }
 
   _onMouseLeave() {
-    const hovered = this.props.options.findIndex(item => item.id === this.props.selectedId);
     this.setState({
-      hovered: hovered === -1 ? null : hovered
+      hovered: this.props.options.findIndex(item => item.id === this.props.selectedId)
     });
   }
 
   hoverNextState(step) {
     const {options} = this.props;
-    step = modulu(step, options.length);
 
     if (!options.some(this.isSelectableOption)) {
       return;
     }
 
-    let newHovered = this.state.hovered || 0;
+    let newHovered = this.state.hovered;
     do {
-      newHovered = modulu(newHovered + step, options.length);
+      newHovered = modulu(Math.max(newHovered + step, -1), options.length);
     } while (!this.isSelectableOption(options[newHovered]));
 
     this.setState({hovered: newHovered});
@@ -70,12 +70,12 @@ class DropdownLayout extends React.Component {
       }
 
       case 'Enter': {
-        this._onSelect(this.state.hovered || 0);
+        this._onSelect(this.state.hovered);
         break;
       }
 
       case 'Tab': {
-        this._onSelect(this.state.hovered || 0);
+        this._onSelect(this.state.hovered);
         return true;
       }
 
@@ -118,7 +118,11 @@ class DropdownLayout extends React.Component {
           ref={options => this.options = options}
           >
           {options.map((option, idx) => (
-            option.value === '-' ? (this.renderDivider(idx)) : (this.renderItem({option, idx, selected: option.id === selectedId, hovered: idx === this.state.hovered, disabled: option.disabled}))
+            option.value === '-' ?
+              (this.renderDivider(idx)) :
+              (this.renderItem({
+                option, idx, selected: option.id === selectedId, hovered: idx === this.state.hovered, disabled: option.disabled
+              }))
           ))}
         </div>
       </div>
@@ -139,6 +143,7 @@ class DropdownLayout extends React.Component {
 
     return (
       <div
+        ref={dropdownLayout => this.dropdownLayout = dropdownLayout}
         className={optionClassName}
         onClick={!disabled ? () => this._onSelect(idx) : null}
         key={idx}
@@ -152,11 +157,19 @@ class DropdownLayout extends React.Component {
 
   componentWillReceiveProps(nextProps) {
     if (this.props.visible !== nextProps.visible) {
-      this.setState({hovered: null});
+      this.setState({hovered: NOT_HOVERED_ID});
     }
   }
 
   isSelectableOption = option => (option.value !== '-') && !option.disabled;
+
+  focus() {
+    this.dropdownLayout.focus();
+  }
+
+  blur() {
+    this.dropdownLayout.blur();
+  }
 }
 
 DropdownLayout.propTypes = {

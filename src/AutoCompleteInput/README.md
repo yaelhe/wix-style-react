@@ -7,9 +7,7 @@
 | propName | propType | defaultValue | isRequired | description |
 |----------|----------|--------------|------------|-------------|
 | suggestions | array | [] | - | Array of objects to display as suggestions when focused. Objects can include *text* and *node* |
-| onSet | func | noop | - | Callback when the user selects one of the selections. Called with the selection. |
-| header | node | - | - | Extra node shown at the top of the suggestions list |
-| bottomNode | node | - | - | Extra node shown at the bottom of the suggestions list |
+| onSelect | func | noop | - | Callback when the user selects one of the selections. Called with the selection. |
 
 ***All of the Input's Props are also available for this component***
 

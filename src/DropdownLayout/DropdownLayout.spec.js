@@ -106,7 +106,7 @@ describe('DropdownLayout', () => {
     expect(onClose).toBeCalled();
   });
 
-  it('should call onClose when component is blur key is pressed', () => {
+  it('should call onClose when component blur key is pressed', () => {
     const onClose = jest.fn();
     const driver = createDriver({options, onClose});
     driver.mouseEnterAtOption(0);
@@ -121,6 +121,13 @@ describe('DropdownLayout', () => {
     expect(onSelect).toBeCalledWith(0);
     driver.clickAtOption(5);
     expect(onSelect).toBeCalledWith('element1');
+  });
+
+  it('should not call select when clicking on a selected option', () => {
+    const onSelect = jest.fn();
+    const driver = createDriver({options, onSelect, selectedId: 0});
+    driver.clickAtOption(0);
+    expect(onSelect.mock.calls.length).toBe(0);
   });
 
   it('should call select when enter key is pressed', () => {
