@@ -10,7 +10,7 @@ describe('DropdownLayout', () => {
   const options = [
     {id: 0, value: 'Option 1'},
     {id: 1, value: 'Option 2'},
-    {id: 2, value: 'Option 3', isSelectable: false},
+    {id: 2, value: 'Option 3', disabled: true},
     {id: 3, value: 'Option 4'},
     {id: 'divider1', value: '-'},
     {id: 'element1', value: <span style={{color: 'brown'}}>Option 4</span>}
@@ -44,7 +44,7 @@ describe('DropdownLayout', () => {
     expect(driver.isOptionHovered(0)).toBeFalsy();
   });
 
-  it('should not hover divider or non selectable item when mouse enter', () => {
+  it('should not hover divider or a disabled item when mouse enter', () => {
     const driver = createDriver({options});
     driver.mouseEnterAtOption(2);
     expect(driver.isOptionHovered(2)).toBeFalsy();
@@ -61,7 +61,7 @@ describe('DropdownLayout', () => {
     expect(driver.isOptionHovered(1)).toBeTruthy();
   });
 
-  it('should hovered items cyclic and skipping divider or non selectable items on down key', () => {
+  it('should hovered items cyclic and skipping divider or disabled items on down key', () => {
     const driver = createDriver({options});
     driver.mouseEnterAtOption(0);
     driver.pressDownKey();
@@ -74,7 +74,7 @@ describe('DropdownLayout', () => {
     expect(driver.isOptionHovered(0)).toBeTruthy();
   });
 
-  it('should hovered items cyclic and skipping divider or non selectable on up key', () => {
+  it('should hovered items cyclic and skipping divider or disabled on up key', () => {
     const driver = createDriver({options});
     driver.mouseEnterAtOption(0);
     driver.pressUpKey();
@@ -93,7 +93,6 @@ describe('DropdownLayout', () => {
     driver.mouseEnterAtOption(0);
     driver.pressEscKey();
     expect(onClose).toBeCalled();
-
   });
 
   it('should call onClose when component is blur key is pressed', () => {
@@ -111,6 +110,22 @@ describe('DropdownLayout', () => {
     expect(onSelect).toBeCalledWith(0);
     driver.clickAtOption(5);
     expect(onSelect).toBeCalledWith('element1');
+  });
+
+  it('should call select when enter key is pressed', () => {
+    const onSelect = jest.fn();
+    const driver = createDriver({options, onSelect});
+    driver.mouseEnterAtOption(0);
+    driver.pressEnterKey();
+    expect(onSelect).toBeCalled();
+  });
+
+  it('should call select when tab key is pressed', () => {
+    const onSelect = jest.fn();
+    const driver = createDriver({options, onSelect});
+    driver.mouseEnterAtOption(0);
+    driver.pressTabKey();
+    expect(onSelect).toBeCalled();
   });
 
   it('should select the chosen value', () => {

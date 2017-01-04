@@ -6,12 +6,12 @@ $option_height: 35px;
     option_height: $option_height;
 }
 
-.wrapper { 
+.wrapper {
     box-sizing: border-box;
     position: relative;
     outline: none;
-    border: none; 
-    height: 38px; 
+    border: none;
+    height: 38px;
     width: 100%;
 }
 
@@ -29,33 +29,33 @@ $option_height: 35px;
     visibility: hidden;
     width: 100%;
     z-index: 6;
-    position:absolute; 
+    position:absolute;
 }
-.options.up { 
+.options.up {
     margin-bottom: -1px;
     bottom:0;
 }
 
-.options.down { 
+.options.down {
     margin-top: -1px;
     top: 0;
 }
 
-.options.shown { 
+.options.shown {
     visibility: visible;
-    opacity: 1; 
+    opacity: 1;
 }
 
-.options::-webkit-scrollbar { 
+.options::-webkit-scrollbar {
     width: 16px;
     background-color: none;
 }
 
-.options::-webkit-scrollbar-button { 
-    height:6px; 
+.options::-webkit-scrollbar-button {
+    height:6px;
 }
 
-.options::-webkit-scrollbar-thumb  { 
+.options::-webkit-scrollbar-thumb  {
     background-color: rgba(110, 181, 241, 0.45);
     border-radius: 10px;
     background-clip: padding-box;
@@ -63,15 +63,15 @@ $option_height: 35px;
     height: 58px;
 }
 
-.options::-webkit-scrollbar-thumb:hover  { 
-    background-color: $B30; 
+.options::-webkit-scrollbar-thumb:hover  {
+    background-color: $B30;
 }
 
-.options::-webkit-scrollbar-thumb:active { 
-    background-color: $B00; 
+.options::-webkit-scrollbar-thumb:active {
+    background-color: $B00;
 }
 
-.option { 
+.option {
     line-height: $option_height;
     min-height: $option_height;
     height: $option_height;
@@ -90,7 +90,7 @@ $option_height: 35px;
     width:100%;
 }
 
-.unselectable {
+.disabled {
     cursor: text;
 }
 
@@ -107,24 +107,24 @@ $option_height: 35px;
     padding-left: 20px;
 }
 
-.option.hovered { 
-    background: $B50; 
-    color: $D10; 
+.option.hovered {
+    background: $B50;
+    color: $D10;
 }
 
-.option:focus { 
+.option:focus {
     outline: none;
 }
 
-.option.selected { 
-    background-color: $B10; 
-    color: $D80;  
+.option.selected {
+    background-color: $B10;
+    color: $D80;
 }
 
-.divider { 
-    height: 1px; 
-    overflow: hidden; 
-    background-color: #e5e5e5; 
+.divider {
+    height: 1px;
+    overflow: hidden;
+    background-color: #e5e5e5;
     margin: 0;
 }
 

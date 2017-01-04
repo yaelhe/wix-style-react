@@ -22,7 +22,8 @@ class DropdownLayout extends React.Component {
   }
 
   _onMouseEnter(index) {
-    if (this.props.options[index].value !== '-' && !(this.props.options[index].isSelectable === false)) {
+    const {options} = this.props;
+    if (options[index].value !== '-' && !(options[index].disabled)) {
       this.setState({hovered: index});
     }
   }
@@ -34,9 +35,11 @@ class DropdownLayout extends React.Component {
   }
 
   hoverNextState(step) {
-    step %= this.props.options.length;
-    const validOption = this.props.options.find(item => {
-      return item.value !== '-' && !(item.isSelectable === false);
+    const {options} = this.props;
+    step %= options.length;
+
+    const validOption = options.find(item => {
+      return item.value !== '-' && !item.disabled;
     });
 
     if (!validOption) {
@@ -46,36 +49,56 @@ class DropdownLayout extends React.Component {
     let newHovered;
     let oldHovered = this.state.hovered;
 
-    if (!oldHovered) {
-      oldHovered = step < 0 ? this.props.options.length : -1;
+    if (oldHovered === null) {
+      oldHovered = step < 0 ? options.length : -1;
     }
 
     do {
       newHovered = oldHovered + step;
-      if (newHovered >= this.props.options.length) {
-        newHovered -= this.props.options.length;
+      if (newHovered >= options.length) {
+        newHovered -= options.length;
       } else if (newHovered < 0) {
-        newHovered += this.props.options.length;
+        newHovered += options.length;
       }
       oldHovered = newHovered;
-    } while (this.props.options[newHovered].value === '-' || this.props.options[newHovered].isSelectable === false);
+    } while (options[newHovered].value === '-' || options[newHovered].disabled);
 
     this.setState({hovered: newHovered});
     this.options.scrollTop = (newHovered - 2) * parseInt(styles.option_height);
   }
 
   _onKeyDown(event) {
-    if (event.key === 'ArrowDown') {
-      this.hoverNextState(1);
-    } else if (event.key === 'ArrowUp') {
-      this.hoverNextState(-1);
-    } else if (event.key === 'Enter') {
-      this._onSelect(this.state.hovered || 0);
-    } else if (event.key === 'Escape') {
-      this._onClose();
-    } else {
-      return false;
+    switch (event.key) {
+      case 'ArrowDown': {
+        this.hoverNextState(1);
+        break;
+      }
+
+      case 'ArrowUp': {
+        this.hoverNextState(-1);
+        break;
+      }
+
+      case 'Enter': {
+        this._onSelect(this.state.hovered || 0);
+        break;
+      }
+
+      case 'Tab': {
+        this._onSelect(this.state.hovered || 0);
+        return true;
+      }
+
+      case 'Escape': {
+        this._onClose();
+        break;
+      }
+
+      default: {
+        return false;
+      }
     }
+
     event.preventDefault();
     event.stopPropagation();
     return true;
@@ -109,7 +132,7 @@ class DropdownLayout extends React.Component {
           }
           >
           {options.map((option, idx) => (
-            option.value === '-' ? (this.renderDivider(idx)) : (this.renderItem({option, idx, selected: option.id === selectedId, hovered: idx === this.state.hovered, isSelectable: !(option.isSelectable === false)}))
+            option.value === '-' ? (this.renderDivider(idx)) : (this.renderItem({option, idx, selected: option.id === selectedId, hovered: idx === this.state.hovered, disabled: (option.disabled)}))
           ))}
         </div>
       </div>
@@ -120,18 +143,18 @@ class DropdownLayout extends React.Component {
     return (<div key={idx} className={styles.divider}/>);
   }
 
-  renderItem({option, idx, selected, hovered, isSelectable}) {
+  renderItem({option, idx, selected, hovered, disabled}) {
     const optionClassName = classNames({
       [styles.option]: true,
       [styles.selected]: selected,
       [styles.hovered]: hovered,
-      [styles.unselectable]: !isSelectable,
+      [styles.disabled]: disabled,
     });
 
     return (
       <div
         className={optionClassName}
-        onClick={isSelectable ? () => this._onSelect(idx) : null}
+        onClick={!disabled ? () => this._onSelect(idx) : null}
         key={idx}
         onMouseEnter={() => this._onMouseEnter(idx)}
         onMouseLeave={() => this._onMouseLeave(idx)}
@@ -160,7 +183,7 @@ DropdownLayout.propTypes = {
       React.PropTypes.number,
     ]).isRequired,
     value: React.PropTypes.node.isRequired,
-    isSelectable: React.PropTypes.bool
+    disabled: React.PropTypes.bool
   })),
   selectedId: React.PropTypes.oneOfType([
     React.PropTypes.string,
@@ -170,7 +193,6 @@ DropdownLayout.propTypes = {
 };
 
 DropdownLayout.defaultProps = {
-  dropDirectionUp: false,
   options: [],
   visible: true,
   tabIndex: 1,

@@ -13,7 +13,7 @@ const options = [
   {id: 2, value: 'Option 2'},
   {id: 0, value: '-'},
   {id: 3, value: 'Option 3'},
-  {id: 'unselectable', value: 'Non selectable Option', isSelectable: false},
+  {id: 'disabled', value: 'Disabled', disabled: true},
   {id: 4, value: 'Option 4'},
 ];
 
@@ -24,7 +24,7 @@ class ControlledExample extends Component {
   }
 
   render() {
-    const onSelect = (id) => this.setState({selectedId: id});
+    const onSelect = id => this.setState({selectedId: id});
     const onClose = () => this.setState({selectedId: null});
 
     const selectedOption = options.find(item => {
@@ -32,7 +32,7 @@ class ControlledExample extends Component {
     });
 
     return (
-      <div className='ltr' style={style}> Left to right
+      <div className="ltr" style={style}> Left to right
         <DropdownLayout options={options} onSelect={onSelect} selectedId={this.state.selectedId} onClose={onClose}/>
         <div style={{padding: '160px 0 16px'}}>{selectedOption ? selectedOption.value : 'Nothing'} is selected</div>
       </div>
