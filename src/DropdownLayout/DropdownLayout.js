@@ -28,33 +28,30 @@ class DropdownLayout extends React.Component {
 
   _onMouseEnter(index) {
     const {options} = this.props;
-    if (options[index].value !== '-' && !(options[index].disabled)) {
+    if (this.isSelectableOption(options[index])) {
       this.setState({hovered: index});
     }
   }
 
   _onMouseLeave() {
-    this.setState({hovered: this.props.options.findIndex(item => {
-      return item.id === this.props.selectedId;
-    })});
+    const hovered = this.props.options.findIndex(item => item.id === this.props.selectedId);
+    this.setState({
+      hovered: hovered === -1 ? null : hovered
+    });
   }
 
   hoverNextState(step) {
     const {options} = this.props;
     step = modulu(step, options.length);
 
-    const validOption = options.find(item => {
-      return item.value !== '-' && !item.disabled;
-    });
-
-    if (!validOption) {
+    if (!options.some(this.isSelectableOption)) {
       return;
     }
 
     let newHovered = this.state.hovered || 0;
     do {
       newHovered = modulu(newHovered + step, options.length);
-    } while (options[newHovered].value === '-' || options[newHovered].disabled);
+    } while (!this.isSelectableOption(options[newHovered]));
 
     this.setState({hovered: newHovered});
     this.options.scrollTop = (newHovered - 2) * parseInt(styles.option_height);
@@ -118,14 +115,10 @@ class DropdownLayout extends React.Component {
       <div tabIndex={tabIndex} className={styles.wrapper} onKeyDown={this._onKeyDown} onBlur={this._onClose} id={id}>
         <div
           className={optionsClassName}
-          ref={
-            options => {
-              this.options = options;
-            }
-          }
+          ref={options => this.options = options}
           >
           {options.map((option, idx) => (
-            option.value === '-' ? (this.renderDivider(idx)) : (this.renderItem({option, idx, selected: option.id === selectedId, hovered: idx === this.state.hovered, disabled: (option.disabled)}))
+            option.value === '-' ? (this.renderDivider(idx)) : (this.renderItem({option, idx, selected: option.id === selectedId, hovered: idx === this.state.hovered, disabled: option.disabled}))
           ))}
         </div>
       </div>
@@ -150,7 +143,7 @@ class DropdownLayout extends React.Component {
         onClick={!disabled ? () => this._onSelect(idx) : null}
         key={idx}
         onMouseEnter={() => this._onMouseEnter(idx)}
-        onMouseLeave={() => this._onMouseLeave(idx)}
+        onMouseLeave={this._onMouseLeave}
         >
         {option.value}
       </div>
@@ -162,6 +155,8 @@ class DropdownLayout extends React.Component {
       this.setState({hovered: null});
     }
   }
+
+  isSelectableOption = option => (option.value !== '-') && !option.disabled;
 }
 
 DropdownLayout.propTypes = {

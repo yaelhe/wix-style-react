@@ -1,6 +1,6 @@
 import _ from 'lodash/fp';
 
-const dropdownLayoutDriverFactory = component => ({
+const dropdownLayoutDriverFactory = ({component}) => ({
   element: () => component
 });
 

@@ -22,6 +22,12 @@ describe('DropdownLayout', () => {
     expect(driver.isDown()).toBeTruthy();
   });
 
+  it('should have a default of visible and drop down', () => {
+    const driver = createDriver({options});
+    driver.setProps({options, visible: false});
+    expect(driver.isShown()).toBeFalsy();
+  });
+
   it('should have a tab index', () => {
     const driver = createDriver({options});
     expect(driver.tabIndex()).toBe(1);
@@ -34,6 +40,11 @@ describe('DropdownLayout', () => {
     expect(driver.optionContentAt(0)).toBe('Option 1');
     expect(driver.isOptionADivider(4)).toBeTruthy();
     expect(driver.optionContentAt(5)).toBe('Option 4');
+  });
+
+  it('should not hover any option by default', () => {
+    const driver = createDriver({options});
+    options.map((option, index) => expect(driver.isOptionHovered(index)).toBeFalsy);
   });
 
   it('should hover when mouse enter and unhover when mouse leave', () => {

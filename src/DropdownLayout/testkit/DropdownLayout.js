@@ -1,9 +1,10 @@
 import React from 'react';
 import DropdownLayout from '../DropdownLayout';
 import ReactTestUtils from 'react-addons-test-utils';
+import ReactDOM from 'react-dom';
 import $ from 'jquery';
 
-const dropdownLayoutDriverFactory = component => {
+const dropdownLayoutDriverFactory = ({component, wrapper}) => {
 
   const isClassExists = (component, className) => (component.className.indexOf(className) !== -1);
   const options = component.childNodes[0];
@@ -30,19 +31,23 @@ const dropdownLayoutDriverFactory = component => {
     pressEscKey: () => ReactTestUtils.Simulate.keyDown(component, {key: 'Escape'}),
     optionContentAt: position => optionAt(position).textContent,
     clickAtOption: position => ReactTestUtils.Simulate.click(optionAt(position)),
-    isOptionADivider: position => isClassExists(optionAt(position), 'divider')
+    isOptionADivider: position => isClassExists(optionAt(position), 'divider'),
+    setProps: props => {
+      ReactDOM.render(<div ref={r => component = r}><DropdownLayout {...props}/></div>, wrapper);
+    }
   };
 };
 
 const componentFactory = (props = {}) => {
-  const {children, ...otherProps} = props;
-  const component = ReactTestUtils.renderIntoDocument(<div><DropdownLayout {...otherProps}>{children}</DropdownLayout></div>);
-  return component.childNodes[0];
+  let component;
+  const wrapperDiv = document.createElement('div');
+  ReactDOM.render(<div ref={r => component = r}><DropdownLayout {...props}/></div>, wrapperDiv);
+  return {component: component.childNodes[0], wrapper: wrapperDiv};
 };
 
 const dropdownLayoutTestkitFactory = ({wrapper, id}) => {
-  const dropdownLayout = $(wrapper).find(`#${id}`)[0];
-  return dropdownLayoutDriverFactory(dropdownLayout);
+  const component = $(wrapper).find(`#${id}`)[0];
+  return dropdownLayoutDriverFactory({component, wrapper});
 };
 
 export {dropdownLayoutTestkitFactory, componentFactory, dropdownLayoutDriverFactory};
