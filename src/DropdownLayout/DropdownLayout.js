@@ -2,6 +2,11 @@ import styles from './DropdownLayout.scss';
 import React from 'react';
 import classNames from 'classnames';
 
+const modulu = (n, m) => {
+  const remain = n % m;
+  return remain >= 0 ? remain : remain + m;
+};
+
 class DropdownLayout extends React.Component {
   constructor(props) {
     super(props);
@@ -36,7 +41,7 @@ class DropdownLayout extends React.Component {
 
   hoverNextState(step) {
     const {options} = this.props;
-    step %= options.length;
+    step = modulu(step, options.length);
 
     const validOption = options.find(item => {
       return item.value !== '-' && !item.disabled;
@@ -46,21 +51,9 @@ class DropdownLayout extends React.Component {
       return;
     }
 
-    let newHovered;
-    let oldHovered = this.state.hovered;
-
-    if (oldHovered === null) {
-      oldHovered = step < 0 ? options.length : -1;
-    }
-
+    let newHovered = this.state.hovered || 0;
     do {
-      newHovered = oldHovered + step;
-      if (newHovered >= options.length) {
-        newHovered -= options.length;
-      } else if (newHovered < 0) {
-        newHovered += options.length;
-      }
-      oldHovered = newHovered;
+      newHovered = modulu(newHovered + step, options.length);
     } while (options[newHovered].value === '-' || options[newHovered].disabled);
 
     this.setState({hovered: newHovered});
