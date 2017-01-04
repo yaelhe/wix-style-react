@@ -20,4 +20,4 @@
 |----------|----------|--------------|------------|-------------|
 | id | string or number | - | + | The id of the option, should be unique |
 | value | text or node | - | + | Can be a text or a react elements, if text is '-', a divider will render at that position. |
-| isSelectable | bool | true | - | Is this option is selectable or not |
+| disabled | bool | false | - | Is this option is disabled or not |
