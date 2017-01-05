@@ -27,12 +27,13 @@ class DropdownLayout extends React.Component {
   }
 
   _onSelect(index) {
+    const {options, onSelect, selectedId} = this.props;
     if (this.state.keyboardHovered === NOT_HOVERED_INDEX) {
-      this.props.onSelect(NOT_HOVERED_INDEX);
+      onSelect(NOT_HOVERED_INDEX);
     } else {
-      const selectedId = this.props.options[index].id;
-      if (selectedId !== this.props.selectedId && this.props.onSelect) {
-        this.props.onSelect(selectedId);
+      const newSelectedId = options[index].id;
+      if (newSelectedId !== selectedId && onSelect) {
+        this.props.onSelect(newSelectedId);
       }
     }
   }
@@ -103,7 +104,10 @@ class DropdownLayout extends React.Component {
   }
 
   _onClose() {
-    this.setState({mouseHovered: NOT_HOVERED_INDEX, keyboardHovered: NOT_HOVERED_INDEX});
+    this.setState({
+      mouseHovered: NOT_HOVERED_INDEX,
+      keyboardHovered: NOT_HOVERED_INDEX
+    });
 
     if (this.props.onClose) {
       this.props.onClose();
