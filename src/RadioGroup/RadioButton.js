@@ -32,7 +32,7 @@ class RadioButton extends React.Component {
           id={this.id}
           checked={checked}
           disabled={disabled}
-          onChange={() => onChange(value)}
+          onChange={() => (!checked && !disabled) ? onChange(value) : null}
           />
         <label htmlFor={this.id} className={labelClasses} >
           <div className={radioClasses}/>

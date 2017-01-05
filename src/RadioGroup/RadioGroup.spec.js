@@ -34,6 +34,32 @@ describe('RadioGroup', () => {
     expect(onChange).toBeCalledWith(1);
   });
 
+  it('should not call onChange when called upon checked option', () => {
+    const value = 1, onChange = jest.fn();
+    const component = createMount({
+      value,
+      onChange
+    });
+
+    const driver = radioGroupDriverFactory(component);
+
+    driver.selectByValue(1);
+    expect(onChange.mock.calls.length).toBe(0);
+  });
+
+  it('should not call onChange when called upon disabled option', () => {
+    const onChange = jest.fn();
+    const component = createMount({
+      onChange,
+      disabledRadios: [1]
+    });
+
+    const driver = radioGroupDriverFactory(component);
+
+    driver.selectByValue(1);
+    expect(onChange.mock.calls.length).toBe(0);
+  });
+
   it('should change the matched options as the value changes', () => {
     const value = 10;
     const component = createMount({
