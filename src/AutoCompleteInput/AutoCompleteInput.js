@@ -53,12 +53,10 @@ class AutoCompleteInput extends React.Component {
   render() {
     const {options, readOnly} = this.props;
 
-    const inputClasses = readOnly ? 'readonly' : '';
-
     const desiredProps = omit(this.props, ['options', 'onSelect']);
     return (
       <div onFocus={this.onFocus} onKeyDown={this.onKeyDown} onBlur={this.onBlur}>
-        <div className={styles[inputClasses]}>
+        <div className={readOnly ? styles.readonly : ''}>
           <Input
             menuArrow
             ref={input => this.input = input}
