@@ -47,8 +47,8 @@ describe('RadioGroup', () => {
     expect(driver.radioAt(1).props().checked).toEqual(true);
   });
 
-  it('should have a different class based on the vAlign attribute', () => {
-    const options = [{value: 0, vAlign: 'center'}, {value: 1, vAlign: 'top'}];
+  it('should have a default vcenter class based on the vAlign attribute', () => {
+    const options = [{value: 0}, {value: 1}];
     const {createMount} = componentFactory(options);
 
     const component = createMount({
@@ -58,6 +58,21 @@ describe('RadioGroup', () => {
     const driver = radioGroupDriverFactory(component);
 
     expect(driver.getClassOfLabelAt(0)).toEqual('vcenter');
+    expect(driver.getClassOfLabelAt(1)).toEqual('vcenter');
+  });
+
+  it('should have a vtop class based on the vAlign attribute', () => {
+    const options = [{value: 0}, {value: 1}];
+    const {createMount} = componentFactory(options);
+
+    const component = createMount({
+      onChange: noop,
+      vAlign: 'top'
+    });
+
+    const driver = radioGroupDriverFactory(component);
+
+    expect(driver.getClassOfLabelAt(0)).toEqual('vtop');
     expect(driver.getClassOfLabelAt(1)).toEqual('vtop');
   });
 });
