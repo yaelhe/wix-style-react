@@ -19,5 +19,5 @@
 | propName | propType | defaultValue | isRequired | description |
 |----------|----------|--------------|------------|-------------|
 | id | string or number | - | + | The id of the option, should be unique |
-| value | text or node | - | + | Can be a text or a react elements, if text is '-', a divider will render at that position. |
+| value | string or node | - | + | Can be a text or a react elements, if text is '-', a divider will render at that position. |
 | disabled | bool | false | - | Is this option is disabled or not |

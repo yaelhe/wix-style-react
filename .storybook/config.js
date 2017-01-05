@@ -6,8 +6,8 @@ function loadStories() {
 
   require('../stories/Introduction');
   require('../stories/Input');
-  require('../stories/Select');
   require('../stories/AutoCompleteInput');
+  require('../stories/AutoComplete');
   require('../stories/Slider');
   require('../stories/GoogleAddressInput');
   require('../stories/ToggleSwitch');
