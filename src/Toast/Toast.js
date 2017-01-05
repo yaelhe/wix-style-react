@@ -36,14 +36,13 @@ class Toast extends React.Component {
     });
 
     return (
-
-      <div className={className}>
-
-        <div className={styles.children}>
+      <div className={className} id={this.props.id} data-hook="toast">
+        <div className={styles.children} data-hook="toast-children">
           {this.props.children}
         </div>
-
-        <button onClick={onClose} className={styles.close}><SvgX width={5} height={5} thickness={1}/></button>
+        <button onClick={onClose} className={styles.close} data-hook="toast-close">
+          <SvgX width={5} height={5} thickness={1}/>
+        </button>
       </div>
     );
   }
@@ -98,6 +97,7 @@ Toast.defaultProps = {
 };
 
 Toast.propTypes = {
+  id: React.PropTypes.string,
   show: PropTypes.bool,
   type: PropTypes.oneOf(['bar', 'largebar']).isRequired,
   position: PropTypes.oneOf(['topfixed']).isRequired,
