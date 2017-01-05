@@ -8,10 +8,10 @@ import isstring from 'lodash.isstring';
 import trim from 'lodash.trim';
 import DropdownLayout from '../DropdownLayout/DropdownLayout';
 
-const NOT_SELECTED_INDEX = -1;
+const NOT_SELECTED_ID = -1;
 
 const initialState = {
-  selectedId: NOT_SELECTED_INDEX,
+  selectedId: NOT_SELECTED_ID,
   showOptions: false,
 };
 
@@ -41,7 +41,7 @@ class AutoCompleteInput extends React.Component {
         throw new Error('AutoCompleteInput: Invalid suggestion provided');
       }
       this.setState({
-        selectedId: NOT_SELECTED_INDEX,
+        selectedId: NOT_SELECTED_ID,
       });
     }
   }
@@ -69,7 +69,7 @@ class AutoCompleteInput extends React.Component {
 
   onSelect(optionId) {
     const {suggestions, value} = this.props;
-    if (optionId === NOT_SELECTED_INDEX || suggestions.length === 0) {
+    if (optionId === NOT_SELECTED_ID || suggestions.length === 0) {
       this.props.onSelect({id: 'not a suggested option', value});
     } else {
       this.props.onSelect(suggestions.find(suggestion => suggestion.id === optionId));

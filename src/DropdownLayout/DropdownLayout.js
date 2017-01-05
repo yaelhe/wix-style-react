@@ -15,8 +15,8 @@ class DropdownLayout extends React.Component {
     super(props);
 
     this.state = {
-      hovered: NOT_HOVERED_INDEX,
-      keyboardHovered: props.options.findIndex(item => item.id === props.selectedId)
+      mouseHovered: NOT_HOVERED_INDEX,
+      keyboardHovered: this.props.options.findIndex(item => item.id === this.props.selectedId)
     };
 
     this._onSelect = this._onSelect.bind(this);
@@ -39,13 +39,13 @@ class DropdownLayout extends React.Component {
 
   _onMouseEnter(index) {
     if (this.isSelectableOption(this.props.options[index])) {
-      this.setState({hovered: index});
+      this.setState({mouseHovered: index});
     }
   }
 
   _onMouseLeave() {
     this.setState({
-      hovered: this.props.options.findIndex(item => item.id === this.props.selectedId)
+      mouseHovered: NOT_HOVERED_INDEX
     });
   }
 
@@ -103,7 +103,7 @@ class DropdownLayout extends React.Component {
   }
 
   _onClose() {
-    this.setState({hovered: NOT_HOVERED_INDEX, keyboardHovered: NOT_HOVERED_INDEX});
+    this.setState({mouseHovered: NOT_HOVERED_INDEX, keyboardHovered: NOT_HOVERED_INDEX});
 
     if (this.props.onClose) {
       this.props.onClose();
@@ -133,7 +133,7 @@ class DropdownLayout extends React.Component {
                 option,
                 idx,
                 selected: option.id === selectedId || this.state.keyboardHovered === idx,
-                hovered: idx === this.state.hovered,
+                hovered: idx === this.state.mouseHovered,
                 disabled: option.disabled
               }))
           ))}
@@ -168,18 +168,22 @@ class DropdownLayout extends React.Component {
   }
 
   _onClick(index) {
-    this.setState({hovered: index, keyboardHovered: index}, () => this._onSelect(index));
+    this.setState({mouseHovered: index, keyboardHovered: index}, () => this._onSelect(index));
   }
 
   componentWillReceiveProps(nextProps) {
     if (this.props.visible !== nextProps.visible) {
-      this.setState({hovered: NOT_HOVERED_INDEX, keyboardHovered: NOT_HOVERED_INDEX});
+      this.setState({mouseHovered: NOT_HOVERED_INDEX, keyboardHovered: NOT_HOVERED_INDEX});
     }
 
     if (this.state.keyboardHovered !== NOT_HOVERED_INDEX && !isEqual(this.props.options, nextProps.options)) {
       this.setState({
         keyboardHovered: nextProps.options.findIndex(item => item.id === this.props.options[this.state.keyboardHovered].id)
       });
+    }
+
+    if (this.props.selectedId !== nextProps.selectedId) {
+      this.setState({mouseHovered: nextProps.options.findIndex(item => item.id === nextProps.selectedId)});
     }
   }
 
