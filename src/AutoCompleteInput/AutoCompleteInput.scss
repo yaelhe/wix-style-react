@@ -1,6 +1,5 @@
 @import '../common.scss';
 
-.wrapper {
-    position: relative;
-    width: 100%;
+.readonly {
+  cursor: pointer !important;
 }

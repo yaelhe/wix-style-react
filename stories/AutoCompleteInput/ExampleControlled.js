@@ -9,13 +9,13 @@ const style = {
   marginBottom: '350px'
 };
 
-const suggestions = [
-  {id: '0', value: 'First suggestion'},
-  {id: '1', value: 'Second suggestion'},
-  {id: '2', value: 'Third suggestion', disabled: true},
-  {id: '3', value: 'Fourth suggestion'},
-  {id: '4', value: 'Fifth suggestion'},
-  {id: '5', value: 'Very long suggestion text jldlkasj ldk jsalkdjsal kdjaklsjdlkasj dklasj'}
+const options = [
+  {id: '0', value: 'First option'},
+  {id: '1', value: 'Second option'},
+  {id: '2', value: 'Third option', disabled: true},
+  {id: '3', value: 'Fourth option'},
+  {id: '4', value: 'Fifth option'},
+  {id: '5', value: 'Very long option text jldlkasj ldk jsalkdjsal kdjaklsjdlkasj dklasj'}
 ];
 
 class ControlledAutoCompleteInput extends Component {
@@ -30,14 +30,14 @@ class ControlledAutoCompleteInput extends Component {
 
   render() {
     const onChange = event => this.setState({value: event.target.value});
-    const onSelect = value => this.setState({value: value.value});
+    const onSelect = option => this.setState({value: option.value});
     const predicate = element =>
       this.state.value ?
       element.value.toLowerCase().indexOf(this.state.value.toLowerCase()) !== -1 :
       true;
 
     return (
-      <AutoCompleteInput {...this.props} suggestions={suggestions.filter(predicate)} value={this.state.value} onChange={onChange} onSelect={onSelect}/>
+      <AutoCompleteInput {...this.props} options={options.filter(predicate)} value={this.state.value} onChange={onChange} onSelect={onSelect}/>
     );
   }
 }

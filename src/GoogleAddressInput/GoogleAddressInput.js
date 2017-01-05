@@ -50,7 +50,7 @@ class GoogleAddressInput extends React.Component {
           onFocus={this.onFocus}
           onSet={this.onSet}
           value={value}
-          suggestions={_.map(suggestions, 'description')}
+          options={_.map(suggestions, 'description')}
           autoSelect={true}
           />
       </div>

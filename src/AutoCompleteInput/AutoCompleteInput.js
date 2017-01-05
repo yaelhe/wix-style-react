@@ -1,11 +1,12 @@
 import React from 'react';
-import styles from './AutoCompleteInput.scss';
 import Input from '../Input/Input.js';
+import styles from './AutoCompleteInput.scss';
 import isEqual from 'lodash.isequal';
 import isobject from 'lodash.isobject';
 import has from 'lodash.has';
 import isstring from 'lodash.isstring';
 import trim from 'lodash.trim';
+import omit from 'lodash.omit';
 import DropdownLayout from '../DropdownLayout/DropdownLayout';
 
 const NOT_SELECTED_ID = -1;
@@ -15,12 +16,12 @@ const initialState = {
   showOptions: false,
 };
 
-const isLegalSuggestion = suggestion => {
-  if (isobject(suggestion)) {
-    return (has(suggestion, 'id') && (trim(suggestion.id).length > 0)) &&
-      has(suggestion, 'value') && isstring(suggestion.value) && (trim(suggestion.value).length > 0);
+const isLegalOption = option => {
+  if (isobject(option)) {
+    return (has(option, 'id') && (trim(option.id).length > 0)) &&
+      has(option, 'value') && isstring(option.value) && (trim(option.value).length > 0);
   } else {
-    return isstring(suggestion) && trim(suggestion).length > 0;
+    return isstring(option) && trim(option).length > 0;
   }
 };
 
@@ -36,28 +37,38 @@ class AutoCompleteInput extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (!isEqual(this.props.suggestions, nextProps.suggestions)) {
-      if (nextProps.suggestions.some(suggestion => !isLegalSuggestion(suggestion))) {
-        throw new Error('AutoCompleteInput: Invalid suggestion provided');
+    if (!isEqual(this.props.options, nextProps.options)) {
+      if (nextProps.options.some(option => !isLegalOption(option))) {
+        throw new Error('AutoCompleteInput: Invalid option provided');
       }
       this.setState({
         selectedId: NOT_SELECTED_ID,
       });
     }
+    if (this.props.selectedId !== nextProps.selectedId) {
+      this.setState({keyboardHovered: nextProps.options.findIndex(item => item.id === nextProps.selectedId)});
+    }
   }
 
   render() {
+    const {options, readOnly} = this.props;
+
+    const inputClasses = readOnly ? 'readonly' : '';
+
+    const desiredProps = omit(this.props, ['options', 'onSelect']);
     return (
-      <div className={styles.wrapper} onFocus={this.onFocus} onKeyDown={this.onKeyDown} onBlur={this.onBlur}>
-        <Input
-          menuArrow
-          ref={input => this.input = input}
-          {...this.props}
-          />
+      <div onFocus={this.onFocus} onKeyDown={this.onKeyDown} onBlur={this.onBlur}>
+        <div className={styles[inputClasses]}>
+          <Input
+            menuArrow
+            ref={input => this.input = input}
+            {...desiredProps}
+            />
+        </div>
 
         <DropdownLayout
           ref={dropdownLayout => this.dropdownLayout = dropdownLayout}
-          options={this.props.suggestions}
+          options={options}
           selectedId={this.state.selectedId}
           visible={this.state.showOptions}
           onClose={this.onBlur}
@@ -68,11 +79,11 @@ class AutoCompleteInput extends React.Component {
   }
 
   onSelect(optionId) {
-    const {suggestions, value} = this.props;
-    if (optionId === NOT_SELECTED_ID || suggestions.length === 0) {
+    const {options, value} = this.props;
+    if (optionId === NOT_SELECTED_ID || options.length === 0) {
       this.props.onSelect({id: 'not a suggested option', value});
     } else {
-      this.props.onSelect(suggestions.find(suggestion => suggestion.id === optionId));
+      this.props.onSelect(options.find(option => option.id === optionId));
     }
     this.onBlur();
   }
@@ -118,14 +129,14 @@ class AutoCompleteInput extends React.Component {
 AutoCompleteInput.defaultProps = {
   ...Input.defaultProps,
   OnSelect: () => {},
-  suggestions: [],
+  options: [],
 };
 
 AutoCompleteInput.propTypes = {
   ...Input.propTypes,
-  suggestions: React.PropTypes.arrayOf((propValue, key) => {
-    if (!isLegalSuggestion(propValue[key])) {
-      return new Error(`AutoCompleteInput: Invalid Prop suggestions was given. Validation failed on the suggestion number ${key}`);
+  options: React.PropTypes.arrayOf((propValue, key) => {
+    if (!isLegalOption(propValue[key])) {
+      return new Error(`AutoCompleteInput: Invalid Prop options was given. Validation failed on the option number ${key}`);
     }
   }),
   onSelect: React.PropTypes.func

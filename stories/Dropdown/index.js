@@ -7,6 +7,9 @@ import Readme from '../../src/Dropdown/README.md';
 import ExampleStandard from './ExampleStandard';
 import ExampleStandardRaw from '!raw!./ExampleStandard';
 
+import ExampleControlled from './ExampleControlled';
+import ExampleControlledRaw from '!raw!./ExampleControlled';
+
 storiesOf('1. Inputs', module)
   .add('1.9 Dropdown (In dev)', () => (
     <div>
@@ -16,6 +19,10 @@ storiesOf('1. Inputs', module)
 
       <CodeExample title="Standard" code={ExampleStandardRaw}>
         <ExampleStandard/>
+      </CodeExample>
+
+      <CodeExample title="Controlled Dropdown" code={ExampleControlledRaw}>
+        <ExampleControlled/>
       </CodeExample>
     </div>
   ));

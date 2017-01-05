@@ -81,7 +81,7 @@ describe('GoogleAddressInput', () => {
       _.defer(() => {
         try {
           component.update();
-          expect(component.find('AutoCompleteInput').props().suggestions).toEqual([
+          expect(component.find('AutoCompleteInput').props().options).toEqual([
             '{"components":"country:XX","input":"Hatomer 49"} - 1',
             '{"components":"country:XX","input":"Hatomer 49"} - 2'
           ]);
