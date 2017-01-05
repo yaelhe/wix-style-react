@@ -1,9 +1,9 @@
 import React, {PropTypes} from 'react';
-import AutoCompleteInput from '../AutoCompleteInput/AutoCompleteInput';
+import InputWithOptions from '../InputWithOptions/InputWithOptions';
 
 const AutoComplete = ({dataSource, predicate, ...otherProps}) => (
   <div id={otherProps.id}>
-    <AutoCompleteInput
+    <InputWithOptions
       {...otherProps}
       options={dataSource.filter(predicate)}
       />
@@ -24,6 +24,6 @@ AutoComplete.defaultProps = {
   predicate: () => true
 };
 
-AutoCompleteInput.displayName = 'AutoComplete';
+AutoComplete.displayName = 'AutoComplete';
 
 export default AutoComplete;

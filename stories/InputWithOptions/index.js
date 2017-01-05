@@ -2,7 +2,7 @@ import React from 'react';
 import {storiesOf} from '@kadira/storybook';
 import Markdown from '../utils/Components/Markdown';
 import CodeExample from '../utils/Components/CodeExample';
-import Readme from '../../src/AutoCompleteInput/README.md';
+import Readme from '../../src/InputWithOptions/README.md';
 
 import ExampleStandard from './ExampleStandard';
 import ExampleStandardRaw from '!raw!./ExampleStandard';
@@ -10,8 +10,8 @@ import ExampleStandardRaw from '!raw!./ExampleStandard';
 import ExampleControlled from './ExampleControlled';
 import ExampleControlledRaw from '!raw!./ExampleControlled';
 
-storiesOf('1. Inputs', module)
-  .add('1.2 AutoCompleteInput', () => (
+storiesOf('4. Layouts', module)
+  .add('4.3 InputWithOptions', () => (
     <div>
       <Markdown source={Readme}/>
 

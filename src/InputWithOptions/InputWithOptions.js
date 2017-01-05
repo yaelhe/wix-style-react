@@ -1,6 +1,6 @@
 import React from 'react';
 import Input from '../Input/Input.js';
-import styles from './AutoCompleteInput.scss';
+import styles from './InputWithOptions.scss';
 import isEqual from 'lodash.isequal';
 import isobject from 'lodash.isobject';
 import has from 'lodash.has';
@@ -25,7 +25,7 @@ const isLegalOption = option => {
   }
 };
 
-class AutoCompleteInput extends React.Component {
+class InputWithOptions extends React.Component {
   constructor(props) {
     super(props);
     this.state = {...initialState};
@@ -42,7 +42,7 @@ class AutoCompleteInput extends React.Component {
   componentWillReceiveProps(nextProps) {
     if (!isEqual(this.props.options, nextProps.options)) {
       if (nextProps.options.some(option => !isLegalOption(option))) {
-        throw new Error('AutoCompleteInput: Invalid option provided');
+        throw new Error('InputWithOptions: Invalid option provided');
       }
       this.setState({
         selectedId: NOT_SELECTED_ID,
@@ -127,22 +127,22 @@ class AutoCompleteInput extends React.Component {
   }
 }
 
-AutoCompleteInput.defaultProps = {
+InputWithOptions.defaultProps = {
   ...Input.defaultProps,
   OnSelect: () => {},
   options: [],
 };
 
-AutoCompleteInput.propTypes = {
+InputWithOptions.propTypes = {
   ...Input.propTypes,
   options: React.PropTypes.arrayOf((propValue, key) => {
     if (!isLegalOption(propValue[key])) {
-      return new Error(`AutoCompleteInput: Invalid Prop options was given. Validation failed on the option number ${key}`);
+      return new Error(`InputWithOptions: Invalid Prop options was given. Validation failed on the option number ${key}`);
     }
   }),
   onSelect: React.PropTypes.func
 };
 
-AutoCompleteInput.displayName = 'AutoCompleteInput';
+InputWithOptions.displayName = 'InputWithOptions';
 
-export default AutoCompleteInput;
+export default InputWithOptions;

@@ -1,5 +1,5 @@
 import React from 'react';
-import AutoCompleteInput from 'wix-style-react/AutoCompleteInput';
+import InputWithOptions from 'wix-style-react/InputWithOptions';
 
 const style = {
   display: 'inline-block',
@@ -28,12 +28,12 @@ export default () =>
   <div>
     <div style={style} className="ltr">
       Left to right
-      <AutoCompleteInput
+      <InputWithOptions
         options={options}
         onSelect={onSelect}
         />
     </div>
     <div style={style} className="rtl">
-      Right to left<AutoCompleteInput options={rtlOptions} rtl/>
+      Right to left<InputWithOptions options={rtlOptions} rtl/>
     </div>
   </div>;

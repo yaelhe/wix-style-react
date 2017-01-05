@@ -11,7 +11,7 @@ import ExampleControlled from './ExampleControlled';
 import ExampleControlledRaw from '!raw!./ExampleControlled';
 
 storiesOf('1. Inputs', module)
-  .add('1.3 AutoComplete', () => (
+  .add('1.2 AutoComplete', () => (
     <div>
       <Markdown source={Readme}/>
 

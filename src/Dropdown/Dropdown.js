@@ -1,9 +1,9 @@
 import React, {PropTypes} from 'react';
-import AutoCompleteInput from '../AutoCompleteInput/AutoCompleteInput';
+import InputWithOptions from '../InputWithOptions/InputWithOptions';
 
 const Dropdown = ({id, ...otherProps}) => (
   <div id={id}>
-    <AutoCompleteInput
+    <InputWithOptions
       readOnly
       {...otherProps}
       />

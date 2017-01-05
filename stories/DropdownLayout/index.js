@@ -17,7 +17,7 @@ import ExampleControlled from './ExampleControlled';
 import ExampleControlledRaw from '!raw!./ExampleControlled';
 
 storiesOf('4. Layouts', module)
-  .add('4.2 DropdownLayout (In dev)', () => (
+  .add('4.2 DropdownLayout', () => (
     <div>
       <Markdown source={Readme}/>
 

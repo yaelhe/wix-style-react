@@ -1,5 +1,5 @@
 import React, {Component, PropTypes} from 'react';
-import AutoCompleteInput from 'wix-style-react/AutoCompleteInput';
+import InputWithOptions from 'wix-style-react/InputWithOptions';
 
 const style = {
   display: 'inline-block',
@@ -18,7 +18,7 @@ const options = [
   {id: '5', value: 'Very long option text jldlkasj ldk jsalkdjsal kdjaklsjdlkasj dklasj'}
 ];
 
-class ControlledAutoCompleteInput extends Component {
+class ControlledInputWithOptions extends Component {
   static propTypes = {
     value: PropTypes.string
   };
@@ -37,12 +37,12 @@ class ControlledAutoCompleteInput extends Component {
       true;
 
     return (
-      <AutoCompleteInput {...this.props} options={options.filter(predicate)} value={this.state.value} onChange={onChange} onSelect={onSelect}/>
+      <InputWithOptions {...this.props} options={options.filter(predicate)} value={this.state.value} onChange={onChange} onSelect={onSelect}/>
     );
   }
 }
 
 export default () =>
   <div className="ltr" style={style}>
-    <ControlledAutoCompleteInput/>
+    <ControlledInputWithOptions/>
   </div>;

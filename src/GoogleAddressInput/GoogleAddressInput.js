@@ -1,6 +1,6 @@
 import React from 'react';
 import Input from '../Input';
-import AutoCompleteInput from '../AutoCompleteInput';
+import InputWithOptions from '../InputWithOptions';
 import _ from 'lodash';
 
 class GoogleAddressInput extends React.Component {
@@ -41,7 +41,7 @@ class GoogleAddressInput extends React.Component {
 
     return (
       <div>
-        <AutoCompleteInput
+        <InputWithOptions
           ref={autocomplete => this.autocomplete = autocomplete}
           {...this.props}
           onChange={this.onChange}
