@@ -11,7 +11,7 @@ import ExampleControlled from './ExampleControlled';
 import ExampleControlledRaw from '!raw!./ExampleControlled';
 
 storiesOf('1. Inputs', module)
-  .add('1.9 Dropdown (In dev)', () => (
+  .add('1.9 Dropdown', () => (
     <div>
       <Markdown source={Readme}/>
 

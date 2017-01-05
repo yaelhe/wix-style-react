@@ -1,11 +1,11 @@
 import React, {PropTypes} from 'react';
 import AutoCompleteInput from '../AutoCompleteInput/AutoCompleteInput';
 
-const Dropdown = props => (
-  <div id={props.id}>
+const Dropdown = ({id, ...otherProps}) => (
+  <div id={id}>
     <AutoCompleteInput
       readOnly
-      {...props}
+      {...otherProps}
       />
   </div>
 );
