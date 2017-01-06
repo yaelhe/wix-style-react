@@ -42,8 +42,12 @@ RadioGroup.propTypes = {
   value: React.PropTypes.oneOfType([React.PropTypes.string, React.PropTypes.number]),
   disabledRadios: React.PropTypes.arrayOf(React.PropTypes.oneOfType([React.PropTypes.string, React.PropTypes.number])),
   vAlign: React.PropTypes.oneOf(['center', 'top']),
-  children: React.PropTypes.any,
-  id: React.PropTypes.oneOfType([React.PropTypes.string, React.PropTypes.number])
+  id: React.PropTypes.oneOfType([React.PropTypes.string, React.PropTypes.number]),
+  children: React.PropTypes.arrayOf((propValue, key) => {
+    if (propValue[key].type.name !== 'RadioButton') {
+      return new Error(`InputWithOptions: Invalid Prop children was given. Validation failed on child number ${key}`);
+    }
+  })
 };
 
 RadioGroup.defaultProps = {
