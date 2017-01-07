@@ -4,12 +4,8 @@ import style from './multiSelect.scss';
 import ButtonsBar from './ButtonsBar';
 import TagsComponent from './TagsComponent';
 
-
-const noop = () => {
-};
-
-const DELETE_KEY_CODE = 46;
-const BACKSPACE_KEY_CODE = 8;
+const noop = () => {};
+const initialState = {inputValue: '', shouldDisplay: false};
 
 class MultiSelect extends React.Component {
   static propTypes = {
@@ -19,37 +15,43 @@ class MultiSelect extends React.Component {
     tags: React.PropTypes.array.isRequired,
     suggestions: React.PropTypes.array.isRequired,
     onChangeInput: React.PropTypes.func.isRequired,
-    inputPlaceholder: React.PropTypes.string,
+    placeholder: React.PropTypes.string,
     renderTag: React.PropTypes.func,
     renderSuggestion: React.PropTypes.func.isRequired,
-    onDone: React.PropTypes.func.isRequired,
-    onCancel: React.PropTypes.func.isRequired,
+    onDone: React.PropTypes.func,
+    onCancel: React.PropTypes.func,
     theme: React.PropTypes.object,
     multiSection: React.PropTypes.bool,
     renderSectionTitle: React.PropTypes.func,
-    getSectionSuggestions: React.PropTypes.func
+    getSectionSuggestions: React.PropTypes.func,
+    autoFocus: React.PropTypes.bool
   };
 
   static defaultProps = {
     displayNameProp: 'id',
-    inputPlaceholder: 'Add tag',
+    placeholder: 'Add tag',
     theme: style,
-    multiSection: false,
   };
 
   constructor(props) {
     super(props);
-    this.state = {
-      inputValue: ''
-    };
+    this.state = {...initialState};
+    this.handleOnDone = this.handleOnDone.bind(this);
+    this.handleOnCancel = this.handleOnCancel.bind(this);
+    this.onClickInputContainer = this.onClickInputContainer.bind(this);
   }
 
-  componentDidMount() {
+  onClickInputContainer() {
+    this.setState({shouldDisplay: true});
     this.autosuggestRef.input.focus();
   }
 
   renderSuggestionsContainer = ({children, ...rest}) => {
     const {theme} = this.props;
+    if (!this.state.shouldDisplay) {
+      return null;
+    }
+
     if (children) {
       return (
         <div {...rest}>
@@ -65,11 +67,13 @@ class MultiSelect extends React.Component {
   };
 
   renderTagInputComponent = inputProps => {
-    const {renderTag, inputPlaceholder, theme, displayNameProp, tags} = this.props;
-    const shouldShowInputPlaceHolder = () => tags.length === 0;
+    const {renderTag, theme, displayNameProp, tags} = this.props;
     return (
       <div>
-        <div className={theme.flexContainer}>
+        <div
+          className={theme.flexContainer}
+          onClick={this.onClickInputContainer}
+          >
           <div className={theme.searchIcon}/>
           <div
             data-hook="tagsAndInputContainer"
@@ -87,7 +91,7 @@ class MultiSelect extends React.Component {
               {...inputProps}
               className={theme.inputField}
               data-hook="autosuggest-input"
-              placeholder={shouldShowInputPlaceHolder() ? inputPlaceholder : ''}
+              onFocus={() => this.setState({shouldDisplay: true})}
               />
           </div>
         </div>
@@ -102,16 +106,18 @@ class MultiSelect extends React.Component {
     this.handleOnRemoveTag(removedTag);
   };
 
-  handleOnDone = () => {
-    this.props.onDone();
-  };
+  handleOnDone() {
+    this.setState(initialState);
+    this.props.onDone && this.props.onDone();
+  }
 
-  handleOnCancel = () => {
-    this.props.onCancel();
-  };
+  handleOnCancel() {
+    this.setState(initialState);
+    this.props.onCancel && this.props.onCancel();
+  }
 
   onChangeAutoSuggest = (event, {newValue, method}) => {
-    const newState = {inputValue: newValue};
+    const newState = {inputValue: newValue, shouldDisplay: true};
     if (method === 'type') {
       this.props.onChangeInput(newValue);
     }
@@ -121,7 +127,7 @@ class MultiSelect extends React.Component {
   handleOnKeyDown = e => {
     const {inputValue} = this.state;
 
-    if ((e.keyCode === DELETE_KEY_CODE || e.keyCode === BACKSPACE_KEY_CODE) && inputValue.length === 0) {
+    if ((e.key === 'Delete' || e.key === 'Backspace') && inputValue.length === 0) {
       this.removeLastTag();
     }
   };
@@ -133,24 +139,19 @@ class MultiSelect extends React.Component {
 
   handleOnSuggestionSelected = (event, {suggestion}) => {
     this.props.onAddTag(suggestion);
-    this.setState({
-      inputValue: ''
-    });
-  };
-
-  setAutosuggestRef = autosuggestRef => {
-    this.autosuggestRef = autosuggestRef;
+    this.setState({inputValue: ''});
   };
 
   getSuggestionValue = suggestion => suggestion[this.props.displayNameProp];
 
-
   render() {
     const {inputValue} = this.state;
-    const {theme, suggestions} = this.props;
+    const {theme, suggestions, autoFocus, placeholder, tags} = this.props;
     const inputProps = {
       value: inputValue,
-      onChange: this.onChangeAutoSuggest
+      onChange: this.onChangeAutoSuggest,
+      autoFocus,
+      placeholder: tags.length === 0 ? placeholder : ''
     };
 
     return (
@@ -158,7 +159,7 @@ class MultiSelect extends React.Component {
         <Autosuggest
           {...this.props}
           data-hook="autosuggest-component"
-          ref={this.setAutosuggestRef}
+          ref={autosuggestRef => this.autosuggestRef = autosuggestRef}
           suggestions={suggestions}
           getSuggestionValue={this.getSuggestionValue}
           onSuggestionsFetchRequested={noop}
@@ -166,11 +167,11 @@ class MultiSelect extends React.Component {
           renderInputComponent={this.renderTagInputComponent}
           inputProps={inputProps}
           onSuggestionSelected={this.handleOnSuggestionSelected}
-          alwaysRenderSuggestions
           focusInputOnSuggestionClick
+          alwaysRenderSuggestions
           />
         <div className={theme.shadeSeparatorBottom}/>
-        <ButtonsBar onDone={this.handleOnDone} onCancel={this.handleOnCancel} theme={theme}/>
+        {this.state.shouldDisplay && <ButtonsBar onDone={this.handleOnDone} onCancel={this.handleOnCancel} theme={theme}/>}
       </div>
     );
   }

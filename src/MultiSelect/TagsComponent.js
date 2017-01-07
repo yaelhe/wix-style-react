@@ -1,21 +1,20 @@
 import React from 'react';
 
-const TagsComponent = props => {
-  const {tags, renderTag, theme} = props;
+const TagsComponent = ({tags, renderTag, theme, tagDisplayProp, onRemove}) => {
   const defaultRenderTag = tag => {
-    const name = tag[props.tagDisplayProp];
+    const name = tag[tagDisplayProp];
     return (
       <span className={theme.tag} key={name}>
         {name}
-        <a className={theme.tagRemoveButton} onClick={() => props.onRemove(tag)}/>
+        <a className={theme.tagRemoveButton} onClick={() => onRemove(tag)}/>
       </span>
     );
   };
 
   return (
-    <div className={theme.tagsContainer}>{tags.map(tag => {
-      return renderTag ? renderTag(tag) : defaultRenderTag(tag);
-    })}</div>
+    <div className={theme.tagsContainer}>
+      {tags.map(tag => renderTag ? renderTag(tag) : defaultRenderTag(tag))}
+    </div>
   );
 };
 
@@ -28,7 +27,7 @@ TagsComponent.propTypes = {
 };
 
 TagsComponent.defaultProps = {
-  tagDisplayProp: 'id'
+  tagDisplayProp: 'id',
 };
 
 export default TagsComponent;

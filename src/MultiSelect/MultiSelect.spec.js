@@ -35,8 +35,13 @@ class MultiSelectDriver {
       return this;
     },
 
-    placeholder: inputPlaceholder => {
-      Object.assign(this.props, {inputPlaceholder});
+    placeholder: placeholder => {
+      Object.assign(this.props, {placeholder});
+      return this;
+    },
+
+    autoFocus: autoFocus => {
+      Object.assign(this.props, {autoFocus});
       return this;
     },
 
@@ -114,17 +119,20 @@ class MultiSelectDriver {
   when = {
     changeInput: value => this.get.inputElement().simulate('change', {target: {value}}),
     clickOnDone: () => this.get.doneButtonElement().simulate('click'),
-    backspacePressed: () => this.get.inputElement().simulate('keyDown', {keyCode: 8}),
-    deletePressed: () => this.get.inputElement().simulate('keyDown', {keyCode: 46}),
-    downArrow: () => this.get.inputElement().simulate('keyDown', {keyCode: 40}),
-    enterIsPressed: () => this.get.inputElement().simulate('keyDown', {keyCode: 13}),
-    clickOnFirstSuggestion: () => this.get.firstSuggestionElement().simulate('click')
+    backspacePressed: () => this.get.inputElement().simulate('keyDown', {key: 'Backspace'}),
+    deletePressed: () => this.get.inputElement().simulate('keyDown', {key: 'Delete'}),
+    downArrow: () => this.get.inputElement().simulate('keyDown', {key: 'ArrowDown'}),
+    enterIsPressed: () => this.get.inputElement().simulate('keyDown', {key: 'Enter'}),
+    clickOnFirstSuggestion: () => this.get.firstSuggestionElement().simulate('click'),
+    focus: () => this.get.inputElement.focus(),
+    openSuggestionsContainer: () => this.get.inputElement().simulate('click')
   };
 
   is = {
     noSuggestionMessageExist: () => this.testIsExist('no-suggestions-message'),
     customRenderedTagExist: () => this.testIsExist('custom-rendered-tag'),
-    customRenderSuggestionExist: () => this.testIsExist('custom-render-suggestion')
+    customRenderSuggestionExist: () => this.testIsExist('custom-render-suggestion'),
+    focused: () => document.activeElement === this.get.inputElement().node
   };
 
   testIsExist(dataHook) {
@@ -172,6 +180,23 @@ describe('MultiSelect,', () => {
     expect(driver.get.inputElement().props().placeholder).toEqual(placeholder);
   });
 
+  it('should not focus on the input by default', () => {
+    driver.given
+      .defaultConfig()
+      .build();
+    expect(driver.is.focused()).toEqual(false);
+  });
+
+  it('should automatically focus on the input', () => {
+    const autoFocus = true;
+    driver.given
+      .defaultConfig()
+      .and.autoFocus(autoFocus)
+      .build();
+    expect(driver.get.inputElement().props().autoFocus).toEqual(true);
+    expect(driver.is.focused()).toEqual(true);
+  });
+
   it('should not display a placeholder if there are any tags', () => {
     driver.given
       .defaultConfig()
@@ -213,11 +238,21 @@ describe('MultiSelect,', () => {
         id: 'two words'
       }];
 
+    it('should not show all the suggestions on load by default', () => {
+      driver.given
+        .defaultConfig()
+        .and.suggestions(suggestions)
+        .build();
+      expect(driver.get.suggestions()).toEqual([]);
+    });
+
     it('should show all the suggestions on load', () => {
       driver.given
         .defaultConfig()
         .and.suggestions(suggestions)
         .build();
+
+      driver.get.inputElement().simulate('click');
       expect(driver.get.suggestions()).toEqual(['firstSuggestion', 'firstSuggestion2', 'secondSuggestion', 'two words']);
     });
 
@@ -257,6 +292,7 @@ describe('MultiSelect,', () => {
         .and.suggestions([{name: 'test1', id: 'test1'}, {name: 'test1', id: 'test1'}])
         .build();
 
+      driver.when.openSuggestionsContainer();
       driver.when.clickOnFirstSuggestion();
       expect(driver.get.onAddTagCallback().calledWith({name: 'test1', id: 'test1'})).toEqual(true);
     });
@@ -267,6 +303,7 @@ describe('MultiSelect,', () => {
         .and.suggestions([])
         .build();
 
+      driver.when.openSuggestionsContainer();
       expect(driver.is.noSuggestionMessageExist()).toEqual(true);
     });
 
@@ -330,6 +367,8 @@ describe('MultiSelect,', () => {
       .defaultConfig()
       .and.tags(tags)
       .build();
+
+    driver.when.openSuggestionsContainer();
     driver.when.clickOnDone();
     expect(driver.get.doneCallback().called).toEqual(true);
   });
@@ -338,6 +377,8 @@ describe('MultiSelect,', () => {
     driver.given
       .defaultConfig()
       .build();
+
+    driver.when.openSuggestionsContainer();
     driver.when.clickOnDone();
     expect(driver.get.cancelCallback().called);
   });
@@ -366,6 +407,8 @@ describe('MultiSelect,', () => {
       .and.suggestions(attachIdAndTagToSuggestions([{name: '1'}]))
       .and.renderSuggestion(() => <div data-hook="custom-render-suggestion" key="123"/>)
       .build();
+
+    driver.when.openSuggestionsContainer();
     expect(driver.is.customRenderSuggestionExist()).toEqual(true);
   });
 

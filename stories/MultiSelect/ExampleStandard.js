@@ -5,7 +5,8 @@ import MultiSelect from 'wix-style-react/MultiSelect';
 
 const style = {
   padding: '0 5px 55px',
-  width: '500px'
+  width: '500px',
+  marginBottom: '300px'
 };
 
 const states = [
@@ -44,7 +45,7 @@ const renderSuggestion = (suggestion, {query}) => {
     return parts.map(part => {
       return (
         part.highlight ? <span key={part.text} style={{color: 'black'}}>{part.text}</span> :
-          <span key={part.text}>{part.text}</span>
+        <span key={part.text}>{part.text}</span>
       );
     });
   };
@@ -71,7 +72,7 @@ class ExampleStandard extends React.Component {
       <span key={tag.id}>
         <div style={testIcon}/>
         {tag.name}
-        <a onClick={(e) => this.handleOnRemoveTag(tag)}/>
+        <a onClick={() => this.handleOnRemoveTag(tag)}/>
       </span>
     );
   };
@@ -97,7 +98,7 @@ class ExampleStandard extends React.Component {
 
   handleOnDone = tags => console.log(tags);
   handleOnCancel = () => console.log('cancel');
-  handleOnAddTag = (tag) => {
+  handleOnAddTag = tag => {
     const newTags = [...this.state.tags, tag];
     const newSuggestions = this.filterSuggestions(newTags);
     this.setState({
@@ -134,7 +135,8 @@ class ExampleStandard extends React.Component {
           renderSuggestion={renderSuggestion}
           onDone={this.handleOnDone}
           onCancel={this.handleOnCancel}
-        />
+          autoFocus
+          />
       </div>
     );
   }
