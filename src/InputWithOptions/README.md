@@ -8,6 +8,8 @@
 |----------|----------|--------------|------------|-------------|
 | options | array | [] | - | Array of objects to display as options when focused. Objects can include *text* and *node* |
 | onSelect | func | noop | - | Callback when the user selects one of the selections. Called with the selection. |
+| shouldCloseOnSelect | bool | true | - | Should the options container close on selection |
+| customInput | element | - | - | Optional custom input element |
 | ***All of the Input's Props are also available for this component*** | | | | |
 
 

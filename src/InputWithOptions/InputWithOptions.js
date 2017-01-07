@@ -53,18 +53,33 @@ class InputWithOptions extends React.Component {
     }
   }
 
-  render() {
-    const {options, readOnly} = this.props;
+  renderInput() {
+    const {customInput} = this.props;
+    const dropDownLayoutProps = ['options', 'onSelect', 'customInput', 'shouldCloseOnSelect'];
+    const inputProps = omit(this.props, dropDownLayoutProps);
 
-    const desiredProps = omit(this.props, ['options', 'onSelect']);
+    if (customInput) {
+      return React.cloneElement(customInput, {
+        ref: input => this.input = input,
+        ...inputProps
+      });
+    } else {
+      return (
+        <Input
+          menuArrow
+          ref={input => this.input = input}
+          {...inputProps}
+          />
+      );
+    }
+  }
+
+  render() {
+    const {options, readOnly, shouldCloseOnSelect} = this.props;
     return (
       <div onFocus={this.onFocus} onKeyDown={this.onKeyDown} onBlur={this.onBlur}>
         <div className={readOnly ? styles.readonly : ''}>
-          <Input
-            menuArrow
-            ref={input => this.input = input}
-            {...desiredProps}
-            />
+          {this.renderInput()}
         </div>
 
         <DropdownLayout
@@ -74,19 +89,22 @@ class InputWithOptions extends React.Component {
           visible={this.state.showOptions}
           onClose={this.onBlur}
           onSelect={this.onSelect}
+          shouldCloseOnSelect={shouldCloseOnSelect}
           />
       </div>
     );
   }
 
   onSelect(optionId) {
-    const {options, value} = this.props;
+    const {options, value, shouldCloseOnSelect} = this.props;
     if (optionId === NOT_SELECTED_ID || options.length === 0) {
       this.props.onSelect({id: 'not a suggested option', value});
     } else {
       this.props.onSelect(options.find(option => option.id === optionId));
     }
-    this.onBlur();
+    if (shouldCloseOnSelect) {
+      this.onBlur();
+    }
   }
 
   onBlur(event) {
@@ -129,8 +147,9 @@ class InputWithOptions extends React.Component {
 
 InputWithOptions.defaultProps = {
   ...Input.defaultProps,
-  OnSelect: () => {},
+  onSelect: () => {},
   options: [],
+  shouldCloseOnSelect: true
 };
 
 InputWithOptions.propTypes = {
@@ -140,7 +159,9 @@ InputWithOptions.propTypes = {
       return new Error(`InputWithOptions: Invalid Prop options was given. Validation failed on the option number ${key}`);
     }
   }),
-  onSelect: React.PropTypes.func
+  onSelect: React.PropTypes.func,
+  customInput: React.PropTypes.element,
+  shouldCloseOnSelect: React.PropTypes.bool
 };
 
 InputWithOptions.displayName = 'InputWithOptions';
