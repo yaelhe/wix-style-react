@@ -10,12 +10,24 @@ const toastDriverFactory = ({component, wrapper}) => {
   const $component = $(component);
   const $wrapper = $(wrapper);
 
+  const styleStringToObj = input =>
+    input //"key1: value1;key2: value2;"
+      .replace(' ', '')
+      .split(';')
+      .filter(val => val !== '')
+      .reduce((result, next) => {
+        const [k,v] = next.split(':');
+        result[k] = v;
+        return result;
+      }, {});
+
   return {
     hasId: id => $component.attr('id') === id,
     getToastText: () => $component.find(byDataHook('toast-text')).text(),
     clickOnClose: () => ReactTestUtils.Simulate.click($component.find(byDataHook('toast-close'))[0]),
     hasTheme: theme => $component.hasClass(theme),
-    toastExists: () => $wrapper.find(byDataHook('toast')).length > 0
+    toastExists: () => $wrapper.find(byDataHook('toast')).length > 0,
+    getTopProperty: () => styleStringToObj($component.attr('style')).top
   }
 };
 
