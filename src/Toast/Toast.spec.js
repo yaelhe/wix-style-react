@@ -32,7 +32,7 @@ describe('Toast', () => {
   it('should show a Toast text', () => {
     const driver = createDriver(defaultProps);
     const innerComponentText = defaultProps.children.props.children;
-    expect(driver.getChildrenText()).toEqual(innerComponentText);
+    expect(driver.getToastText()).toEqual(innerComponentText);
   });
 
   it('should show a an id to the Toast', () => {

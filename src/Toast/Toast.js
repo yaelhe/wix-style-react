@@ -37,7 +37,7 @@ class Toast extends React.Component {
 
     return (
       <div className={className} id={this.props.id} data-hook="toast">
-        <div className={styles.children} data-hook="toast-children">
+        <div className={styles.children} data-hook="toast-text">
           {this.props.children}
         </div>
         <button onClick={onClose} className={styles.close} data-hook="toast-close">
