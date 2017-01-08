@@ -16,7 +16,7 @@ const toastDriverFactory = ({component, wrapper}) => {
       .split(';')
       .filter(val => val !== '')
       .reduce((result, next) => {
-        const [k,v] = next.split(':');
+        const [k, v] = next.split(':');
         result[k] = v;
         return result;
       }, {});
@@ -28,7 +28,7 @@ const toastDriverFactory = ({component, wrapper}) => {
     hasTheme: theme => $component.hasClass(theme),
     toastExists: () => $wrapper.find(byDataHook('toast')).length > 0,
     getTopProperty: () => styleStringToObj($component.attr('style')).top
-  }
+  };
 };
 
 const componentFactory = (props = {}) => {

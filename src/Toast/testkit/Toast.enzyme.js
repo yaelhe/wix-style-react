@@ -1,4 +1,4 @@
-import {ToastDriverFactory} from './Toast';
+import {toastDriverFactory} from './Toast';
 
 const toastTestkitFactory = ({wrapper, id}) => {
   const component = wrapper.find(`#${id}`);
