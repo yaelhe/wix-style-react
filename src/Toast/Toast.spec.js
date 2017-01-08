@@ -18,11 +18,6 @@ describe('Toast', () => {
     };
   });
 
-  it('should show the Toast', () => {
-    const driver = createDriver(defaultProps);
-    expect(driver.toastExists()).toEqual(true);
-  });
-
   it('should not show the Toast', () => {
     const props = Object.assign({}, defaultProps, {show: false});
     const driver = createDriver(props);
@@ -35,7 +30,7 @@ describe('Toast', () => {
     expect(driver.getToastText()).toEqual(innerComponentText);
   });
 
-  it('should show a an id to the Toast', () => {
+  it('should add an id to the Toast', () => {
     const driver = createDriver(defaultProps);
     expect(driver.hasId(defaultProps.id)).toBeTruthy();
   });
