@@ -50,4 +50,11 @@ describe('Toast', () => {
     const driver = createDriver(defaultProps);
     expect(driver.hasTheme(defaultProps.theme)).toEqual(true);
   });
+
+  it('should accept top property styling', () => {
+    const props = Object.assign({}, defaultProps, {top: '5px'});
+    const driver = createDriver(props);
+    expect(driver.getTopProperty()).toEqual(props.top);
+  });
+
 });

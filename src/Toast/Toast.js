@@ -35,8 +35,13 @@ class Toast extends React.Component {
       [styles.leave]: this.state.leaving
     });
 
+    const style = {};
+    if (this.props.top) {
+      style.top = this.props.top;
+    }
+
     return (
-      <div className={className} id={this.props.id} data-hook="toast">
+      <div className={className} id={this.props.id} style={style} data-hook="toast">
         <div className={styles.children} data-hook="toast-text">
           {this.props.children}
         </div>
@@ -102,6 +107,7 @@ Toast.propTypes = {
   type: PropTypes.oneOf(['bar', 'largebar']).isRequired,
   position: PropTypes.oneOf(['topfixed']).isRequired,
   theme: PropTypes.oneOf(['red', 'blue', 'purple', 'green']).isRequired,
+  top: React.PropTypes.string,
   timeout: PropTypes.number,
   children: PropTypes.any,
   onClose: PropTypes.func
