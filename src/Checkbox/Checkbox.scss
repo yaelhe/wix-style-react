@@ -17,15 +17,15 @@
 }
 
 :global(.rtl) .wrapper > label {
-    flex-direction: row-reverse;
+    direction: rtl;
 }
 
 .checkbox {
     position: relative;
-    width: 17px;
-    min-width: 17px;
-    height: 17px;
-    min-height: 17px;
+    width: 16px;
+    min-width: 16px;
+    height: 16px;
+    min-height: 16px;
     border: 1px solid $B10;
     border-radius: 4px;
     box-sizing:border-box;
@@ -36,11 +36,17 @@
     align-items:center;
     justify-content:center;
     position: absolute;
-    top: 0px;
-    left: 0px;
-    width: 15px;
-    height: 15px;
+    top: 0;
+    left: 0;
+    width: 14px;
+    height: 14px;
     color: $D80;
+}
+
+.indeterminate {
+    background-color: $D80;
+    width: 8px;
+    height: 2px;
 }
 
 .checkbox>.inner>svg {

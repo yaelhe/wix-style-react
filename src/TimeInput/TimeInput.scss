@@ -1,3 +1,5 @@
+@import '../common.scss';
+
 .wrapper {
   text-align: center;
   display: flex;
@@ -13,7 +15,7 @@
 .time {
     cursor: pointer;
     display: block;
-    width: 114px;
+    width: 108px;
     white-space: nowrap;
     flex-direction: row;
     box-sizing: border-box;
@@ -33,12 +35,16 @@
 
 .ampm {
     position: absolute;
-    width: 20px;
-    height: 16px;
+    height: 15px;
     font-size: 14px;
     z-index: 1;
     top: 0; bottom: 0; left: 30px; right: 0;
     margin: auto;
+    text-transform: uppercase;
+
+    &:hover {
+        color: $B10;
+    }
 }
 
 .input {
@@ -57,9 +63,8 @@
   position: absolute;
   width: 5px;
   right: 0;
-  top: 0; bottom: 0; left: 72%; right: 0;
-  margin: auto;
   z-index: 1;
+  margin-right: 15px;
 }
 
 .timeButton {

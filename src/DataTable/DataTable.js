@@ -56,17 +56,20 @@ class DataTable extends React.Component {
     );
   };
 
-  renderTable = rowsToRender => (
-    <div>
-      <table id={this.props.id} className={s.table}>
-        <thead>
-          <tr>
-            {this.props.columns.map((column, i) => <th key={i}>{column.title}</th>)}
-          </tr>
-        </thead>
-        {this.renderBody(rowsToRender)}
-      </table>
-    </div>);
+  renderTable = rowsToRender => {
+    const style = {width: this.props.width};
+    return (
+      <div>
+        <table id={this.props.id} style={style} className={s.table}>
+          <thead>
+            <tr>
+              {this.props.columns.map(this.renderHeaderCell)}
+            </tr>
+          </thead>
+          {this.renderBody(rowsToRender)}
+        </table>
+      </div>);
+  };
 
   renderBody = rows => (
     <tbody>
@@ -83,11 +86,15 @@ class DataTable extends React.Component {
       rowClasses.push(s.clickableDataRow);
     }
 
+    if (this.props.rowDataHook) {
+      optionalRowProps['data-hook'] = this.props.rowDataHook;
+    }
+
+    optionalRowProps.className = classNames(rowClasses);
+
     return (
       <tr
         key={rowNum}
-        className={classNames(rowClasses)}
-        data-hook={this.props.rowDataHook}
         {...optionalRowProps}
         >
         {this.props.columns.map((column, colNum) => this.renderCell(rowData, column, rowNum, colNum))}
@@ -97,8 +104,12 @@ class DataTable extends React.Component {
 
   renderCell = (rowData, column, rowNum, colNum) => {
     const classes = classNames({[s.important]: column.important});
+    return <td className={classes} key={colNum}>{column.render && column.render(rowData, rowNum)}</td>;
+  };
+
+  renderHeaderCell = (column, colNum) => {
     const style = {width: column.width};
-    return <td style={style} className={classes} key={colNum}>{column.render && column.render(rowData, rowNum)}</td>;
+    return <th style={style} key={colNum}>{column.title}</th>;
   };
 
   calcLastPage = ({data, itemsPerPage}) => Math.ceil(data.length / itemsPerPage) - 1;
@@ -113,7 +124,8 @@ DataTable.defaultProps = {
   columns: [],
   showHeaderWhenEmpty: false,
   infiniteScroll: false,
-  itemsPerPage: 20
+  itemsPerPage: 20,
+  width: '100%'
 };
 
 DataTable.propTypes = {
@@ -128,7 +140,8 @@ DataTable.propTypes = {
   rowClass: PropTypes.string,
   onRowClick: PropTypes.func,
   infiniteScroll: PropTypes.bool,
-  itemsPerPage: PropTypes.number
+  itemsPerPage: PropTypes.number,
+  width: PropTypes.string
 };
 
 DataTable.displayName = 'DataTable';
