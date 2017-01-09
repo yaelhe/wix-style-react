@@ -1,63 +1,39 @@
 import React from 'react';
 import Input from '../Input/Input.js';
-import styles from './InputWithOptions.scss';
-import isEqual from 'lodash.isequal';
-import isobject from 'lodash.isobject';
-import has from 'lodash.has';
-import isstring from 'lodash.isstring';
-import trim from 'lodash.trim';
 import omit from 'lodash.omit';
 import DropdownLayout from '../DropdownLayout/DropdownLayout';
 
-const NOT_SELECTED_ID = -1;
-
-const initialState = {
-  selectedId: NOT_SELECTED_ID,
-  showOptions: false,
-};
-
-const isLegalOption = option => {
-  if (isobject(option)) {
-    return (has(option, 'id') && (trim(option.id).length > 0)) &&
-      has(option, 'value') && isstring(option.value) && (trim(option.value).length > 0);
-  } else {
-    return isstring(option) && trim(option).length > 0;
-  }
-};
-
 class InputWithOptions extends React.Component {
+
+  // Abstraction
+  inputClasses() {}
+  dropdownClasses() {}
+  dropdownAdditionalProps() {}
+  inputAdditionalProps() {}
+
   constructor(props) {
     super(props);
-    this.state = {...initialState};
 
-    this.onSelect = this.onSelect.bind(this);
-    this.onFocus = this.onFocus.bind(this);
-    this.onBlur = this.onBlur.bind(this);
-    this.onKeyDown = this.onKeyDown.bind(this);
+    this.state = {
+      showOptions: false,
+      inputValue: ''
+    };
+
+    this._onSelect = this._onSelect.bind(this);
+    this._onFocus = this._onFocus.bind(this);
+    this._onBlur = this._onBlur.bind(this);
+    this._onKeyDown = this._onKeyDown.bind(this);
     this.focus = this.focus.bind(this);
     this.blur = this.blur.bind(this);
     this.select = this.select.bind(this);
-  }
-
-  componentWillReceiveProps(nextProps) {
-    if (!isEqual(this.props.options, nextProps.options)) {
-      if (nextProps.options.some(option => !isLegalOption(option))) {
-        throw new Error('InputWithOptions: Invalid option provided');
-      }
-      this.setState({
-        selectedId: NOT_SELECTED_ID,
-      });
-    }
-    if (this.props.selectedId !== nextProps.selectedId) {
-      this.setState({keyboardHovered: nextProps.options.findIndex(item => item.id === nextProps.selectedId)});
-    }
+    this.hideOptions = this.hideOptions.bind(this);
+    this.showOptions = this.showOptions.bind(this);
+    this._onManuallyInput = this._onManuallyInput.bind(this);
   }
 
   renderInput() {
     const {customInput} = this.props;
-    const dropDownLayoutProps = ['options', 'onSelect', 'customInput', 'shouldCloseOnSelect'];
-    const inputProps = omit(this.props, dropDownLayoutProps);
-
+    const inputProps = Object.assign(omit(this.props, Object.keys(DropdownLayout.propTypes).concat(['onChange'])), this.inputAdditionalProps());
     if (customInput) {
       return React.cloneElement(customInput, {
         ref: input => this.input = input,
@@ -69,63 +45,95 @@ class InputWithOptions extends React.Component {
           menuArrow
           ref={input => this.input = input}
           {...inputProps}
+          onChange={event => {
+            this.setState({inputValue: event.target.value});
+            if (this.props.onChange) {
+              this.props.onChange(event);
+            }
+          }}
           />
       );
     }
   }
 
   render() {
-    const {options, readOnly, shouldCloseOnSelect} = this.props;
+    const dropdownProps = Object.assign(omit(this.props, Object.keys(Input.propTypes)), this.dropdownAdditionalProps());
+
     return (
-      <div onFocus={this.onFocus} onKeyDown={this.onKeyDown} onBlur={this.onBlur}>
-        <div className={readOnly ? styles.readonly : ''}>
+      <div onBlur={this._onBlur}>
+        <div onKeyDown={this._onKeyDown} onFocus={this._onFocus} className={this.inputClasses()}>
           {this.renderInput()}
         </div>
 
-        <DropdownLayout
-          ref={dropdownLayout => this.dropdownLayout = dropdownLayout}
-          options={options}
-          selectedId={this.state.selectedId}
-          visible={this.state.showOptions}
-          onClose={this.onBlur}
-          onSelect={this.onSelect}
-          shouldCloseOnSelect={shouldCloseOnSelect}
-          />
+        <div className={this.dropdownClasses()}>
+          <DropdownLayout
+            ref={dropdownLayout => this.dropdownLayout = dropdownLayout}
+            {...dropdownProps}
+            visible={this.state.showOptions}
+            onClose={this.hideOptions}
+            onSelect={this._onSelect}
+            />
+        </div>
       </div>
     );
   }
 
-  onSelect(optionId) {
-    const {options, value, shouldCloseOnSelect} = this.props;
-    if (optionId === NOT_SELECTED_ID || options.length === 0) {
-      this.props.onSelect({id: 'not a suggested option', value});
-    } else {
-      this.props.onSelect(options.find(option => option.id === optionId));
-    }
-    if (shouldCloseOnSelect) {
-      this.onBlur();
+  hideOptions() {
+    this.setState({showOptions: false});
+  }
+
+  showOptions() {
+    this.setState({showOptions: true});
+  }
+
+  _onManuallyInput() {
+    this.hideOptions();
+
+    if (this.props.onManuallyInput) {
+      this.props.onManuallyInput(this.state.inputValue);
     }
   }
 
-  onBlur(event) {
-    this.setState(initialState);
+  _onSelect(optionId) {
+    const {onSelect, closeOnSelect} = this.props;
 
-    this.input.blur();
+    if (closeOnSelect) {
+      this._onBlur();
+    }
+
+    if (onSelect) {
+      onSelect(optionId);
+    }
+  }
+
+  _onBlur(event) {
+    this.hideOptions();
+
     if (this.props.onBlur) {
       this.props.onBlur(event);
     }
   }
 
-  onFocus(event) {
-    this.setState({showOptions: true});
+  _onFocus(event) {
+    this.showOptions();
 
     if (this.props.onFocus) {
       this.props.onFocus(event);
     }
   }
 
-  onKeyDown(event) {
-    this.dropdownLayout._onKeyDown(event);
+  _onKeyDown(event) {
+    if (!this.dropdownLayout._onKeyDown(event)) {
+      switch (event.key) {
+        case 'Enter':
+        case 'Tab': {
+          this._onManuallyInput();
+          break;
+        }
+        default:
+          this.showOptions();
+      }
+    }
 
     if (this.props.onKeyDown) {
       this.props.onKeyDown(event);
@@ -147,21 +155,18 @@ class InputWithOptions extends React.Component {
 
 InputWithOptions.defaultProps = {
   ...Input.defaultProps,
+  ...DropdownLayout.defaultProps,
   onSelect: () => {},
   options: [],
-  shouldCloseOnSelect: true
+  closeOnSelect: true
 };
 
 InputWithOptions.propTypes = {
   ...Input.propTypes,
-  options: React.PropTypes.arrayOf((propValue, key) => {
-    if (!isLegalOption(propValue[key])) {
-      return new Error(`InputWithOptions: Invalid Prop options was given. Validation failed on the option number ${key}`);
-    }
-  }),
-  onSelect: React.PropTypes.func,
+  ...DropdownLayout.propTypes,
   customInput: React.PropTypes.element,
-  shouldCloseOnSelect: React.PropTypes.bool
+  closeOnSelect: React.PropTypes.bool,
+  onManuallyInput: React.PropTypes.func
 };
 
 InputWithOptions.displayName = 'InputWithOptions';

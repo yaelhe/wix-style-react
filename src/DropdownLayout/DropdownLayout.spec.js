@@ -76,25 +76,25 @@ describe('DropdownLayout', () => {
     const driver = createDriver({options});
     driver.pressDownKey();
     driver.pressDownKey();
-    expect(driver.isOptionSelected(1)).toBeTruthy();
+    expect(driver.isOptionHovered(1)).toBeTruthy();
     driver.pressDownKey();
-    expect(driver.isOptionSelected(3)).toBeTruthy();
+    expect(driver.isOptionHovered(3)).toBeTruthy();
     driver.pressDownKey();
-    expect(driver.isOptionSelected(5)).toBeTruthy();
+    expect(driver.isOptionHovered(5)).toBeTruthy();
     driver.pressDownKey();
-    expect(driver.isOptionSelected(0)).toBeTruthy();
+    expect(driver.isOptionHovered(0)).toBeTruthy();
   });
 
   it('should hovered items cyclic and skipping divider or disabled on up key', () => {
     const driver = createDriver({options});
     driver.pressUpKey();
-    expect(driver.isOptionSelected(5)).toBeTruthy();
+    expect(driver.isOptionHovered(5)).toBeTruthy();
     driver.pressUpKey();
-    expect(driver.isOptionSelected(3)).toBeTruthy();
+    expect(driver.isOptionHovered(3)).toBeTruthy();
     driver.pressUpKey();
-    expect(driver.isOptionSelected(1)).toBeTruthy();
+    expect(driver.isOptionHovered(1)).toBeTruthy();
     driver.pressUpKey();
-    expect(driver.isOptionSelected(0)).toBeTruthy();
+    expect(driver.isOptionHovered(0)).toBeTruthy();
   });
 
   it('should call onClose when esc key is pressed', () => {

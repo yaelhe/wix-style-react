@@ -43,5 +43,5 @@ const options = [
 
 export default () =>
   <div>
-    <div className="ltr" style={style}>30 options<br/><DropdownLayout options={options}/></div>
+    <div className="ltr" style={style}>30 options<br/><DropdownLayout visible={true} options={options}/></div>
   </div>;

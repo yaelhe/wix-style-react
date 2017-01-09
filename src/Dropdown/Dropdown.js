@@ -1,20 +1,32 @@
-import React, {PropTypes} from 'react';
+import styles from './Dropdown.scss';
 import InputWithOptions from '../InputWithOptions/InputWithOptions';
 
-const Dropdown = ({id, ...otherProps}) => (
-  <div id={id}>
-    <InputWithOptions
-      readOnly
-      {...otherProps}
-      />
-  </div>
-);
+class Dropdown extends InputWithOptions {
 
-Dropdown.propTypes = {
-  id: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.number,
-  ])
-};
+  constructor(props) {
+    super(props);
+    this.state = {value: '', selectedId: -1};
+  }
+
+  inputClasses() {
+    return styles.readonly;
+  }
+
+  dropdownAdditionalProps() {
+    return {selectedId: this.state.selectedId, value: this.state.value};
+  }
+
+  inputAdditionalProps() {
+    return {readOnly: 'readonly', value: this.state.value};
+  }
+
+  _onSelect(optionId) {
+    this.setState({value: this.props.options.find(option => option.id === optionId).value, selectedId: optionId});
+    super._onSelect(optionId);
+  }
+}
+
+Dropdown.propTypes = InputWithOptions.propTypes;
+Dropdown.defaultProps = InputWithOptions.defaultProps;
 
 export default Dropdown;

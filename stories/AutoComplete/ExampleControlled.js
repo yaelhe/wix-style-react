@@ -9,7 +9,7 @@ const style = {
   marginBottom: '350px'
 };
 
-const dataSource = [
+const options = [
   {id: 0, value: 'First option'},
   {id: 1, value: 'Second option'},
   {id: 2, value: 'Third option'},
@@ -25,8 +25,8 @@ class ControlledAutoComplete extends React.Component {
     this.onChange = this.onChange.bind(this);
   }
 
-  onSelect(option) {
-    this.setState({value: option.value});
+  onSelect(optionId) {
+    this.setState({value: options.find(option => option.id === optionId).value});
   }
 
   onChange(event) {
@@ -36,7 +36,7 @@ class ControlledAutoComplete extends React.Component {
   render() {
     return (
       <AutoComplete
-        dataSource={dataSource}
+        options={options}
         value={this.state.value}
         onChange={this.onChange}
         onSelect={this.onSelect}

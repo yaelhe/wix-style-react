@@ -21,18 +21,15 @@ const rtlOptions = [
   {id: 2, value: 'אפשרות שלישית'}
 ];
 
-const onSelect = e => console.log('Select', e);
-
 export default () =>
   <div>
     <div style={style} className="ltr">
       Left to right
       <AutoComplete
-        dataSource={options}
-        onSelect={onSelect}
+        options={options}
         />
     </div>
     <div style={style} className="rtl">
-      Right to left<AutoComplete dataSource={rtlOptions} onSelect={onSelect}/>
+      Right to left<AutoComplete options={rtlOptions}/>
     </div>
   </div>;

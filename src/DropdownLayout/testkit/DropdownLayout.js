@@ -17,7 +17,6 @@ const dropdownLayoutDriverFactory = ({component, wrapper}) => {
     isUp: () => isClassExists(options, 'up'),
     tabIndex: () => component.tabIndex,
     optionsLength: () => options.childNodes.length,
-    clickOptionAt: position => ReactTestUtils.Simulate.click(optionAt(position)),
     mouseEnterAtOption: position => ReactTestUtils.Simulate.mouseEnter(optionAt(position)),
     mouseLeaveAtOption: position => ReactTestUtils.Simulate.mouseLeave(optionAt(position)),
     mouseClickOutside: () => ReactTestUtils.Simulate.blur(options),
@@ -30,7 +29,7 @@ const dropdownLayoutDriverFactory = ({component, wrapper}) => {
     pressTabKey: () => ReactTestUtils.Simulate.keyDown(component, {key: 'Tab'}),
     pressEscKey: () => ReactTestUtils.Simulate.keyDown(component, {key: 'Escape'}),
     optionContentAt: position => optionAt(position).textContent,
-    clickAtOption: position => ReactTestUtils.Simulate.click(optionAt(position)),
+    clickAtOption: position => ReactTestUtils.Simulate.mouseDown(optionAt(position)),
     isOptionADivider: position => isClassExists(optionAt(position), 'divider'),
     setProps: props => {
       ReactDOM.render(<div ref={r => component = r}><DropdownLayout {...props}/></div>, wrapper);
@@ -41,7 +40,7 @@ const dropdownLayoutDriverFactory = ({component, wrapper}) => {
 const componentFactory = (props = {}) => {
   let component;
   const wrapperDiv = document.createElement('div');
-  ReactDOM.render(<div ref={r => component = r}><DropdownLayout {...props}/></div>, wrapperDiv);
+  ReactDOM.render(<div ref={r => component = r}><DropdownLayout visible={true} {...props}/></div>, wrapperDiv);
   return {component: component.childNodes[0], wrapper: wrapperDiv};
 };
 

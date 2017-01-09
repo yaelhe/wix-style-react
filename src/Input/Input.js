@@ -58,7 +58,7 @@ class Input extends React.Component {
       <div className={classNames([styles.magnifying_glass, styles.end_pos])} onClick={this.focus}><MagnifyingGlass alignLeft={!rtl}/></div> : null;
 
     const menuArrowDom = menuArrow && !clearButtonDom && !error && !magnifyingGlass ?
-      <div className={classNames([styles.menu_arrow, styles.end_pos])} onClick={this.focus}><MenuArrow/></div> : null;
+      <div className={classNames([styles.menu_arrow, styles.end_pos])}><MenuArrow/></div> : null;
 
     if (style) {
       console.warn('[wix-style-react>Input] Warning. Property \'style\' has been deprecated, and will be removed Jan 1st 2017. Please use \'theme\' instead.');

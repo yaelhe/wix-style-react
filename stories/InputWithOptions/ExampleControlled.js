@@ -19,25 +19,42 @@ const options = [
 ];
 
 class ControlledInputWithOptions extends Component {
-  static propTypes = {
-    value: PropTypes.string
-  };
-
-  constructor() {
-    super();
-    this.state = {value: ''};
+  constructor(props) {
+    super(props);
+    this.state = {
+      value: '',
+      selectedId: -1
+    };
   }
 
   render() {
-    const onChange = event => this.setState({value: event.target.value});
-    const onSelect = option => this.setState({value: option.value});
+    const onChange = event => {
+      this.setState({value: event.target.value});
+    };
+    const onSelect = optionId => {
+      const value = options.find(option => option.id === optionId).value;
+      this.setState({
+        value: value,
+        selectedId: optionId
+      });
+
+      alert(`Selected option id=${optionId}, value=${value}`);
+    };
+
+    const onManuallyInput = value => {
+      this.setState({
+        selectedId: -1
+      });
+      alert(`Manually selected ${value}`);
+    };
+
     const predicate = element =>
       this.state.value ?
       element.value.toLowerCase().indexOf(this.state.value.toLowerCase()) !== -1 :
       true;
 
     return (
-      <InputWithOptions {...this.props} options={options.filter(predicate)} value={this.state.value} onChange={onChange} onSelect={onSelect}/>
+      <InputWithOptions options={options.filter(predicate)} selectedId={this.state.selectedId} value={this.state.value} onChange={onChange} onSelect={onSelect} onManuallyInput={onManuallyInput}/>
     );
   }
 }

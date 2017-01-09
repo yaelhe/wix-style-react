@@ -18,3 +18,7 @@ export {default as DatePicker} from './DatePicker';
 export {default as TimeInput} from './TimeInput';
 export {default as Tooltip} from './Tooltip';
 export {default as SideBar} from './SideBar';
+export {default as DropdownLayout} from './DropdownLayout';
+export {default as Dropdown} from './Dropdown';
+export {default as Autocomplete} from './AutoComplete';
+

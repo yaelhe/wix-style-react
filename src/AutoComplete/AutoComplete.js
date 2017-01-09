@@ -1,29 +1,33 @@
-import React, {PropTypes} from 'react';
+import {PropTypes} from 'react';
 import InputWithOptions from '../InputWithOptions/InputWithOptions';
 
-const AutoComplete = ({dataSource, predicate, ...otherProps}) => (
-  <div id={otherProps.id}>
-    <InputWithOptions
-      {...otherProps}
-      options={dataSource.filter(predicate)}
-      />
-  </div>
-);
+class AutoComplete extends InputWithOptions {
+
+  constructor(props) {
+    super(props);
+    this.state = {filteredOptions: props.options};
+  }
+
+  dropdownAdditionalProps() {
+    return {options: this.state.filteredOptions};
+  }
+
+  componentWillReceiveProps(nextProps) {
+    const {predicate} = this.props;
+
+    if (predicate && nextProps.options) {
+      this.setState({filteredOptions: nextProps.options.filter(predicate)});
+    }
+  }
+}
 
 AutoComplete.propTypes = {
-  dataSource: PropTypes.array,
-  predicate: PropTypes.func,
-  id: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.number,
-  ])
+  ...InputWithOptions.propTypes,
+  predicate: PropTypes.func
 };
 
 AutoComplete.defaultProps = {
-  dataSource: [],
-  predicate: () => true
+  ...InputWithOptions.defaultProps
 };
-
-AutoComplete.displayName = 'AutoComplete';
 
 export default AutoComplete;
