@@ -234,7 +234,6 @@ DropdownLayout.propTypes = {
 
 DropdownLayout.defaultProps = {
   options: [],
-  visible: false,
   tabIndex: 1,
   selectedId: NOT_HOVERED_INDEX
 };

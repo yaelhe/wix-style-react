@@ -34,7 +34,7 @@ class ControlledDropdown extends React.Component {
         options={options}
         onSelect={this.onSelect}
         placeholder={'Choose an option'}
-      />
+        />
     );
   }
 }

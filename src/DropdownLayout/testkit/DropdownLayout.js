@@ -40,7 +40,7 @@ const dropdownLayoutDriverFactory = ({component, wrapper}) => {
 const componentFactory = (props = {}) => {
   let component;
   const wrapperDiv = document.createElement('div');
-  ReactDOM.render(<div ref={r => component = r}><DropdownLayout visible={true} {...props}/></div>, wrapperDiv);
+  ReactDOM.render(<div ref={r => component = r}><DropdownLayout visible {...props}/></div>, wrapperDiv);
   return {component: component.childNodes[0], wrapper: wrapperDiv};
 };
 

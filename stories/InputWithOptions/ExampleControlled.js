@@ -35,7 +35,7 @@ class ControlledInputWithOptions extends Component {
     const onSelect = option => {
       const value = option.value;
       this.setState({
-        value: value,
+        value,
         selectedId: option.id
       });
 

@@ -17,5 +17,5 @@ const options = [
 
 export default () =>
   <div>
-    <div className="ltr" style={style}>React elements<DropdownLayout visible={true} selectedId={0} options={options}/></div>
+    <div className="ltr" style={style}>React elements<DropdownLayout visible selectedId={0} options={options}/></div>
   </div>;
