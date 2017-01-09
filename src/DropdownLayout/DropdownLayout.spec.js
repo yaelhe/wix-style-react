@@ -117,9 +117,9 @@ describe('DropdownLayout', () => {
     const onSelect = jest.fn();
     const driver = createDriver({options, onSelect});
     driver.clickAtOption(0);
-    expect(onSelect).toBeCalledWith(0);
+    expect(onSelect).toBeCalledWith(options[0]);
     driver.clickAtOption(5);
-    expect(onSelect).toBeCalledWith('element1');
+    expect(onSelect).toBeCalledWith(options[5]);
   });
 
   it('should not call select when clicking on a selected option', () => {

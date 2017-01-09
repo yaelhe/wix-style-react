@@ -25,8 +25,8 @@ class ControlledAutoComplete extends React.Component {
     this.onChange = this.onChange.bind(this);
   }
 
-  onSelect(optionId) {
-    this.setState({value: options.find(option => option.id === optionId).value});
+  onSelect(option) {
+    this.setState({value: option.value});
   }
 
   onChange(event) {

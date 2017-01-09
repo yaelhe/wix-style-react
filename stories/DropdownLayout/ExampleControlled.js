@@ -24,7 +24,7 @@ class ControlledExample extends Component {
   }
 
   render() {
-    const onSelect = id => this.setState({selectedId: id});
+    const onSelect = option => this.setState({selectedId: option.id});
     const onClose = () => this.setState({selectedId: -1});
 
     const selectedOption = options.find(item => item.id === this.state.selectedId);

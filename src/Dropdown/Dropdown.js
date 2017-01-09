@@ -17,12 +17,12 @@ class Dropdown extends InputWithOptions {
   }
 
   inputAdditionalProps() {
-    return {readOnly: 'readonly', value: this.state.value};
+    return {readOnly: true, value: this.state.value};
   }
 
-  _onSelect(optionId) {
-    this.setState({value: this.props.options.find(option => option.id === optionId).value, selectedId: optionId});
-    super._onSelect(optionId);
+  _onSelect(option) {
+    this.setState({value: option.value, selectedId: option.id});
+    super._onSelect(option);
   }
 }
 

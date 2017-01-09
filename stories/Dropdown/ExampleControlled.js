@@ -24,8 +24,8 @@ class ControlledDropdown extends React.Component {
     this.onSelect = this.onSelect.bind(this);
   }
 
-  onSelect(optionId) {
-    alert(`Option ${optionId} selected`);
+  onSelect(option) {
+    console.log(`Option ${JSON.stringify(option)} selected`);
   }
 
   render() {

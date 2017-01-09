@@ -31,14 +31,15 @@ class ControlledInputWithOptions extends Component {
     const onChange = event => {
       this.setState({value: event.target.value});
     };
-    const onSelect = optionId => {
-      const value = options.find(option => option.id === optionId).value;
+
+    const onSelect = option => {
+      const value = option.value;
       this.setState({
         value: value,
-        selectedId: optionId
+        selectedId: option.id
       });
 
-      alert(`Selected option id=${optionId}, value=${value}`);
+      console.log(`Selected option id=${JSON.stringify(option)}, value=${value}`);
     };
 
     const onManuallyInput = value => {

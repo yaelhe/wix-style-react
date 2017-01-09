@@ -94,7 +94,7 @@ class InputWithOptions extends React.Component {
     }
   }
 
-  _onSelect(optionId) {
+  _onSelect(option) {
     const {onSelect, closeOnSelect} = this.props;
 
     if (closeOnSelect) {
@@ -102,7 +102,7 @@ class InputWithOptions extends React.Component {
     }
 
     if (onSelect) {
-      onSelect(optionId);
+      onSelect(option);
     }
   }
 

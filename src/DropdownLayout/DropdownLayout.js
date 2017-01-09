@@ -40,7 +40,7 @@ class DropdownLayout extends React.Component {
     if (index >= 0 && index < options.length) {
       const newSelectedId = options[index].id;
       if (newSelectedId !== selectedId && onSelect) {
-        onSelect(newSelectedId);
+        onSelect(options[index]);
         return true;
       }
     }
@@ -217,9 +217,12 @@ DropdownLayout.propTypes = {
   options: React.PropTypes.arrayOf(React.PropTypes.shape({
     id: React.PropTypes.oneOfType([
       React.PropTypes.string,
-      React.PropTypes.number,
+      React.PropTypes.number
     ]).isRequired,
-    value: React.PropTypes.node.isRequired,
+    value: React.PropTypes.oneOfType([
+      React.PropTypes.node,
+      React.PropTypes.string
+    ]).isRequired,
     disabled: React.PropTypes.bool
   })),
   selectedId: React.PropTypes.oneOfType([
