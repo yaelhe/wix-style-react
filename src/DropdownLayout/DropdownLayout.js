@@ -4,6 +4,7 @@ import classNames from 'classnames';
 import isEqual from 'lodash.isequal';
 import isobject from 'lodash.isobject';
 import trim from 'lodash.trim';
+import isstring from 'lodash.isstring';
 import has from 'lodash.has';
 
 const modulu = (n, m) => {
@@ -31,7 +32,7 @@ class DropdownLayout extends React.Component {
 
   isLegalOption(option) {
     return isobject(option) && has(option, 'id') && trim(option.id).length > 0 &&
-        has(option, 'value') && React.isValidElement(option.value) && trim(option.value).length > 0;
+        has(option, 'value') && (React.isValidElement(option.value) || (isstring(option.value) && trim(option.value).length > 0));
   }
 
   _onSelect(index) {
