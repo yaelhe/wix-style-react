@@ -10,7 +10,7 @@
 | onChange | func | - | - | Callback function when user selects a different value |
 | disabledRadios | arrayOf(number, string) | [] | - | the values of the disabled radio buttons |
 | vAlign | top, center | top | - | Positioning of the radio bottom compared to the label |
-| direction | vertical or horizontal | horizontal | - | Display direction of the radios |
+| direction | vertical or horizontal | vertical | - | Display direction of the radios |
 | id | string | - | - | An identifier of the component |
 
 
