@@ -8,14 +8,14 @@ const tagDriverFactory = ({component, wrapper}) => {
 
   const isClassExists = (component, className) => (component && component.className.indexOf(className) !== -1);
   const removeButton = $(component).find('a')[0];
-  const icon = $(component).find('span')[0];
+  const thumb = $(component).find('span')[0];
 
   return {
     exists: () => !!component,
     isLarge: () => isClassExists(component, 'large'),
-    isErasable: () => isClassExists(removeButton, 'tagRemoveButton'),
-    eraseTag: () => ReactTestUtils.Simulate.click(removeButton),
-    isIconExists: () => isClassExists(icon, 'icon'),
+    isRemovable: () => isClassExists(removeButton, 'tagRemoveButton'),
+    removeTag: () => ReactTestUtils.Simulate.click(removeButton),
+    isThumbExists: () => isClassExists(thumb, 'thumb'),
     setProps: props => {
       ReactDOM.render(<div ref={r => component = r}><Tag {...props}/></div>, wrapper);
     }

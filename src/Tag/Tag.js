@@ -2,7 +2,7 @@ import React, {PropTypes} from 'react';
 import styles from './Tag.scss';
 import classNames from 'classnames';
 
-const Tag = ({id, label, icon, erasable, onRemoveTag, size}) => {
+const Tag = ({id, label, thumb, removable, onRemove, size}) => {
   const className = classNames({
     [styles.tag]: true,
     [styles.large]: size === 'large'
@@ -10,9 +10,9 @@ const Tag = ({id, label, icon, erasable, onRemoveTag, size}) => {
 
   return (
     <span className={className} id={id}>
-      {icon && <span className={styles.icon}>{icon}</span>}
+      {thumb && <span className={styles.thumb}>{thumb}</span>}
       <span>{label}</span>
-      {erasable && <a className={styles.tagRemoveButton} onClick={() => onRemoveTag(id)}/>}
+      {removable && <a className={styles.tagRemoveButton} onClick={() => onRemove(id)}/>}
     </span>
   );
 };
@@ -20,16 +20,16 @@ const Tag = ({id, label, icon, erasable, onRemoveTag, size}) => {
 Tag.propTypes = {
   label: PropTypes.string.isRequired,
   id: PropTypes.string.isRequired,
-  icon: PropTypes.element,
-  onRemoveTag: PropTypes.func,
-  erasable: PropTypes.bool,
+  thumb: PropTypes.element,
+  onRemove: PropTypes.func,
+  removable: PropTypes.bool,
   size: PropTypes.oneOf(['small', 'large']),
 };
 
 Tag.defaultProps = {
-  onRemoveTag: () => {},
+  onRemove: () => {},
   size: 'small',
-  erasable: true,
+  removable: true,
 };
 
 export default Tag;

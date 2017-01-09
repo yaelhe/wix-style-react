@@ -7,7 +7,7 @@ import Tag from './Tag';
 describe('Tag', () => {
 
   const createDriver = _.compose(tagDriverFactory, componentFactory);
-  const id = 'myId', label = 'Hey', onRemoveTag = jest.fn();
+  const id = 'myId', label = 'Hey', onRemove = jest.fn();
 
   it('should have a default small size', () => {
     const driver = createDriver({id, label});
@@ -19,31 +19,31 @@ describe('Tag', () => {
     expect(driver.isLarge()).toBeTruthy();
   });
 
-  it('should be erasable by default', () => {
+  it('should be removable by default', () => {
     const driver = createDriver({id, label});
-    expect(driver.isErasable()).toBeTruthy();
+    expect(driver.isRemovable()).toBeTruthy();
   });
 
-  it('should not be erasable', () => {
-    const driver = createDriver({id, label, erasable: false});
-    expect(driver.isErasable()).toBeFalsy();
+  it('should not be removable', () => {
+    const driver = createDriver({id, label, removable: false});
+    expect(driver.isRemovable()).toBeFalsy();
   });
 
-  it('should call onRemoveTag function on erase', () => {
-    const driver = createDriver({id, label, onRemoveTag});
+  it('should call onRemove function on remove', () => {
+    const driver = createDriver({id, label, onRemove});
 
-    driver.eraseTag();
-    expect(onRemoveTag).toBeCalledWith(id);
+    driver.removeTag();
+    expect(onRemove).toBeCalledWith(id);
   });
 
-  it('should not display icon by default', () => {
+  it('should not display thumb by default', () => {
     const driver = createDriver({id, label});
-    expect(driver.isIconExists()).toBeFalsy();
+    expect(driver.isThumbExists()).toBeFalsy();
   });
 
-  it('should display icon', () => {
-    const driver = createDriver({id, label, icon: <span>Ho</span>});
-    expect(driver.isIconExists()).toBeTruthy();
+  it('should display thumb', () => {
+    const driver = createDriver({id, label, thumb: <span>Ho</span>});
+    expect(driver.isThumbExists()).toBeTruthy();
   });
 
   describe('testkit', () => {
