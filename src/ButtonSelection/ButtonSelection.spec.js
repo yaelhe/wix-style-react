@@ -1,10 +1,13 @@
-import _ from 'lodash/fp';
-import {componentFactory, buttonSelectionDriverFactory} from './testkit/ButtonSelection';
+import React from 'react';
+import buttonSelectionDriverFactory from './ButtonSelection.driverFactory';
+import {createDriverWrapper} from './../test-common';
+import ButtonSelection from './ButtonSelection';
 
 describe('ButtonSelection', () => {
-  const createDriver = _.compose(buttonSelectionDriverFactory, componentFactory);
   const buttonsNames = ['A', 'B', 'C'];
   const onChange = jest.fn();
+
+  const createDriver = createDriverWrapper(buttonSelectionDriverFactory);
 
   it('should create three buttons with given names', () => {
     const props = {
@@ -12,7 +15,7 @@ describe('ButtonSelection', () => {
       onChange
     };
 
-    const driver = createDriver(props);
+    const driver = createDriver(<ButtonSelection {...props}/>);
     expect(driver.getButtonsNames()).toEqual(props.buttonsNames);
     expect(driver.getButtonsClasses()).toEqual(Array(3).fill('unselected'));
   });
@@ -24,7 +27,7 @@ describe('ButtonSelection', () => {
       value: 'A',
     };
 
-    const driver = createDriver(props);
+    const driver = createDriver(<ButtonSelection {...props}/>);
     expect(driver.getSelectedButton()).toBe(props.value);
   });
 
@@ -34,7 +37,7 @@ describe('ButtonSelection', () => {
       onChange,
     };
 
-    const driver = createDriver(props);
+    const driver = createDriver(<ButtonSelection {...props}/>);
     driver.selectByValue('B');
 
     expect(props.onChange).toBeCalledWith('B');
@@ -47,7 +50,7 @@ describe('ButtonSelection', () => {
       value: 'A'
     };
 
-    const driver = createDriver(props);
+    const driver = createDriver(<ButtonSelection {...props}/>);
     driver.selectByValue('B');
 
     expect(onChange.mock.calls.length).toBeGreaterThan(0);
@@ -61,7 +64,7 @@ describe('ButtonSelection', () => {
       value: 'A'
     };
 
-    const driver = createDriver(props);
+    const driver = createDriver(<ButtonSelection {...props}/>);
     driver.selectByValue('A');
 
     expect(onChange.mock.calls.length).toBe(0);
@@ -74,7 +77,7 @@ describe('ButtonSelection', () => {
       value: 'unknown value'
     };
 
-    expect(() => createDriver(props)).toThrowError();
+    expect(() => createDriver(<ButtonSelection {...props}/>)).toThrowError();
   });
 
   it('should update buttons names', () => {
@@ -83,7 +86,7 @@ describe('ButtonSelection', () => {
       onChange
     };
 
-    const driver = createDriver(props);
+    const driver = createDriver(<ButtonSelection {...props}/>);
     props.buttonsNames = ['DD', 'EE'];
     driver.setProps(props);
 
