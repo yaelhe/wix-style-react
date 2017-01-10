@@ -106,20 +106,12 @@ class InputWithOptions extends React.Component {
     }
   }
 
-  _onBlur(event) {
+  _onBlur() {
     this.hideOptions();
-
-    if (this.props.onBlur) {
-      this.props.onBlur(event);
-    }
   }
 
-  _onFocus(event) {
+  _onFocus() {
     this.showOptions();
-
-    if (this.props.onFocus) {
-      this.props.onFocus(event);
-    }
   }
 
   _onKeyDown(event) {
@@ -133,10 +125,6 @@ class InputWithOptions extends React.Component {
         default:
           this.showOptions();
       }
-    }
-
-    if (this.props.onKeyDown) {
-      this.props.onKeyDown(event);
     }
   }
 

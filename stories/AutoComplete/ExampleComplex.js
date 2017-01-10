@@ -12,7 +12,7 @@ const style = {
 const options = [
   {id: 0, value: 'First option', v:'F'},
   {id: 1, value: <div style={{color:'red'}}>test</div>, v:'S'},
-  {id: 2, value: 'Third option', v:'T', unselectable: true},
+  {id: 2, value: 'Third option', v:'T', disabled: true},
   {id: 3, value: 'Fifth option', v:'Fi'},
   {id: 4, value: 'Fourth option', v:'Fo'},
 ];
@@ -40,10 +40,10 @@ class ControlledAutoComplete extends React.Component {
             value               = {this.state.title}
             error               = {true}
             placeholder         = {'Place holder'}
-            defaultSelection    = {0}
             autoSelect          = {true}
             options             = {this.state.suggestions}
             onSelect            = {this.onSet}
+            onManuallyInput     = {this.onManuallyInput}
             onBlur              = {this.onBlur}
             onFocus             = {this.onFocus}
             onChange            = {this.onChange}
@@ -60,7 +60,7 @@ class ControlledAutoComplete extends React.Component {
       console.log('>> Change!', e.target.value);
       const value = e.target.value;
       this.setState({
-          suggestions: _.filter(options, o => o.value.toLowerCase().indexOf(value.toLowerCase()) > -1)
+          suggestions: _.filter(options, o => o.value.toString().toLowerCase().indexOf(value.toLowerCase()) > -1)
       });
   }
 
@@ -80,8 +80,12 @@ class ControlledAutoComplete extends React.Component {
       console.log('>> Escape Pressed!');
   }
 
+  onManuallyInput(e) {
+    console.log('>> Manually input!', e);
+  }
+
   onKeyDown(e) {
-      console.log('>> Ket down:', e, e.keyCode);
+      console.log('>> Key down:', e, e.keyCode);
   }
 
 }
