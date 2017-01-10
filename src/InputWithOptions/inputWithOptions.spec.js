@@ -1,6 +1,6 @@
 import _ from 'lodash/fp';
 import React from 'react';
-import {componentFactory, inputWithOptionsDriverFactory} from './testkit/InputWithOptions';
+import {componentFactory, inputWithOptionsDriverFactory} from './testKit/InputWithOptions';
 
 const runInputWithOptionsTest = driverFactory => {
   describe('InputWithOptions', () => {

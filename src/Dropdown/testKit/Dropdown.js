@@ -1,6 +1,6 @@
 import React from 'react';
 import Dropdown from '../Dropdown';
-import {inputWithOptionsDriverFactory} from '../../InputWithOptions/testkit/InputWithOptions';
+import {inputWithOptionsDriverFactory} from '../../InputWithOptions/testKit/InputWithOptions';
 import ReactDOM from 'react-dom';
 import $ from 'jquery';
 
