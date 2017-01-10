@@ -53,7 +53,7 @@ class GoogleAddressInput extends React.Component {
           onKeyDown={this.onKeyDown}
           onBlur={this.onBlur}
           onFocus={this.onFocus}
-          onSet={this.onSet}
+          onSelect={this.onSet}
           value={value}
           options={reduce(suggestions, (result, value) => {
             result.push({id: result.length, value: value.description});

@@ -98,7 +98,7 @@ describe('GoogleAddressInput', () => {
 
       const component = createShallow({Client: GmapsTestClient, countryCode: 'XX', onSet});
       component.setState({suggestions: [JSON.parse('{"description": "my address", "place_id": 123}')]});
-      component.find('InputWithOptions').props().onSet('my address');
+      component.find('InputWithOptions').props().onSelect('my address');
 
       // Defer to make sure all promises run
       _.defer(() => {
