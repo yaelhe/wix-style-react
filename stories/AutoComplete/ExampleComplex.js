@@ -6,7 +6,7 @@ const style = {
   padding: '0 5px 0',
   width: '200px',
   lineHeight: '22px',
-  marginBottom: '350px'
+  marginBottom: '200px'
 };
 
 const options = [
