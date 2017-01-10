@@ -2,7 +2,7 @@ import React from 'react';
 import Input from '../Input';
 import InputWithOptions from '../InputWithOptions';
 import find from 'lodash.find';
-import map from 'lodash.map';
+import reduce from 'lodash.reduce';
 import isundefined from 'lodash.isundefined';
 import filter from 'lodash.filter';
 import includes from 'lodash.includes';
@@ -55,7 +55,10 @@ class GoogleAddressInput extends React.Component {
           onFocus={this.onFocus}
           onSet={this.onSet}
           value={value}
-          suggestions={map(suggestions, 'description')}
+          options={reduce(suggestions, (result, value) => {
+            result.push({id: result.length, value: value.description});
+            return result;
+          }, [])}
           autoSelect
           />
       </div>
