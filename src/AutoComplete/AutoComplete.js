@@ -3,21 +3,9 @@ import InputWithOptions from '../InputWithOptions/InputWithOptions';
 
 class AutoComplete extends InputWithOptions {
 
-  constructor(props) {
-    super(props);
-    this.state = {filteredOptions: props.options};
-  }
-
   dropdownAdditionalProps() {
-    return {options: this.state.filteredOptions};
-  }
-
-  componentWillReceiveProps(nextProps) {
-    const {predicate} = this.props;
-
-    if (predicate && nextProps.options) {
-      this.setState({filteredOptions: nextProps.options.filter(predicate)});
-    }
+    const {options, predicate} = this.props;
+    return {options: options.filter(predicate)};
   }
 }
 
@@ -27,7 +15,8 @@ AutoComplete.propTypes = {
 };
 
 AutoComplete.defaultProps = {
-  ...InputWithOptions.defaultProps
+  ...InputWithOptions.defaultProps,
+  predicate: () => true
 };
 
 export default AutoComplete;
