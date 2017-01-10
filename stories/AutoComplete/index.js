@@ -10,6 +10,9 @@ import ExampleStandardRaw from '!raw!./ExampleStandard';
 import ExampleControlled from './ExampleControlled';
 import ExampleControlledRaw from '!raw!./ExampleControlled';
 
+import ExampleComplex from './ExampleComplex';
+import ExampleComplexRaw from '!raw!./ExampleComplex';
+
 storiesOf('1. Inputs', module)
   .add('1.2 AutoComplete', () => (
     <div>
@@ -23,6 +26,10 @@ storiesOf('1. Inputs', module)
 
       <CodeExample title="Controlled input" code={ExampleControlledRaw}>
         <ExampleControlled/>
+      </CodeExample>
+
+      <CodeExample title="Complex input" code={ExampleComplexRaw}>
+        <ExampleComplex/>
       </CodeExample>
     </div>
   ));
