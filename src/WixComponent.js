@@ -16,4 +16,8 @@ class WixComponent extends React.Component {
   }
 }
 
+WixComponent.propTypes = {
+  dataHook: React.PropTypes.string
+};
+
 export default WixComponent;

@@ -27,7 +27,8 @@ class MultiSelect extends WixComponent {
     theme: React.PropTypes.object,
     multiSection: React.PropTypes.bool,
     renderSectionTitle: React.PropTypes.func,
-    getSectionSuggestions: React.PropTypes.func
+    getSectionSuggestions: React.PropTypes.func,
+    children: React.PropTypes.any
   };
 
   static defaultProps = {
@@ -48,6 +49,7 @@ class MultiSelect extends WixComponent {
     this.autosuggestRef.input.focus();
   }
 
+  /*eslint-disable */
   renderSuggestionsContainer = ({children, ...rest}) => {
     const {theme} = this.props;
     if (children) {
@@ -63,6 +65,7 @@ class MultiSelect extends WixComponent {
       return (<div data-hook="no-suggestions-message" className={theme.noSuggestions}>No search results</div>);
     }
   };
+  /*eslint-enable */
 
   renderTagInputComponent = inputProps => {
     const {renderTag, inputPlaceholder, theme, displayNameProp, tags} = this.props;

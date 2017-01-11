@@ -22,8 +22,14 @@ class MessageBoxLayout2 extends WixComponent {
         </div>
         {
           !hideFooter ?
-            <FooterLayout1 confirmText={confirmText} cancelText={cancelText} onCancel={onCancel} onOk={onOk}
-                           theme={_theme}/> : null
+            <FooterLayout1
+              confirmText={confirmText}
+              cancelText={cancelText}
+              onCancel={onCancel}
+              onOk={onOk}
+              theme={_theme}
+              /> :
+            null
         }
       </div>
     );
