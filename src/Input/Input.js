@@ -81,7 +81,7 @@ class Input extends React.Component {
     const myAttr = {'data-hook': dataHook};
 
     return (
-      <div className={classes} onDoubleClick={this._onDoubleClickMargin} {...myAttr} >
+      <div className={classes} onDoubleClick={this._onDoubleClickMargin} {...myAttr}>
         {this.props.iconLeft}
         {unitDom}
         <input
