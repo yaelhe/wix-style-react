@@ -3,7 +3,7 @@ import Autosuggest from 'react-autosuggest';
 import style from './multiSelect.scss';
 import ButtonsBar from './ButtonsBar';
 import TagsComponent from './TagsComponent';
-
+import WixComponent from '../WixComponent';
 
 const noop = () => {
 };
@@ -11,7 +11,7 @@ const noop = () => {
 const DELETE_KEY_CODE = 46;
 const BACKSPACE_KEY_CODE = 8;
 
-class MultiSelect extends React.Component {
+class MultiSelect extends WixComponent {
   static propTypes = {
     onAddTag: React.PropTypes.func.isRequired,
     onRemoveTag: React.PropTypes.func.isRequired,

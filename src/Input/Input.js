@@ -1,4 +1,5 @@
 import React from 'react';
+import WixComponent from '../WixComponent';
 import styles from './Input.scss';
 import classNames from 'classnames';
 import SvgExclamation from '../svg/Exclamation.js';
@@ -6,7 +7,7 @@ import MagnifyingGlass from '../svg/MagnifyingGlass.js';
 import SvgX from '../svg/X.js';
 import MenuArrow from '../svg/MenuArrow';
 
-class Input extends React.Component {
+class Input extends WixComponent {
 
   constructor(params) {
     super(params);
@@ -39,7 +40,6 @@ class Input extends React.Component {
       onBlur,
       readOnly,
       size,
-      dataHook
     } = this.props;
 
     let {theme} = this.props; // When deprecation ends. theme should move to const.
@@ -78,10 +78,8 @@ class Input extends React.Component {
       [styles.inputWithArrow]: !!menuArrow
     });
 
-    const myAttr = {'data-hook': dataHook};
-
     return (
-      <div className={classes} onDoubleClick={this._onDoubleClickMargin} {...myAttr}>
+      <div className={classes} onDoubleClick={this._onDoubleClickMargin}>
         {this.props.iconLeft}
         {unitDom}
         <input
@@ -178,7 +176,6 @@ Input.propTypes = {
   onKeyUp: React.PropTypes.func,
   iconLeft: React.PropTypes.object,
   readOnly: React.PropTypes.bool,
-  dataHook: React.PropTypes.string,
   size: React.PropTypes.oneOf(['small', 'normal', 'large'])
 };
 
