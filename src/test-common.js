@@ -12,19 +12,19 @@ const componentFactory = Element => {
 
 export const createDriverWrapper = driver => _.compose(driver, componentFactory);
 
-export const testkitFactory = driver => ({wrapper, dataHook}) => {
+export const testkitFactoryCreator = driver => ({wrapper, dataHook}) => {
   const component = $(wrapper).find(`[data-hook='${dataHook}']`)[0];
   return driver({component, wrapper});
 };
 
 // enzyme
-export const enzymeTestKitFactory = driver => ({wrapper, dataHook}) => {
+export const enzymeTestKitFactoryCreator = driver => ({wrapper, dataHook}) => {
   const component = wrapper.findWhere(n => n.props()['data-hook'] === dataHook);
   return driver({component: component.node, wrapper});
 };
 
 // protractor
-export const protractorTestkitFactory = driver => dataHook => {
+export const protractorTestkitFactoryCreator = driver => dataHook => {
   const component = $(`[data-hook='${dataHook}']`);
   return driver(component);
 };

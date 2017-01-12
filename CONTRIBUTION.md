@@ -7,7 +7,6 @@ Please see [Button](https://github.com/wix/wix-style-react/tree/master/src/Butto
 * This library is using es6 + jsx - please follow it
 * All assets are in src/assets folder
 * Each component must have e2e + unit testing provided with drivers
-* A data-hook must be placed on the outest layer of the component
 * One React component per js file
 * Most of the components needs to be a [controlled components](https://goshakkk.name/controlled-vs-uncontrolled-inputs-react/), if you still think that a component should be uncontrolled after you read the article you are welcome to push a pr for it
 * Components needs to support rtl and ltr props

@@ -16,15 +16,15 @@ Inside your test:
 
 ```javascript
 import ReactTestUtils from 'react-addons-test-utils';
-import {buttonTestkit} from 'wix-style-react/dist/testkit';
+import {buttonTestkitFactory} from 'wix-style-react/dist/testkit';
 
 const myFormWrapper = ReactTestUtils.renderIntoDocument(<myForm...>);
 
 //Initial the testkit driver:
-const buttonDriver = buttonTestkit({wrapper: myFormWrapper, dataHook: 'my-button'});//driver factory should receive a DOM element wrapper and a data-hook and expose an api for it
+const buttonTestkit = buttonTestkitFactory({wrapper: myFormWrapper, dataHook: 'my-button'});//testkit factory should receive a DOM element wrapper and a data-hook and expose an api for it
 
-//Use the driver
-buttonDriver.click();
+//Use the testkit
+buttonTestkit.click();
 
 ```
 
@@ -32,14 +32,14 @@ If you are using Enzyme:
 
 ```javascript
 import {mount} from 'enzyme';
-import {buttonTestkit} from 'wix-style-react/dist/testkit/enzyme';
+import {buttonTestkitFactory} from 'wix-style-react/dist/testkit/enzyme';
 
 const myFormWrapper = mount(<myForm...>);
 
 //Initial the testkit driver:
-const buttonDriver = buttonTestkit({wrapper: myFormWrapper, dataHook: 'my-button'});//driver should receive an Enzyme wrapper and a data-hook and expose an api for it
+const buttonTestkit = buttonTestkitFactory({wrapper: myFormWrapper, dataHook: 'my-button'});//testkit should receive an Enzyme wrapper and a data-hook and expose an api for it
 
 //Use the driver
-buttonDriver.click();
+buttonTestkit.click();
 
 ```

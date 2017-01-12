@@ -1,7 +1,7 @@
-import {testkitFactory} from '../src/test-common';
+import {testkitFactoryCreator} from '../src/test-common';
 
-import InputDriver from '../src/Input/Input.driver';
-export const inputTestkit = testkitFactory(InputDriver);
+import inputDriver from '../src/Input/Input.driver';
+export const inputTestkitFactory = testkitFactoryCreator(inputDriver);
 
 export {buttonTestkitFactory} from '../src/Button/testkit/Button';
 export {checkboxDriverFactory} from '../src/Checkbox/Checkbox.driver';

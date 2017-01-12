@@ -3,7 +3,7 @@ import _ from 'lodash/fp';
 import ReactTestUtils from 'react-addons-test-utils';
 import inputDriver from './Input.driver';
 import {createDriverWrapper} from '../test-common';
-import {inputTestkit} from '../../testkit';
+import {inputTestkitFactory} from '../../testkit';
 import Input from './Input';
 import sinon from 'sinon';
 
@@ -288,7 +288,7 @@ describe('testkit', () => {
     const id = 'myID';
     const dataHook = 'myDataHook';
     const wrapper = div.appendChild(ReactTestUtils.renderIntoDocument(<div><Input id={id} value={value} onChange={onChange} dataHook={dataHook}/></div>));
-    const testkit = inputTestkit({wrapper, dataHook});
-    expect(testkit.exists()).toEqual(true);
+    const inputTestkit = inputTestkitFactory({wrapper, dataHook});
+    expect(inputTestkit.exists()).toEqual(true);
   });
 });
