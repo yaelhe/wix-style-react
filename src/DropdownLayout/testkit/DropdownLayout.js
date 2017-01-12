@@ -22,6 +22,8 @@ const dropdownLayoutDriverFactory = ({component, wrapper}) => {
     mouseClickOutside: () => ReactTestUtils.Simulate.blur(options),
     isOptionHovered: position => isClassExists(optionAt(position), 'hovered'),
     isOptionSelected: position => isClassExists(optionAt(position), 'selected'),
+    isOptionHoveredWithGlobalClassName: position => isClassExists(optionAt(position), 'wixstylereactHovered'),
+    isOptionSelectedWithGlobalClassName: position => isClassExists(optionAt(position), 'wixstylereactSelected'),
     classes: () => options.className,
     pressDownKey: () => ReactTestUtils.Simulate.keyDown(component, {key: 'ArrowDown'}),
     pressUpKey: () => ReactTestUtils.Simulate.keyDown(component, {key: 'ArrowUp'}),
