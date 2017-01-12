@@ -1,5 +1,5 @@
 import React from 'react';
-import typography, {convertFromUxLangToCss, convertFromCssToUxLang} from '../Typography';
+import typography, {convertFromUxLangToCss} from '../Typography';
 
 export default function Label(props) {
 
