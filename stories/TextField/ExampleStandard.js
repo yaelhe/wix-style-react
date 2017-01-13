@@ -44,7 +44,7 @@ class ExampleStandard extends Component {
     this.setState(state, () => {
       const items = [];
       if (this.state.prefixUnit) {
-        items.push(<Input.Unit key={1}>{this.state.prefixUnit}</Input.Unit>);
+        items.push(<Input.Unit key={1} value={this.state.prefixUnit}/>);
       }
       if (this.state.prefixTicker) {
         items.push(<Input.Ticker key={2} onUp={() => {}} onDown={() => {}}/>);
@@ -57,7 +57,7 @@ class ExampleStandard extends Component {
     this.setState(state, () => {
       const items = [];
       if (this.state.suffixUnit) {
-        items.push(<Input.Unit key={1}>{this.state.suffixUnit}</Input.Unit>);
+        items.push(<Input.Unit key={1} value={this.state.suffixUnit}/>);
       }
       if (this.state.suffixTicker) {
         items.push(<Input.Ticker key={2} onUp={() => {}} onDown={() => {}}/>);
