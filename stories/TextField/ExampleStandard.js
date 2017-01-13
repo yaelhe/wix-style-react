@@ -1,21 +1,20 @@
-import React, {Component, Children} from 'react';
+import React, {Component} from 'react';
+
 import TextFieldExample from './TextFieldTemplate';
 import Input from '../../src/Input';
 
 class ExampleStandard extends Component {
-  constructor() {
-    super();
-    this.state = {
-      withLabel: true,
-      prefixSuffixValue: '',
-      label: {
-        appearance: 'T1.1',
-      },
-      input: {
-        size: 'normal',
-        placeholder: 'Input placeholder'
-      }
-    };
+
+  state = {
+    withLabel: true,
+    prefixSuffixValue: '',
+    label: {
+      appearance: 'T1.1',
+    },
+    input: {
+      size: 'normal',
+      placeholder: 'Input placeholder'
+    }
   }
 
   setComponentState(componentName, obj) {
@@ -41,7 +40,6 @@ class ExampleStandard extends Component {
     return (
       <from className="interactive-playground">
         <fieldset className="playground-controls">
-          <legend><h2>TextField combinations</h2></legend>
           <ul>
             <li><input type="checkbox"
                        id="with-label"
@@ -98,6 +96,4 @@ class ExampleStandard extends Component {
   }
 }
 
-export default (props) =>
-  <ExampleStandard {...props}/>
-;
+export default ExampleStandard;
