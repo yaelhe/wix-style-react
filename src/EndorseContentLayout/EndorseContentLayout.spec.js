@@ -1,5 +1,5 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import {shallow} from 'enzyme';
 
 import EndorseContentLayout from './';
 import styles from './styles.scss';
@@ -32,7 +32,7 @@ describe('EndorseContentLayout', () => {
   it('should render children components from props', () => {
     componentsToRender
       .forEach(c => {
-        driver.when.created({ [c]: <div>hey hope you render</div> });
+        driver.when.created({[c]: <div>hey hope you render</div>});
         expect(driver.get[c]().text()).toBe('hey hope you render');
       });
   });
