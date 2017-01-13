@@ -34,7 +34,7 @@ export default class InteractiveCodeExample extends Component {
       <CodeExample
         title={this.props.title}
         code={this.state.code}
-        codeType="html"
+        codeType="django"
         autoExpand
         >
         {childrenWithOnChange}

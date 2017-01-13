@@ -9,7 +9,7 @@ export default class CodeBlock extends Component {
 
   static propTypes = {
     source: PropTypes.string,
-    type: PropTypes.oneOf(['js', 'html'])
+    type: PropTypes.string
   }
 
   static defaultProps = {
