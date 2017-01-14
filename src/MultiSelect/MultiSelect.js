@@ -1,179 +1,117 @@
-import React from 'react';
-import Autosuggest from 'react-autosuggest';
-import style from './multiSelect.scss';
-import ButtonsBar from './ButtonsBar';
-import TagsComponent from './TagsComponent';
-
-
-const noop = () => {
-};
-
-const DELETE_KEY_CODE = 46;
-const BACKSPACE_KEY_CODE = 8;
+import React, {PropTypes} from 'react';
+import InputWithOptions from '../InputWithOptions/InputWithOptions';
+import InputWithTags from './InputWithTags';
+import last from 'lodash.last';
+import omit from 'lodash.omit';
+import difference from 'lodash.difference';
+import uniqueId from 'lodash.uniqueid';
+import remove from 'lodash.remove';
 
 class MultiSelect extends React.Component {
-  static propTypes = {
-    onAddTag: React.PropTypes.func.isRequired,
-    onRemoveTag: React.PropTypes.func.isRequired,
-    displayNameProp: React.PropTypes.string,
-    tags: React.PropTypes.array.isRequired,
-    suggestions: React.PropTypes.array.isRequired,
-    onChangeInput: React.PropTypes.func.isRequired,
-    inputPlaceholder: React.PropTypes.string,
-    renderTag: React.PropTypes.func,
-    renderSuggestion: React.PropTypes.func.isRequired,
-    onDone: React.PropTypes.func.isRequired,
-    onCancel: React.PropTypes.func.isRequired,
-    theme: React.PropTypes.object,
-    multiSection: React.PropTypes.bool,
-    renderSectionTitle: React.PropTypes.func,
-    getSectionSuggestions: React.PropTypes.func
-  };
-
-  static defaultProps = {
-    displayNameProp: 'id',
-    inputPlaceholder: 'Add tag',
-    theme: style,
-    multiSection: false,
-  };
-
   constructor(props) {
     super(props);
-    this.state = {
-      inputValue: ''
-    };
+    this.onKeyDown = this.onKeyDown.bind(this);
+    this.onSelect = this.onSelect.bind(this);
+    this.onManuallyInput = this.onManuallyInput.bind(this);
   }
 
-  componentDidMount() {
-    this.autosuggestRef.input.focus();
+  getUnselectedOptions() {
+    const optionIds = this.props.options.map(option => option.id);
+    const tagIds = this.props.tags.map(tag => tag.id);
+    const unselectedOptionsIds = difference(optionIds, tagIds);
+    return this.props.options.filter(option => unselectedOptionsIds.includes(option.id));
   }
-
-  renderSuggestionsContainer = ({children, ...rest}) => {
-    const {theme} = this.props;
-    if (children) {
-      return (
-        <div {...rest}>
-          <div className={theme.shadeSeparatorTop}/>
-          <div className={style.scrollArea}>
-            {children}
-          </div>
-        </div>
-      );
-    } else {
-      return (<div data-hook="no-suggestions-message" className={theme.noSuggestions}>No search results</div>);
-    }
-  };
-
-  renderTagInputComponent = inputProps => {
-    const {renderTag, inputPlaceholder, theme, displayNameProp, tags} = this.props;
-    const shouldShowInputPlaceHolder = () => tags.length === 0;
-    return (
-      <div>
-        <div className={theme.flexContainer}>
-          <div className={theme.searchIcon}/>
-          <div
-            data-hook="tagsAndInputContainer"
-            className={theme.tagsAndInputContainer}
-            onKeyDown={this.handleOnKeyDown}
-            >
-            <TagsComponent
-              renderTag={renderTag}
-              tags={tags}
-              onRemove={this.handleOnRemoveTag}
-              tagDisplayProp={displayNameProp}
-              theme={theme}
-              />
-            <input
-              {...inputProps}
-              className={theme.inputField}
-              data-hook="autosuggest-input"
-              placeholder={shouldShowInputPlaceHolder() ? inputPlaceholder : ''}
-              />
-          </div>
-        </div>
-        <div className={theme.lineSeparator}/>
-      </div>
-    );
-  };
-
-  removeLastTag = () => {
-    const {tags} = this.props;
-    const removedTag = tags[tags.length - 1];
-    this.handleOnRemoveTag(removedTag);
-  };
-
-  handleOnDone = () => {
-    this.props.onDone();
-  };
-
-  handleOnCancel = () => {
-    this.props.onCancel();
-  };
-
-  onChangeAutoSuggest = (event, {newValue, method}) => {
-    const newState = {inputValue: newValue};
-    if (method === 'type') {
-      this.props.onChangeInput(newValue);
-    }
-    this.setState(newState);
-  };
-
-  handleOnKeyDown = e => {
-    const {inputValue} = this.state;
-
-    if ((e.keyCode === DELETE_KEY_CODE || e.keyCode === BACKSPACE_KEY_CODE) && inputValue.length === 0) {
-      this.removeLastTag();
-    }
-  };
-
-  handleOnRemoveTag = removedTag => {
-    this.props.onRemoveTag(removedTag);
-    this.autosuggestRef.input.focus();
-  };
-
-  handleOnSuggestionSelected = (event, {suggestion}) => {
-    this.props.onAddTag(suggestion);
-    this.setState({
-      inputValue: ''
-    });
-  };
-
-  setAutosuggestRef = autosuggestRef => {
-    this.autosuggestRef = autosuggestRef;
-  };
-
-  getSuggestionValue = suggestion => suggestion[this.props.displayNameProp];
-
 
   render() {
-    const {inputValue} = this.state;
-    const {theme, suggestions} = this.props;
-    const inputProps = {
-      value: inputValue,
-      onChange: this.onChangeAutoSuggest
-    };
+    const unselectedOptions = this.getUnselectedOptions();
+    const {id, predicate, ...otherProps} = this.props;
+    const desiredProps = omit(otherProps, ['options', 'onKeyDown', 'onSelect', 'onManuallyInput']);
 
     return (
-      <div className={theme.multiSelectContainer}>
-        <Autosuggest
-          {...this.props}
-          data-hook="autosuggest-component"
-          ref={this.setAutosuggestRef}
-          suggestions={suggestions}
-          getSuggestionValue={this.getSuggestionValue}
-          onSuggestionsFetchRequested={noop}
-          renderSuggestionsContainer={this.renderSuggestionsContainer}
-          renderInputComponent={this.renderTagInputComponent}
-          inputProps={inputProps}
-          onSuggestionSelected={this.handleOnSuggestionSelected}
-          alwaysRenderSuggestions
-          focusInputOnSuggestionClick
+      <div id={id} onClick={() => this.inputWithTags.input.focus()}>
+        <InputWithOptions
+          ref={inputWithTags => this.inputWithTags = inputWithTags}
+          customInput={<InputWithTags/>}
+          closeOnSelect={false}
+          options={unselectedOptions.filter(predicate)}
+          onKeyDown={this.onKeyDown}
+          onSelect={this.onSelect}
+          onManuallyInput={this.onManuallyInput}
+          {...desiredProps}
           />
-        <div className={theme.shadeSeparatorBottom}/>
-        <ButtonsBar onDone={this.handleOnDone} onCancel={this.handleOnCancel} theme={theme}/>
       </div>
     );
   }
+
+  onKeyDown(event) {
+    const {tags, value, onRemoveTag} = this.props;
+    if (tags.length > 0 && (event.key === 'Delete' || event.key === 'Backspace') && value.length === 0) {
+      onRemoveTag(last(tags).id);
+    }
+
+    if (this.props.onKeyDown) {
+      this.props.onKeyDown(event);
+    }
+  }
+
+  optionToTag({id, value, tag}) {
+    return tag ? {id, ...tag} : {id, label: value};
+  }
+
+  onSelect(option) {
+    if (this.props.onChange) {
+      this.props.onChange({target: {value: ''}});
+    }
+
+    if (this.props.onSelect) {
+      this.props.onSelect(this.optionToTag(option));
+    }
+
+    const updeatedOptions = this.getUnselectedOptions();
+    remove(updeatedOptions, option);
+    this.setState({unSelectedOptions: updeatedOptions});
+
+    this.inputWithTags.input.focus();
+  }
+
+  onManuallyInput(inputValue) {
+    if (!inputValue) {
+      this.inputWithTags.input.blur();
+      return;
+    }
+
+    if (this.props.onManuallyInput) {
+      this.props.onManuallyInput(this.optionToTag({id: uniqueId('customOption_'), value: inputValue}));
+    }
+
+    if (this.props.onChange) {
+      this.props.onChange({target: {value: ''}});
+    }
+  }
 }
+
+MultiSelect.propTypes = {
+  id: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number,
+  ]),
+  tags: PropTypes.array,
+  value: PropTypes.string,
+  options: PropTypes.array,
+  onRemoveTag: PropTypes.func,
+  onKeyDown: PropTypes.func,
+  onSelect: PropTypes.func,
+  onManuallyInput: PropTypes.func,
+  onChange: PropTypes.func,
+  predicate: PropTypes.func,
+};
+
+MultiSelect.defaultProps = {
+  onRemoveTag: () => {},
+  predicate: () => true,
+  tags: [],
+  value: '',
+  options: [],
+};
 
 export default MultiSelect;

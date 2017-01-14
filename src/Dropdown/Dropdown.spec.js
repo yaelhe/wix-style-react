@@ -1,9 +1,6 @@
 import _ from 'lodash/fp';
 import React from 'react';
 import {componentFactory, dropdownDriverFactory} from './testKit/Dropdown';
-import {runInputWithOptionsTest} from '../InputWithOptions/inputWithOptions.spec';
-
-runInputWithOptionsTest(dropdownDriverFactory);
 
 describe('Dropdown', () => {
 
@@ -37,4 +34,3 @@ describe('Dropdown', () => {
     expect(inputDriver.getReadOnly()).toBeTruthy();
   });
 });
-

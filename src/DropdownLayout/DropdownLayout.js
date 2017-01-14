@@ -176,7 +176,7 @@ class DropdownLayout extends React.Component {
     return (
       <div
         className={optionClassName}
-        onMouseDown={!disabled ? () => this._onSelect(idx) : null}
+        onClick={!disabled ? () => this._onSelect(idx) : null}
         key={idx}
         onMouseEnter={() => this._onMouseEnter(idx)}
         onMouseLeave={this._onMouseLeave}

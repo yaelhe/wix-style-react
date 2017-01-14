@@ -13,15 +13,11 @@ class InputWithOptions extends React.Component {
 
   constructor(props) {
     super(props);
-
-    this.state = {
-      showOptions: false,
-      inputValue: ''
-    };
+    this.state = {showOptions: false};
 
     this._onSelect = this._onSelect.bind(this);
     this._onFocus = this._onFocus.bind(this);
-    this._onBlur = this._onBlur.bind(this);
+    this._onChange = this._onChange.bind(this);
     this._onKeyDown = this._onKeyDown.bind(this);
     this.focus = this.focus.bind(this);
     this.blur = this.blur.bind(this);
@@ -33,11 +29,13 @@ class InputWithOptions extends React.Component {
 
   renderInput() {
     const {customInput} = this.props;
+
     const inputProps = Object.assign(omit(this.props, Object.keys(DropdownLayout.propTypes).concat(['onChange'])), this.inputAdditionalProps());
     if (customInput) {
       return React.cloneElement(customInput, {
         ref: input => this.input = input,
-        ...inputProps
+        ...inputProps,
+        onChange: this._onChange,
       });
     } else {
       return (
@@ -45,12 +43,7 @@ class InputWithOptions extends React.Component {
           menuArrow
           ref={input => this.input = input}
           {...inputProps}
-          onChange={event => {
-            this.setState({inputValue: event.target.value});
-            if (this.props.onChange) {
-              this.props.onChange(event);
-            }
-          }}
+          onChange={this._onChange}
           />
       );
     }
@@ -60,12 +53,12 @@ class InputWithOptions extends React.Component {
     const dropdownProps = Object.assign(omit(this.props, Object.keys(Input.propTypes)), this.dropdownAdditionalProps());
 
     return (
-      <div onBlur={this._onBlur}>
-        <div onKeyDown={this._onKeyDown} onFocus={this._onFocus} className={this.inputClasses()}>
+      <div>
+        <div onKeyDown={this._onKeyDown} onFocus={this._onFocus} onBlur={this.hideOptions} className={this.inputClasses()}>
           {this.renderInput()}
         </div>
 
-        <div className={this.dropdownClasses()}>
+        <div className={this.dropdownClasses()} onFocus={this._onFocus}>
           <DropdownLayout
             ref={dropdownLayout => this.dropdownLayout = dropdownLayout}
             {...dropdownProps}
@@ -80,6 +73,7 @@ class InputWithOptions extends React.Component {
 
   hideOptions() {
     this.setState({showOptions: false});
+    this.input.blur();
   }
 
   showOptions() {
@@ -87,18 +81,21 @@ class InputWithOptions extends React.Component {
   }
 
   _onManuallyInput() {
-    this.hideOptions();
+    if (this.props.closeOnSelect) {
+      this.hideOptions();
+    }
 
     if (this.props.onManuallyInput) {
-      this.props.onManuallyInput(this.state.inputValue);
+      this.props.onManuallyInput(this.props.value);
     }
   }
 
   _onSelect(option) {
+    this.showOptions();
     const {onSelect, closeOnSelect} = this.props;
 
     if (closeOnSelect) {
-      this._onBlur();
+      this.hideOptions();
     }
 
     if (onSelect) {
@@ -106,12 +103,17 @@ class InputWithOptions extends React.Component {
     }
   }
 
-  _onBlur() {
-    this.hideOptions();
+  _onChange(event) {
+    if (this.props.onChange) {
+      this.props.onChange(event);
+    }
   }
 
   _onFocus() {
     this.showOptions();
+    if (this.props.onFocus) {
+      this.props.onFocus();
+    }
   }
 
   _onKeyDown(event) {

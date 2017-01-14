@@ -1,9 +1,6 @@
 import _ from 'lodash/fp';
 import React from 'react';
 import {componentFactory, autocompleteDriverFactory} from './testKit/Autocomplete';
-import {runInputWithOptionsTest} from '../InputWithOptions/inputWithOptions.spec';
-
-runInputWithOptionsTest(autocompleteDriverFactory);
 
 describe('Autocomplete', () => {
 
@@ -31,4 +28,3 @@ describe('Autocomplete', () => {
     expect(dropdownLayoutDriver.optionsLength()).toBe(2);
   });
 });
-

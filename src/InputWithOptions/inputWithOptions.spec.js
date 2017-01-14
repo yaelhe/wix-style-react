@@ -60,10 +60,24 @@ const runInputWithOptionsTest = driverFactory => {
 
     it('should call onManuallyInput on enter key press', () => {
       const onManuallyInput = jest.fn();
-      const {driver, inputDriver} = createDriver({options, onManuallyInput});
-      inputDriver.enterText('my text');
+      const {driver} = createDriver({options, onManuallyInput});
+      driver.setProps({options, onManuallyInput, value: 'my text'});
       driver.pressEnterKey();
       expect(onManuallyInput).toBeCalledWith('my text');
+    });
+
+    it('should hide options on selection by default', () => {
+      const {driver, dropdownLayoutDriver} = createDriver({options});
+      driver.focus();
+      dropdownLayoutDriver.clickAtOption(0);
+      expect(dropdownLayoutDriver.isShown()).toBeFalsy();
+    });
+
+    it('should not hide options on selection', () => {
+      const {driver, dropdownLayoutDriver} = createDriver({options, closeOnSelect: false});
+      driver.focus();
+      dropdownLayoutDriver.clickAtOption(0);
+      expect(dropdownLayoutDriver.isShown()).toBeTruthy();
     });
 
     it('should call onSelect when an option is pressed', () => {
@@ -72,6 +86,13 @@ const runInputWithOptionsTest = driverFactory => {
       driver.focus();
       dropdownLayoutDriver.clickAtOption(0);
       expect(onSelect).toBeCalledWith({id: 0, value: 'Option 1'});
+    });
+
+    it('should call onFocus', () => {
+      const onFocus = jest.fn();
+      const {driver} = createDriver({options, onFocus});
+      driver.focus();
+      expect(onFocus).toBeCalled();
     });
   });
 };
