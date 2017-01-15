@@ -11,6 +11,10 @@ const breadcrumbsDriverFactory = ({component, wrapper}) => {
   return {
     breadcrumbContentAt: position => optionAt(position).textContent,
     clickBreadcrumbAt: position => ReactTestUtils.Simulate.click(optionAt(position)),
+    getActiveItemId: () => {
+      const activeItem = component.querySelector('.active');
+      return Array.from(activeItem.parentNode.children).indexOf(activeItem);
+    },
     isLarge: () => isClassExists(component, 'large'),
     isMedium: () => isClassExists(component, 'medium'),
     isOnWhiteBackground: () => isClassExists(component, 'onWhiteBackground'),
