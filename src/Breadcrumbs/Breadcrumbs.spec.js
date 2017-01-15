@@ -48,4 +48,10 @@ describe('Breadcrumbs', () => {
     const driver = createDriver({onClick, items});
     expect(driver.isOnGrayBackground()).toBe(true);
   });
+
+  it('should get active id from props and have correct class', () => {
+    const itemIndex = 1;
+    const driver = createDriver({onClick, items, activeId: items[itemIndex].id});
+    expect(driver.getActiveItemId()).toBe(itemIndex);
+  });
 });

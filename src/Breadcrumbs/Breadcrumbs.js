@@ -4,7 +4,7 @@ import classNames from 'classnames';
 
 class Breadcrumbs extends React.Component {
   render() {
-    const {items, onClick, size, theme} = this.props;
+    const {items, onClick, size, theme, activeId} = this.props;
 
     const className = classNames({
       [styles[size]]: true,
@@ -15,7 +15,10 @@ class Breadcrumbs extends React.Component {
       <div className={className}>
         <div data-hook="breadcrumbs-items">
           {items.map(item => {
-            return (<div key={item.id} onClick={() => onClick(item.id)}>{item.value}</div>);
+            const activeClassName = classNames({
+              [styles.active]: activeId === item.id
+            });
+            return (<div key={item.id} onClick={() => onClick(item.id)} className={activeClassName}>{item.value}</div>);
           })}
         </div>
       </div>
@@ -35,6 +38,10 @@ Breadcrumbs.propTypes = {
     ]).isRequired
   })).isRequired,
   onClick: React.PropTypes.func,
+  activeId: React.PropTypes.oneOfType([
+    React.PropTypes.string,
+    React.PropTypes.number
+  ]),
   size: React.PropTypes.oneOf(['medium', 'large']),
   theme: React.PropTypes.oneOf(['onWhiteBackground', 'onGrayBackground', 'onDarkBackground']),
 };
