@@ -1,19 +1,26 @@
 import React, {Component, PropTypes} from 'react';
+
 import Markdown from '../Markdown';
 
-const toCodeBlock = str => `\`\`\`js\n${str}\`\`\``;
+const toCodeBlock = (code, type = 'js') =>
+  ['```' + type, code.trim(), '```'].join('\n');
 
 export default class CodeBlock extends Component {
+
   static propTypes = {
-    source: PropTypes.string
-  };
+    source: PropTypes.string,
+    type: PropTypes.string
+  }
+
+  static defaultProps = {
+    type: 'js'
+  }
 
   render() {
-    const source = toCodeBlock(this.props.source);
-
+    const {source, type} = this.props;
     return (
       <div>
-        <Markdown source={source}/>
+        <Markdown source={toCodeBlock(source, type)}/>
       </div>
     );
   }
