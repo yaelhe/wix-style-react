@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import ReactTestUtils from 'react-addons-test-utils';
 import Breadcrumbs from '../Breadcrumbs';
 
 const breadcrumbsDriverFactory = ({component, wrapper}) => {
@@ -8,6 +9,7 @@ const breadcrumbsDriverFactory = ({component, wrapper}) => {
 
   return {
     breadcrumbContentAt: position => optionAt(position).textContent,
+	clickBreadcrumbAt: position => ReactTestUtils.Simulate.click(optionAt(position)),
     setProps: props => {
       ReactDOM.render(<div ref={r => component = r}><Breadcrumbs {...props}/></div>, wrapper);
     }

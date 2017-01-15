@@ -7,12 +7,12 @@ class Breadcrumbs extends React.Component {
   }
 
   render() {
-    const {items} = this.props;
+    const {items, onClick} = this.props;
     return (
       <div>
         <div data-hook="breadcrumbs-items">
           {items.map(item => {
-            return (<div>{item.value}</div>)
+            return (<div key={item.id} onClick={() => onClick(item.id)}>{item.value}</div>)
           })}
         </div>
       </div>
@@ -30,7 +30,8 @@ Breadcrumbs.propTypes = {
       React.PropTypes.node,
       React.PropTypes.string
     ]).isRequired
-  }))
+  })),
+	onClick: React.PropTypes.func
 };
 
 export default Breadcrumbs;
