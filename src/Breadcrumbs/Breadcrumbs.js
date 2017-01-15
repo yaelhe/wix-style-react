@@ -1,10 +1,18 @@
 import React from 'react';
+import styles from './Breadcrumbs.scss';
+import classNames from 'classnames';
 
 class Breadcrumbs extends React.Component {
   render() {
-    const {items, onClick, size, style} = this.props;
+    const {items, onClick, size, theme} = this.props;
+
+    const className = classNames({
+      [styles[size]]: true,
+      [styles[theme]]: true
+    });
+
     return (
-      <div className={`${size} ${style}`}>
+      <div className={className}>
         <div data-hook="breadcrumbs-items">
           {items.map(item => {
             return (<div key={item.id} onClick={() => onClick(item.id)}>{item.value}</div>);
@@ -26,13 +34,14 @@ Breadcrumbs.propTypes = {
       React.PropTypes.string
     ]).isRequired
   })).isRequired,
-  onClick: React.PropTypes.func.isRequired,
+  onClick: React.PropTypes.func,
   size: React.PropTypes.oneOf(['normal', 'large']),
-  style: React.PropTypes.oneOf(['onWhiteBackground', 'onGrayBackground', 'onDarkBackground']),
+  theme: React.PropTypes.oneOf(['onWhiteBackground', 'onGrayBackground', 'onDarkBackground']),
 };
 
 Breadcrumbs.defaultProps = {
-  style: 'onGrayBackground'
+  size: 'normal',
+  theme: 'onGrayBackground'
 };
 
 export default Breadcrumbs;

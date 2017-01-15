@@ -38,13 +38,13 @@ describe('Breadcrumbs', () => {
     expect(driver.isLarge()).toBe(false);
   });
 
-  it('should get style from props', () => {
-    const style = 'onWhiteBackground';
-    const driver = createDriver({onClick, items, style});
+  it('should get theme from props', () => {
+    const theme = 'onWhiteBackground';
+    const driver = createDriver({onClick, items, theme});
     expect(driver.isOnWhiteBackground()).toBe(true);
   });
 
-  it('should use default style gray background', () => {
+  it('should use default theme gray background', () => {
     const driver = createDriver({onClick, items});
     expect(driver.isOnGrayBackground()).toBe(true);
   });
