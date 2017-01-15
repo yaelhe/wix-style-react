@@ -7,9 +7,9 @@ class Breadcrumbs extends React.Component {
   }
 
   render() {
-    const {items, onClick} = this.props;
+    const {items, onClick, size} = this.props;
     return (
-      <div>
+      <div className={size}>
         <div data-hook="breadcrumbs-items">
           {items.map(item => {
             return (<div key={item.id} onClick={() => onClick(item.id)}>{item.value}</div>)
@@ -30,8 +30,9 @@ Breadcrumbs.propTypes = {
       React.PropTypes.node,
       React.PropTypes.string
     ]).isRequired
-  })),
-	onClick: React.PropTypes.func
+  })).isRequired,
+	onClick: React.PropTypes.func.isRequired,
+	size: React.PropTypes.oneOf(['normal', 'large'])
 };
 
 export default Breadcrumbs;
