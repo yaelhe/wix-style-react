@@ -12,6 +12,7 @@ const breadcrumbsDriverFactory = ({component, wrapper}) => {
     breadcrumbContentAt: position => optionAt(position).textContent,
     clickBreadcrumbAt: position => ReactTestUtils.Simulate.click(optionAt(position)),
     isLarge: () => isClassExists(component, 'large'),
+    isMedium: () => isClassExists(component, 'medium'),
     isOnWhiteBackground: () => isClassExists(component, 'onWhiteBackground'),
     isOnGrayBackground: () => isClassExists(component, 'onGrayBackground'),
     setProps: props => {
