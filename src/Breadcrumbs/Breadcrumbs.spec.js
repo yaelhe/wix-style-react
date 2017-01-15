@@ -33,9 +33,9 @@ describe('Breadcrumbs', () => {
     expect(driver.isLarge()).toBe(true);
   });
 
-  it('should use regular size as default', () => {
+  it('should use medium size as default', () => {
     const driver = createDriver({onClick, items});
-    expect(driver.isLarge()).toBe(false);
+    expect(driver.isMedium()).toBe(true);
   });
 
   it('should get theme from props', () => {

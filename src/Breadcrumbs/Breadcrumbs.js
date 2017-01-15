@@ -35,12 +35,12 @@ Breadcrumbs.propTypes = {
     ]).isRequired
   })).isRequired,
   onClick: React.PropTypes.func,
-  size: React.PropTypes.oneOf(['normal', 'large']),
+  size: React.PropTypes.oneOf(['medium', 'large']),
   theme: React.PropTypes.oneOf(['onWhiteBackground', 'onGrayBackground', 'onDarkBackground']),
 };
 
 Breadcrumbs.defaultProps = {
-  size: 'normal',
+  size: 'medium',
   theme: 'onGrayBackground'
 };
 
