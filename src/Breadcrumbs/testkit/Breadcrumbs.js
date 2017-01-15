@@ -12,6 +12,7 @@ const breadcrumbsDriverFactory = ({component, wrapper}) => {
 		breadcrumbContentAt: position => optionAt(position).textContent,
 		clickBreadcrumbAt: position => ReactTestUtils.Simulate.click(optionAt(position)),
 		isLarge: () => isClassExists(component, 'large'),
+		isOnWhiteBackground: () => isClassExists(component, 'onWhiteBackground'),
 		setProps: props => {
 			ReactDOM.render(<div ref={r => component = r}><Breadcrumbs {...props}/></div>, wrapper);
 		}

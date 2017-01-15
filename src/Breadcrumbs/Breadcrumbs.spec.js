@@ -31,7 +31,17 @@ describe('Breadcrumbs', () => {
   it('should get correct size from props', () => {
   	const size = 'large';
 	  const driver = createDriver({onClick, items, size});
-	  
 	  expect(driver.isLarge()).toBe(true);
+  });
+  
+  it('should use regular size as default', () => {
+	  const driver = createDriver({onClick, items});
+	  expect(driver.isLarge()).toBe(false);
+  });
+  
+  it('should get style from props', () => {
+  	const style = 'onWhiteBackground';
+	  const driver = createDriver({onClick, items, style});
+	  expect(driver.isOnWhiteBackground()).toBe(true);
   });
 });
