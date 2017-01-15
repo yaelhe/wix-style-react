@@ -10,9 +10,9 @@ class ButtonSelection extends React.Component {
   }
 
   render() {
-    const {value, buttonsNames, onChange, id} = this.props;
+    const {value, buttonsNames, onChange, dataHook} = this.props;
     return (
-      <div id={id} className={s.buttonsComplex}>
+      <div data-hook={dataHook} className={s.buttonsComplex}>
         {
           buttonsNames.map(buttonName =>
             <span
@@ -37,7 +37,7 @@ ButtonSelection.propTypes = {
   buttonsNames: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
   onChange: PropTypes.func.isRequired,
   value: PropTypes.string,
-  id: PropTypes.string
+  dataHook: PropTypes.string
 };
 
 ButtonSelection.displayName = 'ButtonSelection';
