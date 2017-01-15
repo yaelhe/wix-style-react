@@ -36,4 +36,8 @@ Breadcrumbs.propTypes = {
 	style: React.PropTypes.oneOf(['onWhiteBackground', 'onGrayBackground', 'onDarkBackground']),
 };
 
+Breadcrumbs.defaultProps = {
+  style: 'onGrayBackground'
+};
+
 export default Breadcrumbs;

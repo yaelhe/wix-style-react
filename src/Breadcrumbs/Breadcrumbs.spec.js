@@ -44,4 +44,9 @@ describe('Breadcrumbs', () => {
 	  const driver = createDriver({onClick, items, style});
 	  expect(driver.isOnWhiteBackground()).toBe(true);
   });
+
+  it('should use default style gray background', () => {
+    const driver = createDriver({onClick, items});
+    expect(driver.isOnGrayBackground()).toBe(true);
+  });
 });
