@@ -35,7 +35,7 @@
 }
 
 .onDarkBackground {
-  @include breadcrumbs($D60, $D10);
+  @include breadcrumbs($D60, rgba(255, 255, 255, .1));
 }
 
 .item:not(.active) {
