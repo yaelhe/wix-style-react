@@ -9,7 +9,8 @@
 }
 
 .onWhiteBackground {
-  color: black;
+  .item:not(.active):hover {
+  }
 }
 
 .onGrayBackground {
@@ -20,6 +21,6 @@
   color: white;
 }
 
-.active {
-  color: blue;
+.item:not(.active) {
+  cursor: pointer;
 }
