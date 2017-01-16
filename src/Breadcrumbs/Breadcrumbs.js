@@ -2,8 +2,9 @@ import React from 'react';
 import styles from './Breadcrumbs.scss';
 import classNames from 'classnames';
 import {Label} from 'wix-style-react';
+import WixComponent from '../WixComponent';
 
-class Breadcrumbs extends React.Component {
+class Breadcrumbs extends WixComponent {
   render() {
     const {items, onClick, size, theme, activeId} = this.props;
 
