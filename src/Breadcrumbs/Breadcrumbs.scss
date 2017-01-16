@@ -1,24 +1,41 @@
 @import '../common.scss';
 
-.large {
-  font-size: 20px;
-}
-
-.medium {
-  font-size: 12px;
-}
-
-.onWhiteBackground {
-  .item:not(.active):hover {
+@mixin breadcrumbs($hoverTextColor, $hoverBackgroundColor) {
+  .item:hover:not(.active) {
+    border-radius: 100px;
+    color: $hoverTextColor;
+    background-color: $hoverBackgroundColor;
   }
 }
 
+.item {
+  @include FontLight();
+  font-weight: 300;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.5;
+}
+
+.large {
+  height: 24px;
+  font-size: 16px;
+}
+
+.medium {
+  height: 18px;
+  font-size: 14px;
+}
+
+.onWhiteBackground {
+  @include breadcrumbs($D30, $B40);
+}
+
 .onGrayBackground {
-  color: black;
+  @include breadcrumbs($D30, $D80);
 }
 
 .onDarkBackground {
-  color: white;
+  @include breadcrumbs($D60, $D10);
 }
 
 .item:not(.active) {

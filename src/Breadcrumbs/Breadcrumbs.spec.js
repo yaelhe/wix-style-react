@@ -54,4 +54,28 @@ describe('Breadcrumbs', () => {
     const driver = createDriver({onClick, items, activeId: items[itemIndex].id});
     expect(driver.getActiveItemId()).toBe(itemIndex);
   });
+
+  describe('label appearance', () => {
+    it('should have t3 appearance when onWhiteBackground style', () => {
+      const theme = 'onWhiteBackground';
+      const itemIndex = 1;
+      const driver = createDriver({onClick, items, theme});
+      expect(driver.getLabelClassList(itemIndex)).toContain('t3');
+    });
+
+    it('should have t3 appearance when onGrayBackground style', () => {
+      const theme = 'onGrayBackground';
+      const itemIndex = 1;
+      const driver = createDriver({onClick, items, theme});
+      expect(driver.getLabelClassList(itemIndex)).toContain('t3');
+    });
+
+    it('should have t3.2 appearance when onDarkBackground style', () => {
+      const theme = 'onDarkBackground';
+      const itemIndex = 1;
+      const driver = createDriver({onClick, items, theme});
+      expect(driver.getLabelClassList(itemIndex)).toContain('t3_2');
+    });
+  });
+
 });
