@@ -13,15 +13,15 @@ class Breadcrumbs extends React.Component {
 
     return (
       <div className={className}>
-        <div data-hook="breadcrumbs-items">
+        <ul data-hook="breadcrumbs-items">
           {items.map(item => {
             const activeClassName = classNames({
               [styles.active]: activeId === item.id,
               [styles.item]: true
             });
-            return (<div key={item.id} onClick={() => onClick(item.id)} className={activeClassName}>{item.value}</div>);
+            return (<li key={item.id} onClick={() => onClick(item.id)} className={activeClassName}>{item.value}</li>);
           })}
-        </div>
+        </ul>
       </div>
     );
   }
