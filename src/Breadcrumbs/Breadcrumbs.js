@@ -16,7 +16,8 @@ class Breadcrumbs extends React.Component {
         <div data-hook="breadcrumbs-items">
           {items.map(item => {
             const activeClassName = classNames({
-              [styles.active]: activeId === item.id
+              [styles.active]: activeId === item.id,
+              [styles.item]: true
             });
             return (<div key={item.id} onClick={() => onClick(item.id)} className={activeClassName}>{item.value}</div>);
           })}
