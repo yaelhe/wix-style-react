@@ -35,7 +35,7 @@ storiesOf('6. Common', module)
 				<p>
 					Breadcrumbs
 				</p>
-				<Breadcrumbs items={[{id: '1', value: 'first item'}]} onClick={() => alert('hello')} size={'large'}/>
+				<Breadcrumbs items={[{id: '1', value: 'first item'}, {id: '2', value: 'second item'}]} activeId={'2'} onClick={() => alert('hello')} size={'large'}/>
 			</CodeExample>
 		</div>
 	));
