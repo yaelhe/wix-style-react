@@ -1,5 +1,5 @@
 import React from 'react';
-import breadcrumbsDriverFactory from './breadcrumbs.driver';
+import breadcrumbsDriverFactory from './Breadcrumbs.driver';
 import {createDriverFactory} from '../test-common';
 import {breadcrumbsTestkitFactory} from '../../testkit';
 import Breadcrumbs from './Breadcrumbs';
