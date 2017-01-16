@@ -25,7 +25,9 @@ class Breadcrumbs extends React.Component {
             });
             return (
               <li key={item.id} onClick={() => onClick(item.id)} className={itemClassName}>
-                <Label appearance={appearance}>{item.value}</Label>
+                <div className={styles.label}>
+                  <Label appearance={appearance}>{item.value}</Label>
+                </div>
               </li>
             );
           })}

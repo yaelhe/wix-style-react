@@ -18,15 +18,6 @@ class ExampleStandard extends Component {
 		direction: 'ltr'
 	};
 	
-	setComponentState(componentName, obj) {
-		this.setState(prevState => {
-			prevState[componentName] = {...this.state[componentName], ...obj};
-			Object.keys(prevState[componentName])
-					.forEach(k => !prevState[componentName][k] && delete prevState[componentName][k]);
-			return prevState;
-		});
-	}
-	
 	render() {
 		return (
 				<from className={styles.form}>
