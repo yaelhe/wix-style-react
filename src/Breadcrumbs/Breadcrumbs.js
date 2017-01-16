@@ -14,7 +14,12 @@ class Breadcrumbs extends WixComponent {
       [styles.breadcrumbs]: true
     });
 
-    const appearance = theme === 'onDarkBackground' ? 'T3.2' : 'T3';
+    let appearance;
+    if (size === 'medium') {
+      appearance = theme === 'onDarkBackground' ? 'T3.2' : 'T3';
+    } else {
+      appearance = theme === 'onDarkBackground' ? 'T1.2' : 'T1';
+    }
 
     return (
       <div className={className}>
