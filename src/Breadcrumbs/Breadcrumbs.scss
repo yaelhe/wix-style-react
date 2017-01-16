@@ -27,7 +27,6 @@
 
 .item {
 	display: inline-block;
-
 	& + .item:before {
 		//change to arrow icon
 		content: 'arrow';
