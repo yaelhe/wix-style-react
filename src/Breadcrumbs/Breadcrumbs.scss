@@ -45,6 +45,22 @@
 .item {
 	display: inline-block;
 	& + .item:before {
-		content: 'arrow';
+		content: '';
+		background: url('../assets/arrow-right-icon.svg') no-repeat;
+		width: 6px;
+		height: 14px;
+		display: inline-block;
+	}
+}
+
+:global(.rtl) {
+	.breadcrumbs {
+		direction: rtl;
+	}
+
+	.item {
+		& + .item:before {
+			background: url('../assets/arrow-left-icon.svg') no-repeat;
+		}
 	}
 }
