@@ -1,6 +1,7 @@
 import React from 'react';
 import styles from './Breadcrumbs.scss';
 import classNames from 'classnames';
+import {Label} from 'wix-style-react';
 
 class Breadcrumbs extends React.Component {
   render() {
@@ -11,15 +12,21 @@ class Breadcrumbs extends React.Component {
       [styles[theme]]: true
     });
 
+    const appearance = theme === 'onDarkBackground' ? 'T3.2' : 'T3';
+
     return (
       <div className={className}>
         <ul data-hook="breadcrumbs-items">
           {items.map(item => {
-            const activeClassName = classNames({
+            const itemClassName = classNames({
               [styles.active]: activeId === item.id,
               [styles.item]: true
             });
-            return (<li key={item.id} onClick={() => onClick(item.id)} className={activeClassName}>{item.value}</li>);
+            return (
+              <li key={item.id} onClick={() => onClick(item.id)} className={itemClassName}>
+                <Label appearance={appearance}>{item.value}</Label>
+              </li>
+            );
           })}
         </ul>
       </div>

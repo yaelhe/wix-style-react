@@ -19,6 +19,7 @@ const breadcrumbsDriverFactory = ({component, wrapper}) => {
     isMedium: () => isClassExists(component, 'medium'),
     isOnWhiteBackground: () => isClassExists(component, 'onWhiteBackground'),
     isOnGrayBackground: () => isClassExists(component, 'onGrayBackground'),
+    getLabelClassList: position => optionAt(position).querySelector('label').className,
     setProps: props => {
       ReactDOM.render(<div ref={r => component = r}><Breadcrumbs {...props}/></div>, wrapper);
     }
