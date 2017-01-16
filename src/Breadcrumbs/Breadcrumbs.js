@@ -10,7 +10,7 @@ class Breadcrumbs extends React.Component {
     const className = classNames({
       [styles[size]]: true,
       [styles[theme]]: true,
-	    [styles.breadcrumbs]: true
+      [styles.breadcrumbs]: true
     });
 
     const appearance = theme === 'onDarkBackground' ? 'T3.2' : 'T3';
