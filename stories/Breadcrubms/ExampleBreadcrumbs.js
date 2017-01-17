@@ -15,7 +15,7 @@ class ExampleStandard extends Component {
 	state = {
 		size: 'medium',
 		theme: 'onGrayBackground',
-		direction: 'ltr'
+    activeId: '3'
 	};
 	
 	render() {
@@ -49,22 +49,23 @@ class ExampleStandard extends Component {
 								</RadioGroup>
 							</div>
 						</div>
-						<div className={styles.option}>
-							<Label>Direction</Label>
-							<div className={styles.flex}>
-								<RadioGroup
-										display="horizontal"
-										value={this.state.direction}
-										onChange={direction => this.setState({direction})}
-								>
-									<RadioGroup.Radio value="ltr">Left to right</RadioGroup.Radio>
-									<RadioGroup.Radio value="rtl">Right to left</RadioGroup.Radio>
-								</RadioGroup>
-							</div>
-						</div>
+            <div className={styles.option}>
+              <Label>Active element</Label>
+              <div className={styles.flex}>
+                <RadioGroup
+                    display="horizontal"
+                    value={this.state.activeId}
+                    onChange={activeId => this.setState({activeId})}
+                >
+                  <RadioGroup.Radio value="1">1</RadioGroup.Radio>
+                  <RadioGroup.Radio value="2">2</RadioGroup.Radio>
+                  <RadioGroup.Radio value="3">3</RadioGroup.Radio>
+                </RadioGroup>
+              </div>
+            </div>
 					</div>
 					<div className={styles.output}>
-						<div className={`${styles[this.state.theme]} ${styles.exampleWrapper} ${this.state.direction}`}>
+						<div className={`${styles[this.state.theme]} ${styles.exampleWrapper}`}>
 							<BreadcrumbsTemplate {...this.state} onChange={this.props.onChange}/>
 						</div>
 					</div>
