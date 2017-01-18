@@ -1,7 +1,10 @@
+@import '../../src/common.scss';
+
 .columnn-content {
 	background: transparentize(#fac249, .2);
 }
 
-.mainContent {
-	background-color: transparentize(#50e3c2, .3);
+.example-container {
+	background: $D70;
+	padding: 30px 48px;
 }
