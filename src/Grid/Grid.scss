@@ -11,6 +11,15 @@
 @import 'bootstrap-sass/assets/stylesheets/bootstrap/mixins/grid.scss';
 @import 'bootstrap-sass/assets/stylesheets/bootstrap/grid.scss';
 
+.container {
+	padding: 0;
+	width: 100%;
+
+	* {
+		box-sizing: border-box;
+	}
+}
+
 .main-container {
 	min-width: 894px;
 	max-width: 1254px;
