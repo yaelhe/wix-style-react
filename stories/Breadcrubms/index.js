@@ -28,42 +28,42 @@ import ExampleWithChosenActiveElement from '../Breadcrubms/ExampleWithChosenActi
 
 
 storiesOf('6. Common', module)
-	.add('6.4 Breadcrumbs', () => (
-		<div>
-			<Markdown source={Readme}/>
-			<InteractiveCodeExample title="Customize a <Breadcrumbs/>">
-				<ExampleBreadcrumbs/>
-			</InteractiveCodeExample>
-		</div>
-	));
+  .add('6.4 Breadcrumbs', () => (
+    <div>
+      <Markdown source={Readme}/>
+      <InteractiveCodeExample title="Customize a <Breadcrumbs/>">
+        <ExampleBreadcrumbs/>
+      </InteractiveCodeExample>
+    </div>
+  ));
 
 storiesOf('2. Switches', module)
-    .add('2.5 Breadcrumbs', () => (
-        <div>
-          <Markdown source={Readme}/>
-          <h1>Breadcrumbs component</h1>
-          <CodeExample title="Standard" code={ExampleStandardRow}>
-            <ExampleStandard/>
-          </CodeExample>
-  
-          <CodeExample title="Sizes" code={ExampleSizesRow}>
-            <ExampleSizes/>
-          </CodeExample>
-  
-          <CodeExample title="Themes" code={ExampleThemesRow}>
-            <ExampleThemes/>
-          </CodeExample>
-  
-          <CodeExample title="Html node items" code={ExampleWithNodesRow}>
-            <ExampleWithNodes/>
-          </CodeExample>
-  
-          <CodeExample title="On click callback" code={ExampleWithOnClickRow}>
-            <ExampleWithOnClick/>
-          </CodeExample>
-  
-          <CodeExample title="Chosen active element" code={ExampleWithChosenActiveElementRaw}>
-            <ExampleWithChosenActiveElement/>
-          </CodeExample>
-        </div>
-    ));
+  .add('2.5 Breadcrumbs', () => (
+    <div>
+      <Markdown source={Readme}/>
+      <h1>Breadcrumbs component</h1>
+      <CodeExample title="Standard" code={ExampleStandardRow}>
+        <ExampleStandard/>
+      </CodeExample>
+
+      <CodeExample title="Sizes" code={ExampleSizesRow}>
+        <ExampleSizes/>
+      </CodeExample>
+
+      <CodeExample title="Themes" code={ExampleThemesRow}>
+        <ExampleThemes/>
+      </CodeExample>
+
+      <CodeExample title="Html node items" code={ExampleWithNodesRow}>
+        <ExampleWithNodes/>
+      </CodeExample>
+
+      <CodeExample title="On click callback" code={ExampleWithOnClickRow}>
+        <ExampleWithOnClick/>
+      </CodeExample>
+
+      <CodeExample title="Chosen active element" code={ExampleWithChosenActiveElementRaw}>
+        <ExampleWithChosenActiveElement/>
+      </CodeExample>
+    </div>
+  ));
