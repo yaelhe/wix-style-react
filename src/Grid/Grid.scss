@@ -1,0 +1,18 @@
+//@import 'foundation-sites/scss/global.scss';
+//@import 'foundation-sites/scss/grid/grid.scss';
+//@import 'foundation-sites/scss/util/mixins.scss';
+//@import 'foundation-sites/scss/util/unit.scss';
+//@import 'foundation-sites/scss/util/breakpoint.scss';
+//
+//@include foundation-grid();
+@import 'bootstrap-sass/assets/stylesheets/bootstrap/variables.scss';
+@import 'bootstrap-sass/assets/stylesheets/bootstrap/mixins/clearfix.scss';
+@import 'bootstrap-sass/assets/stylesheets/bootstrap/mixins/grid-framework.scss';
+@import 'bootstrap-sass/assets/stylesheets/bootstrap/mixins/grid.scss';
+@import 'bootstrap-sass/assets/stylesheets/bootstrap/grid.scss';
+
+.main-container {
+	min-width: 894px;
+	max-width: 1254px;
+}
+
