@@ -5,7 +5,7 @@ import card from '../../src/Card'
 import styles from './ExampleGrid.scss'
 
 export default () =>
-<div className={styles.exampleContainer}>
+<div data-hook="card-example" className={styles.exampleContainer}>
   <div className={`${grid.container} ${grid.mainContainer}`}>
     <div className={grid.row}>
       <div className={grid.colXs8}>
