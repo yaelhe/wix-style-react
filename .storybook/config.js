@@ -35,7 +35,7 @@ function loadStories() {
 	require('../stories/Breadcrubms');
   require('../stories/EndorseContentLayout');
   require('../stories/Icons');
-  require('../stories/ContainerWithCardLayout');
+  require('../stories/GridWithCardLayout');
 }
 
 configure(loadStories, module);
