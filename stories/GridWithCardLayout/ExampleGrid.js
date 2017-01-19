@@ -34,9 +34,6 @@ export default () =>
               <div className={card.title}>
                 Header with Divider
               </div>
-              <div className={card.subtitle}>
-                Subtitle
-              </div>
             </div>
             <div className={card.content}>
               <div className={grid.row}>
@@ -106,6 +103,9 @@ export default () =>
             <div className={card.header}>
               <div className={card.title}>
                 Main card
+              </div>
+              <div className={card.subtitle}>
+                Subtitle
               </div>
             </div>
             <div className={card.content}>
