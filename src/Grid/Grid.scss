@@ -9,22 +9,22 @@ $main-container-max-width: 1254px;
 $grid-row-margin-bottom: 30px;
 
 .container {
-  padding: 0;
-  width: 100%;
+	padding: 0;
+	width: 100%;
 
-  * {
-    box-sizing: border-box;
-  }
+	* {
+		box-sizing: border-box;
+	}
 
 	.row:not(:last-child) {
-			margin-bottom: $grid-row-margin-bottom;
-		}
+		margin-bottom: $grid-row-margin-bottom;
+	}
 }
 
 .wix-container {
-  @extend .container;
+	@extend .container;
 
-  min-width: $main-container-min-width;
-  max-width: $main-container-max-width;
+	min-width: $main-container-min-width;
+	max-width: $main-container-max-width;
 }
 
