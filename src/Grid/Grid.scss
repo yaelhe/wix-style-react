@@ -6,6 +6,7 @@
 
 $main-container-min-width: 894px;
 $main-container-max-width: 1254px;
+$grid-row-margin-bottom: 30px;
 
 .container {
   padding: 0;
@@ -14,6 +15,10 @@ $main-container-max-width: 1254px;
   * {
     box-sizing: border-box;
   }
+
+	.row:not(:last-child) {
+			margin-bottom: $grid-row-margin-bottom;
+		}
 }
 
 .wix-container {
