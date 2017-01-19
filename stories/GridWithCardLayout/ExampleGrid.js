@@ -26,13 +26,13 @@ function renderStandardInput() {
 
 export default () =>
   <div data-hook="card-example" className={styles.exampleContainer}>
-    <div className={`${grid.container} ${grid.wixContainer}`}>
+    <div className={`${grid.wixContainer}`}>
       <div className={grid.row}>
         <div className={grid.colXs8}>
           <div className={card.card}>
-            <div className={card.header}>
+            <div className={`${card.header} ${card.withDivider}`}>
               <div className={card.title}>
-                Main Card
+                Header with Divider
               </div>
               <div className={card.subtitle}>
                 Subtitle
