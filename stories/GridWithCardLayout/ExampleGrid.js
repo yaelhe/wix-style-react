@@ -71,7 +71,11 @@ export default () =>
         </div>
         <div className={grid.colXs4}>
           <div className={card.card}>
-            <div className={card.header}>Side card</div>
+            <div className={card.header}>
+              <div className={card.title}>
+                Side Card
+              </div>
+            </div>
             <div className={card.content}>
               <div className={grid.row}>
                 <div className={grid.colXs12}>
@@ -120,7 +124,11 @@ export default () =>
       <div className={grid.row}>
         <div className={grid.colXs6}>
           <div className={card.card}>
-            <div className={card.header}>Card header</div>
+            <div className={card.header}>
+              <div className={card.title}>
+                Card Header
+              </div>
+            </div>
             <div className={card.content}>
               <div className={grid.row}>
                 <div className={grid.colXs4}>
@@ -145,7 +153,11 @@ export default () =>
         </div>
         <div className={grid.colXs6}>
           <div className={card.card}>
-            <div className={card.header}>Card header</div>
+            <div className={card.header}>
+              <div className={card.title}>
+                Card header
+              </div>
+            </div>
             <div className={card.content}>
               <div className={grid.row}>
                 <div className={grid.colXs4}>
@@ -179,7 +191,11 @@ export default () =>
       <div className={grid.row}>
         <div className={grid.colXs4}>
           <div className={card.card}>
-            <div className={card.header}>Card header</div>
+            <div className={card.header}>
+              <div className={card.title}>
+                Card header
+              </div>
+            </div>
             <div className={card.content}>
               <div className={grid.row}>
                 <div className={grid.colXs12}>
@@ -191,7 +207,11 @@ export default () =>
         </div>
         <div className={grid.colXs4}>
           <div className={card.card}>
-            <div className={card.header}>Card header</div>
+            <div className={card.header}>
+              <div className={card.title}>
+                Card header
+              </div>
+            </div>
             <div className={card.content}>
               <div className={grid.row}>
                 <div className={grid.colXs6}>
@@ -203,7 +223,11 @@ export default () =>
         </div>
         <div className={grid.colXs4}>
           <div className={card.card}>
-            <div className={card.header}>Card header</div>
+            <div className={card.header}>
+              <div className={card.title}>
+                Card header
+              </div>
+            </div>
             <div className={card.content}>
               <div className={grid.row}>
                 <div className={grid.colXs6}>
