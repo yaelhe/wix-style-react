@@ -29,7 +29,7 @@
     }
   }
 
-  .content {
+	.content {
     @extend .container;
 
     padding: $content-padding;
