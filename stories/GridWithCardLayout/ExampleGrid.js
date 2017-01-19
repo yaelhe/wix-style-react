@@ -103,7 +103,11 @@ export default () =>
       <div className={grid.row}>
         <div className={grid.colXs12}>
           <div className={card.card}>
-            <div className={card.header}>Main card</div>
+            <div className={card.header}>
+              <div className={card.title}>
+                Main card
+              </div>
+            </div>
             <div className={card.content}>
               <div className={grid.row}>
                 <div className={grid.colXs4}>
